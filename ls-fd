@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# ls-fd
+# by borzole.one.pl
+
+find . -mindepth 1 -maxdepth 1 -xtype $1 -printf "%P "

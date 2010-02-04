@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Sesja zostanie zapisana do pliku ~/.log/cli-${DATA}"
+mkdir -p ~/.log 2> /dev/null 1>&2
+script -a -f ~/.log/cli-data.log

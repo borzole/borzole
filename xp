@@ -1,0 +1,29 @@
+#!/bin/bash
+
+# xp - kontrola virtualnego xp
+# by borzole.one.pl
+
+vm=win-hd
+
+if [ $# -eq 0 ]; then
+	# przy braku parametrów
+	echo "${0##*/} { on | off | save }"
+	exit 0
+else
+	case "$1" in
+		on)
+			/usr/bin/VBoxManage startvm $vm
+			;;
+		off)
+			/usr/bin/VBoxManage controlvm $vm poweroff
+			;;
+		save)
+			/usr/bin/VBoxManage controlvm $vm savestate
+			;;
+		*)
+			echo "Nie ma takiego parametru:     $@"
+			# uruchomienie bez parametrów wyświetli pomoc
+			$0
+			;;
+	esac
+fi

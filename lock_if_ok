@@ -1,0 +1,22 @@
+#!/bin/bash
+
+# lock_if_ok - blokuje uruchomienie skryptu jeśli spełnił swoją funkcję a chodzi w pętli (cron)
+#
+# Jak to działa?
+#	- jeśli skrypt zwróci kod wyjścia "9" (return 9) tzn. że jego funkcja została spełniona i powinien być zatrzymany
+#	mam np. skrypt sprawdzający ostatnią wersję programu i w razie powodzenia wyśle e-mail
+#	sęk w tym, że może wysłać i 1000 e-maili zanim ów program zaktualizuje	
+#
+# Przykład:
+# 		lock_if_ok <program> "<wiadomość>"
+# 		lock_if_ok vbox-latest "Pobierz nową wersję"
+#
+# plik blokujący tworzony jest w katalogu domowym
+LOCK_FILE=~/"$1: $2"
+
+if [ ! -f "$LOCK_FILE" ] ; then
+	eval "$1"
+	[ $? == 9 ] && touch "$LOCK_FILE"
+else
+	echo "[ wychodzę ] plik blokujący \"$LOCK_FILE\" istnieje"
+fi

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Short Information about loaded kernel modules
+
+lsmod | cut -d' ' -f1 | xargs modinfo | egrep '^file|^desc|^dep' | sed -e'/^dep/s/$/\n/g'

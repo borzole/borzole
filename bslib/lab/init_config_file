@@ -1,0 +1,4 @@
+#!/bin/bash
+init_config_file(){
+	CONFIG_FILE="$1"
+}

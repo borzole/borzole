@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# cleanup-leaves-file - pozwala usunąć pliki/katalogi nie będące w spisie bazy RPM
+# Użycie: 
+# 	cleanup-leaves-file <folder> <typ> <głębokość>
+# 	cleanup-leaves-file /usr/share d 1
+
+DIR=${1:-/etc}
+TYPE=${2:-d}
+DEPTH=${3:-1}
+
+yes_or_no(){
+	echo -e "${R}[ yes/no ]${N} $@"
+	local x=''
+	while true ; do
+		read x
+		case "$x" in 
+			[tT] | [tT][aA][kK] | [yY] | [yY][eE][sS] )
+				return 0 ;;
+			[nN] | [nN][iI][eE] | [nN][oO] )
+				return 1 ;;
+			* )
+				echo " Wybierz yes/no" ;;
+		esac
+	done
+}
+
+for d in $(find $DIR -maxdepth $DEPTH -mindepth $DEPTH -xtype $TYPE 2>/dev/null) ; do
+	rpm -qf $d >/dev/null 2>&1
+	if [ $? != 0 ] ; then 
+		yes_or_no "Czy usunąć bezpowrotnie : $d"
+		[ $? == 0 ] && rm -R "$d"
+	fi
+done

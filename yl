@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# by borzole.one.pl
+su -c"yum localinstall --nogpgcheck $@"

@@ -1,0 +1,138 @@
+#!/bin/bash
+#
+# by borzole ( jedral.one.pl )
+VERSION=2010.01.13-20.29
+# ------------------------------------------------------------------------------
+# bside - "Bash Shell IDE" ...czyli mój pomysł na szybsze robienie skryptów 
+# ------------------------------------------------------------------------------
+LIBRARY=$HOME/.bside
+# folder projektów
+# np:
+# 		$HOME/project/bash/projekt1
+# 		$HOME/project/bash/projekt2
+PROJECT=$HOME/project/bash
+# ------------------------------------------------------------------------------
+script(){
+	SCRIPT=$1
+	echo "#!/bin/bash" > $SCRIPT
+	echo -e "#\n# by borzole ( jedral.one.pl )" >> $SCRIPT
+	echo -e "VERSION=$(date +%Y.%m.%d-%H.%M)" >> $SCRIPT
+	echo "# ------------------------------------------------------------------------------" >> $SCRIPT
+	chmod +x $SCRIPT
+}
+# ------------------------------------------------------------------------------
+include(){
+	if [ ${1:0:1} == "." ] || [ ${1:0:1} == "/" ]  ; then
+		local INCLUDE="$@"
+	else
+		local INCLUDE=$LIBRARY/"$@"
+	fi
+	for s in $INCLUDE ; do
+		grep -h -v '^#!/' $s \
+			| grep -v '#~\ ' \
+			| sed -e '/^$/d' \
+			>> $SCRIPT
+		echo "# ------------------------------------------------------------------------------" >> $SCRIPT
+	done
+}
+# ------------------------------------------------------------------------------
+download_bsfl(){
+	shift
+	if [ -n "$1" ] ; then 
+		local FILE="$@"/bsfl.tar.gz
+	else
+		local FILE=bsfl.tar.gz
+	fi
+	local URL="http://dl.dropbox.com/u/409786/bsfl.tar.gz"
+	mkdir -p $LIBRARY 2>/dev/null
+	
+	curl -C - -o $FILE $URL
+	# wget -P $$LIBRARY $URL
+}
+# ------------------------------------------------------------------------------
+rebuil_all_project(){
+	local TMP_PWD="$PWD"
+	echo -e "Przebudowuje projekty..."
+	for panel in $(find "$PROJECT" -xtype f -name panel) ; do
+		echo -e "\t# ${panel%panel}"
+		cd "${panel%panel}"
+		chmod +x panel
+		./panel
+	done
+	cd "$TMP_PWD"
+}
+# ------------------------------------------------------------------------------
+usage(){
+	echo -e "${0##*/} - Bash Shell IDE [ by borzole.one.pl ]
+		...czyli mój pomysł na szybsze robienie skryptów 
+ ------------------------------------------------------------------------------
+ :: 1. CLI ::
+ ------------------------------------------------------------------------------
+	-d, --download-example [ <folder> ]
+		pobierze bibliotekę przykładowych funkcji oraz przykładowy projekt
+\t
+		UWAGA! paczkę z funkcjami należy rozpakować do katalogu:
+		\t$LIBRARY
+\t
+	-l, --list
+		wyświetl dostępne funkcje
+\t
+	-r, --rebuil
+		przebuduj wszystkie projekty w katalogu:
+		\t$PROJECT
+\t
+	-h, --help
+		to co teraz czytasz :)
+ ------------------------------------------------------------------------------
+ :: 2. w skrypcie :: jak już masz bibliotekę, to tak się tego używa
+  ------------------------------------------------------------------------------
+ - tworzymy projekt w katalogu projektów: $PROJECT
+ - tworzymy główny skryptem o nazwie 'panel' i zawartości:
+  ------------------------------------------------------------------------------
+	#!/bin/bash
+\t
+	# source naszego frameworka :P
+	. bside
+\t
+	# nazwa budowanego skryptu
+	script \$HOME/pietrucha.lab
+\t
+	# i teraz dołączamy sobie tylko pliki jak klocki:	
+\t
+	# dołącz plik z bierzącego katalogu
+	include ./opis
+\t
+	# dołącz plik z biblioteki
+	include std
+	include export
+	# wszystkie z tego folderu w bibliotece (jak java)
+	include lock/*
+\t
+	# oj i coś z systemu	
+	include /usr/local/bin/marchewka
+\t
+	# dołączymy teraz interfejs skryptu z bierzącego katalogu
+	include ./ui/*
+\t
+	# i ostateczny silnik z bierzącego katalogu
+	include ./silnik
+\t
+	# czemu by nie dopisać informacji z jakiegoś polecenia
+	echo -e \"# \$( uname -a)\" >> \$SCRIPT
+\t
+	# lub wykonać z biblioteki
+	. \$LIBRARY/msg/marker
+	echo -e \"# \$( marker )\" >> \$SCRIPT
+\t	
+ ------------------------------------------------------------------------------
+ :: i tyle KISS ::
+ ------------------------------------------------------------------------------"
+}
+# ------------------------------------------------------------------------------
+if [ -n "$1" ] ; then 
+	[ "$1" == "-d" ] || [ "$1" == "--download-example" ]  && download_bsfl "$@"
+	[ "$1" == "-l" ] || [ "$1" == "--list" ] && tree $LIBRARY
+	[ "$1" == "-r" ] || [ "$1" == "--rebuil" ] && rebuil_all_project
+	[ "$1" == "-h" ] || [ "$1" == "--help" ] && usage | less
+fi
+# ------------------------------------------------------------------------------

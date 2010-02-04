@@ -1,0 +1,73 @@
+#!/bin/bash
+
+# by borzole.one.pl
+
+menu(){
+	zenity --title="$BASE" \
+		--text "::MOC::" \
+		--width=400 --height=300 \
+		--list \
+		--column "run" --column "opis" \
+		"info"                "co to tera leci"\
+		"next"               "Play next song."\
+		"previous"         "Play previous song."\
+		"toggle-pause" "Toggle between play/pause."\
+		"play"               "Start playing from the first item on the playlist"\
+		"stop"              "Stop playing."\
+		"delete"          "Delete song."\
+		"xterm"            "X GUI"\
+		"exit"              "Shutdown the server."
+}	
+
+aktualna(){
+	mocp --info | grep '^File: ' | cut -d' ' -f2-
+	
+	#~ zenity --text-info --title="${0##*/}" --width=200 --height=200
+	
+	#~ State: PLAY
+	#~ File: /home/lucas/studio/art/music/1996 Clubbed To Death (Lola)/04 - Voices In Your Mind.mp3
+	#~ Title: 4 Soundtrack - Voices In Your Mind (Clubbed To Death (Lola))
+	#~ Artist: Soundtrack
+	#~ SongTitle: Voices In Your Mind
+	#~ Album: Clubbed To Death (Lola)
+	#~ TotalTime: 07:08
+	#~ TimeLeft: 05:46
+	#~ TotalSec: 428
+	#~ CurrentTime: 01:22
+	#~ CurrentSec: 82
+	#~ Bitrate: 128Kbps
+	#~ Rate: 44KHz
+}
+
+usun(){
+	SONG=$(aktualna)
+	zenity --question --title="${0##*/}" \
+		--text "Chcesz usunąc mp3 !!\n$SONG" \
+		--ok-label="OK : bo to gupia piosenka " \
+		--cancel-label="Quit : och no! no! no!" 
+	if [ $? == 0 ] ; then
+		TRASH=$HOME/.local/share/Trash
+		mkdir -p "${TRASH}${SONG%/*}" 2>/dev/null
+		mv "$SONG" "${TRASH}${SONG}"
+	fi
+}
+
+go(){
+	WTF="--"$(menu)
+	if [ $? != 0 ] ; then
+		exit 0
+	else
+		if [ "$WTF" == "--delete" ] ; then
+			usun
+		elif [ "$WTF" == "--info" ] ; then
+			mocp --info | zenity --text-info --title="${0##*/}" --width=600 --height=325
+			#~ zenity --info --title="${0##*/}" --width=200 --height=200 --text="Aktualna = \n$(aktualna)" 
+		elif [ "$WTF" == "--xterm" ] ; then
+			xterm -e mocp &
+		else
+			mocp $WTF 
+		fi
+		go
+	fi
+}
+go

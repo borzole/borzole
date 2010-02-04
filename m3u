@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# by borzole.one.pl
+
+debug=
+#debug="echo -e"
+
+DIR="$HOME/studio/art/music"
+# Lista MP3
+desk="$HOME/desk"
+
+# _lista nazwa_skrótu folder_mp3_do_zindeksowania
+_lista()
+{
+	$debug rm -f "$desk"/"${1:-all}".m3u 2>/dev/null
+	find "$2" -iname \*.mp3 | sort -u >> "$desk"/"${1:-all}".m3u	
+}
+
+_lista all "$DIR"
+
+# MOC
+desk="$HOME/.moc"
+_lista playlist "$DIR"
