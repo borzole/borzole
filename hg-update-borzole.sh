@@ -2,7 +2,7 @@
 
 # by borzole ( jedral.one.pl )
 
-for p in *.sh ; do
+for p in *.py ; do
 	hg add $p 2>/dev/null
 done
 
