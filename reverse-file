@@ -15,6 +15,6 @@ by borzole.one.pl
 fi
 
 INPUT="$1"
-for (( i =1 ; i <= $(wc -l < "$INPUT") ; i++ )) ; do
+for (( i=1 ; i <= $(wc -l < "$INPUT") ; i++ )) ; do
 	tail -n $i "$INPUT" | head -n 1 
 done
