@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# folder repozytorium
+REPO=/home/lucas/arch/Dropbox/Public/pub/repo
+
+dropbox stop
+rm -rf $REPO/repodata
+createrepo $REPO
+dropbox-index all
+#~ dropbox start -i

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# UŻYCIE:
+# 			[Alt + F2] send uptime
+
+
+info=$(eval "$@")
+
+if [ $? == 0 ] ; then
+	#~ notify-send -t $((1000+300*`echo -e $info | wc -w`)) -u low -i bash.svg "$*" "$info" || exit 2
+	notify-send -u low -i bash "$*" "$info" || exit 2
+else	
+	notify-send -u critical -i halt "$*" "nie udało się ;(" || exit 2
+fi

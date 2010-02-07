@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# usuń komentarze i puste linie z $1
+# by borzole.one.pl
+
+sed -e '/^$/d' "$1" -i
+sed -e '/^#/d' "$1" -i

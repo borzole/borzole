@@ -2,7 +2,7 @@
 
 # by borzole ( jedral.one.pl )
 
-obj="bin"
+obj=" bin"
 obj+=" share/bslib"
 obj+=" share/nautilus-scripts"
 

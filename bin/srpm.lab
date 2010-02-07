@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# środowisko do budowania pakietów
+# yum install rpm-build rpmdevtools
+
+# przygotowanie odpowiedniej struktury katalogów.
+# rpmdev-setuptree
+
+# zbudowanie pakietu (plików wynikowych szukać w ~/rpmbuild/RPMS/). 
+# parametrem jest paczka, albo lista, a domyślnie wszystkie z katalogu
+
+#~ LOG="$HOME/srpm.log"
+#~ rm -rf "$LOG"
+
+#~ for srpm in *.src.rpm ; do
+	#~ rpmbuild --rebuild $srpm
+	rpmbuild --rebuild $1
+	 #~ 2>> "$LOG"
+#~ done
+
+#BRAKI=$(grep "jest wymagany" "$LOG" | cut -d' ' -f1 | sed -e 's:\	\	*::g' )
+#~ su -c "yum install $BRAKI"
+
+#na konkretny kernel
+#rpmbuild --rebuild --target $(uname -m) pakiet-xxx.src.rpm
+
+# jeśli coś jest nie tak z plikiem .spec, zależności or sth to 
+# wchodzisz do 
+# cd ~/rpmbuild/SPEC/ 
+# poprawiasz plik *.spec i dajesz 
+# rpmbuild -ba *.spec 
+
+# pozostaje zainstalowanie otrzymanych pakietów
+# yum localinstall --nogpgcheck paczka.rpm
+
+# sprzątaczka
+#~ rm -rf "$LOG"

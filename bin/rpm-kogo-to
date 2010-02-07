@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# by borzole.one.pl
+rpm -qf $(which $1)
+
+
+

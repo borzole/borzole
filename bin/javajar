@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# Runs jar files
+# by borzole.one.pl
+
+java -server -jar $@

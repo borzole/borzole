@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+# Geany IDE
+# by borzole.one.pl
+
+BIN=~/arch/local/bin
+SBIN=~/arch/local/sbin
+
+# polecenia do wykonania z uruchomieniem / odświerzeniem geany-ide (Win+F8)
+chmod +xrw -R $BIN/* 2>/dev/null
+chmod +xrw -R $SBIN/* 2>/dev/null
+
+# pliki do otworzenia
+FILE=" $BIN/geany-ide "
+FILE+=" $SBIN/silnik "
+#~ FILE+=" ~/project/todo.txt "
+#~ FILE+=" ~/project/notes.txt "
+#~ FILE+=" ~/.log/cronrun.log "
+
+geany $FILE
+
+#~ gnome-terminal -x crontab -e
+
+grep --color=always @TODO -R $BIN/* $SBIN/* | cut -d'/' -f6- | grep -v "pomiń mnie w TODO"
+grep --color=always @MAYBE -R $BIN/* $SBIN/* | cut -d'/' -f6- | grep -v "pomiń mnie w MAYBE"
