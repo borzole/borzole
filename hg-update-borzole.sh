@@ -2,9 +2,12 @@
 
 # by borzole ( jedral.one.pl )
 
-for p in * ; do
-	#~ hg addremove $p 2>/dev/null
-	hg add $p 2>/dev/null
+obj="bin"
+obj+=" share/bslib"
+obj+=" share/nautilus-scripts"
+
+for p in $obj ; do
+	hg addremove $p 2>/dev/null
 done
 
 hg commit -m " -- $@"

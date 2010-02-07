@@ -1,0 +1,232 @@
+#!/bin/bash
+
+#Copyright (C) <2009>  <H4K>
+
+#This program is free software; you can redistribute it and/or modify
+#it under the terms of the GNU General Public License as published by
+#the Free Software Foundation; either version 2 of the License, or
+#(at your option) any later version.
+
+#This program is distributed in the hope that it will be useful,
+#but WITHOUT ANY WARRANTY; without even the implied warranty of
+#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#GNU General Public License for more details.
+
+#You should have received a copy of the GNU General Public License
+#along with this program; if not, write to the Free Software
+#Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
+
+#JPG
+var="`pwd`" #define comando para rutas
+extension="*.jpg" #define extencion de archivo
+find $var -name "$extension" | sort -d > $var/.backJPG
+
+#JPEG
+extension="*.jpeg" #define extencion de archivo
+find $var -name "$extension" | sort -d > $var/.backJPEG
+
+#PNG
+extension="*.png" #define extencion de archivo
+find $var -name "$extension" | sort -d > $var/.backPNG
+
+#GIF
+extension="*.gif" #define extencion de archivo
+find $var -name "$extension" | sort -d > $var/.backGIF
+
+#CONCATENANDO ARCHIVOS
+cat .backJPG .backJPEG .backPNG >> .backgrounds
+rm .backJPG .backJPEG .backPNG .backGIF
+
+#Usar los nombres de archivo para crear el XML
+
+rm backgrounds.xml
+touch backgrounds.xml
+
+if [ -f "/usr/share/backgrounds/cosmos/background-1.xml" ]
+	then
+		cat /usr/share/backgrounds/cosmos/background-1.xml | head -9 > backgrounds.xml
+
+	else
+
+		rm .tmpback
+		touch .tmpback
+		echo "<background>" > $var/.tmpback
+		cat .tmpback >> backgrounds.xml
+
+		rm .tmpback
+		touch .tmpback
+		echo "  <starttime>" > $var/.tmpback
+		cat .tmpback >> backgrounds.xml
+
+		rm .tmpback
+		touch .tmpback
+		echo "    <year>2009</year>" > $var/.tmpback
+		cat .tmpback >> backgrounds.xml
+
+		rm .tmpback
+		touch .tmpback
+		echo "    <month>08</month>" > $var/.tmpback
+		cat .tmpback >> backgrounds.xml
+
+		rm .tmpback
+		touch .tmpback
+		echo "    <day>04</day>" > $var/.tmpback
+		cat .tmpback >> backgrounds.xml
+
+		rm .tmpback
+		touch .tmpback
+		echo "    <hour>00</hour>" > $var/.tmpback
+		cat .tmpback >> backgrounds.xml
+
+		rm .tmpback
+		touch .tmpback
+		echo "    <minute>00</minute>" > $var/.tmpback
+		cat .tmpback >> backgrounds.xml
+
+		rm .tmpback
+		touch .tmpback
+		echo "    <second>00</second>" > $var/.tmpback
+		cat .tmpback >> backgrounds.xml
+
+		rm .tmpback
+		touch .tmpback
+		echo "  </starttime>" > $var/.tmpback
+		cat .tmpback >> backgrounds.xml
+fi
+
+
+
+rm .tmpback
+rm .tmpback
+touch .tmpback
+echo "<!-- GENERATED WITH XML BACKGROUND CREATOR SCRIPT (xmlback) -->" > $var/.tmpback
+cat .tmpback >> backgrounds.xml
+
+
+CONT=1
+CONT2=2
+TOP="`cat .backgrounds | wc -l`"
+
+
+while [ $CONT -lt $TOP ]; do
+
+
+STRING="`head -$CONT .backgrounds | tail -1`"
+STRING2="`head -$CONT2 .backgrounds | tail -1`"
+
+#Etiqueta static
+touch .tmpback
+echo "<static>" > $var/.tmpback
+cat .tmpback >> backgrounds.xml
+
+rm .tmpback
+touch .tmpback
+echo "<duration>1795.0</duration>" > $var/.tmpback
+cat .tmpback >> backgrounds.xml
+
+rm .tmpback
+touch .tmpback
+echo "<file>$STRING</file>" > $var/.tmpback
+cat .tmpback >> backgrounds.xml
+
+rm .tmpback
+touch .tmpback
+echo "</static>" > $var/.tmpback
+cat .tmpback >> backgrounds.xml
+
+
+
+#Etiqueta transition
+
+rm .tmpback
+touch .tmpback
+echo "<transition>" > $var/.tmpback
+cat .tmpback >> backgrounds.xml
+
+rm .tmpback
+touch .tmpback
+echo "<duration>5.0</duration>" > $var/.tmpback
+cat .tmpback >> backgrounds.xml
+
+rm .tmpback
+touch .tmpback
+echo "<from>$STRING</from>" > $var/.tmpback
+cat .tmpback >> backgrounds.xml
+
+rm .tmpback
+touch .tmpback
+echo "<to>$STRING2</to>" > $var/.tmpback
+cat .tmpback >> backgrounds.xml
+
+rm .tmpback
+touch .tmpback
+echo "</transition>" > $var/.tmpback
+cat .tmpback >> backgrounds.xml
+
+#AUMENTAR CONTADORES
+let CONT=$CONT+1
+let CONT2=$CONT2+1
+
+done
+
+
+#finalización de archivo
+
+CONT=1
+STRING="`head -$CONT .backgrounds | tail -1`"
+
+rm .tmpback
+touch .tmpback
+echo "<static>" > $var/.tmpback
+cat .tmpback >> backgrounds.xml
+
+rm .tmpback
+touch .tmpback
+echo "<duration>1795.0</duration>" > $var/.tmpback
+cat .tmpback >> backgrounds.xml
+
+rm .tmpback
+touch .tmpback
+echo "<file>$STRING2</file>" > $var/.tmpback
+cat .tmpback >> backgrounds.xml
+
+rm .tmpback
+touch .tmpback
+echo "</static>" > $var/.tmpback
+cat .tmpback >> backgrounds.xml
+
+
+#transición
+
+rm .tmpback
+touch .tmpback
+echo "<transition>" > $var/.tmpback
+cat .tmpback >> backgrounds.xml
+
+rm .tmpback
+touch .tmpback
+echo "<duration>5.0</duration>" > $var/.tmpback
+cat .tmpback >> backgrounds.xml
+
+rm .tmpback
+touch .tmpback
+echo "<from>$STRING2</from>" > $var/.tmpback
+cat .tmpback >> backgrounds.xml
+
+rm .tmpback
+touch .tmpback
+echo "<to>$STRING</to>" > $var/.tmpback
+cat .tmpback >> backgrounds.xml
+
+rm .tmpback
+touch .tmpback
+echo "</transition>" > $var/.tmpback
+cat .tmpback >> backgrounds.xml
+
+rm .tmpback
+touch .tmpback
+echo "</background>" > $var/.tmpback
+cat .tmpback >> backgrounds.xml
+
+rm .backgrounds .tmpback

@@ -1,0 +1,8 @@
+#!/bin/bash
+is_init_config_file(){
+	if [ ! $CONFIG_FILE ] ; then
+		echo -e "Musisz najpierw ustawaić nazwę dla pliku konfiguracyjnego"
+		echo -e "PRZYKŁAD:\n\tinit_config_file ~/.testowy_config"
+		exit 1
+	fi
+}

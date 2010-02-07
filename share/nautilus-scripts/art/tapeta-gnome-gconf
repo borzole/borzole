@@ -1,0 +1,13 @@
+#!/bin/bash
+
+##Written by Akshay Srinivasan. You're welcome to modify this script. This script requires Zenity to work as intended.
+FILE=`echo -n $NAUTILUS_SCRIPT_SELECTED_FILE_PATHS`
+
+if [ -n `file "$FILE" | grep image` ] 
+then
+	zenity --notification --text="$FILE is not an image."
+else
+	gconftool-2 -t string -s /desktop/gnome/background/picture_filename "$FILE"
+fi
+
+exit
