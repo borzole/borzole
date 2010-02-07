@@ -1,6 +1,0 @@
-#!/bin/bash
-
-#Create symbolic links to selected items (files or directorys) in desktop
-
-destination="$HOME/desk"
-ln -s "${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS%?}" "$destination"

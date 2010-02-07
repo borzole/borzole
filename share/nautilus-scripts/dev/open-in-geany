@@ -1,4 +1,0 @@
-#!/bin/bash
-
-# to jest tylko poto by móc otwierać pliki *.desktop
-geany $NAUTILUS_SCRIPT_SELECTED_URIS

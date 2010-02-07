@@ -1,3 +1,0 @@
-#!/bin/bash
-
-xterm -e "xcrysden --xyz ${1:-NAUTILUS_SCRIPT_SELECTED_FILE_PATHS}"

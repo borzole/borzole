@@ -1,3 +1,0 @@
-#!/bin/bash
-
-recode iso8859-2..utf-8 $NAUTILUS_SCRIPT_SELECTED_FILE_PATHS
