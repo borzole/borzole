@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # gnome-background -- ustawia losową tapetę z katalogu
-
 # źródło: http://www.webupd8.org/2009/11/3-lines-script-to-automatically-change.html
-# zmiany: borzole (jedral.one.pl)
+# zmiany na potrzeby cron: borzole (jedral.one.pl)
+# wersja: 2010.02.07
 
 # folder z obrazkami
-if [ $# -eq 0] ; then
+if [ $# -eq 0 ] ; then
 	DIR=/usr/share/backgrounds/images
 else
 	DIR="$@"
@@ -16,7 +16,7 @@ fi
 PIC="$(
 for p in [jJ][pP][gG] [pP][nN][gG] [sS][vV][gG] ; do
 	ls $DIR/*.$p
-done | shuf -n1
+done 2>/dev/null | shuf -n1
 )"
 
 # w Cron parametr DBUS_SESSION_BUS_ADDRESS nie istnieje, 

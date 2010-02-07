@@ -54,9 +54,14 @@ class Table:
         table.attach(button, 2, 3, 2, 3)
         button.show()
 		# --------------------------------------------------
+        button = gtk.Button("Edit")
+        button.connect("clicked", self.callback, "xdg-open ~/.conkyrc")
+        table.attach(button, 0, 1, 3, 4)
+        button.show()
+		# --------------------------------------------------
         button = gtk.Button("Quit")
         button.connect("clicked", lambda w: gtk.main_quit())
-        table.attach(button, 0, 3, 3, 4)
+        table.attach(button, 1, 3, 3, 4)
         button.show()
 		# --------------------------------------------------
         table.show()
