@@ -1,0 +1,7 @@
+#!/bin/bash
+get_var(){
+	is_init_config_file
+	local name=$1
+
+	grep '^\ *'$name'\ *=' $CONFIG_FILE | cut -d\= -f2-
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pl" >
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="author" content="borzole" />
+	<meta name="keywords" content="dropbox public, borzole, fedora, łukasz jędral" />
+	<meta name="description" content="Index zawartości folderu publicznego z dropbox" />
+	<meta name="robots" content="all" />
+
+	<title>Dropbox/Public</title>
+
+	<link rel="icon" type="image/x-icon" href="http://files.getdropbox.com/u/409786/web/img/favicon.png" />	
+
+	<link rel="stylesheet" type="text/css" href="http://files.getdropbox.com/u/409786/web/css/dropbox.css" title="default" />	
+	<link rel="alternate stylesheet" type="text/css" href="http://files.getdropbox.com/u/409786/web/css/dropbox-alfa.css" title="dropbox-alfa" />
+	<link rel="alternate stylesheet" type="text/css" href="http://files.getdropbox.com/u/409786/web/css/dropbox-beta.css" title="dropbox-beta" />
+	<link rel="alternate stylesheet" type="text/css" href="http://files.getdropbox.com/u/409786/web/css/dropbox-zeta.css" title="dropbox-zeta" />
+	<link rel="alternate stylesheet" type="text/css" href=" " title="brak" />
+		
+	<script type="text/javascript" src="http://files.getdropbox.com/u/409786/web/js/styleswitcher.js"></script>
+</head>
+
+<body>
+
+<div id="container">
+	<div id="intro">
+		
+		<div id="logo"><a href="http://files.getdropbox.com/u/409786/pub/index.html"><img src="http://files.getdropbox.com/u/409786/web/img/logo-box.png" alt="Home" /></a></div>
+		<div id="tytul">Dropbox / Public</div>
+		
+		<div id="styl">css:
+			<a href="#" onclick="setActiveStyleSheet('default'); return false;">default</a>
+			<a href="#" onclick="setActiveStyleSheet('dropbox-alfa'); return false;">alfa</a>
+			<a href="#" onclick="setActiveStyleSheet('dropbox-beta'); return false;">beta</a>
+			<a href="#" onclick="setActiveStyleSheet('dropbox-zeta'); return false;">zeta</a>
+			<a href="#" onclick="setActiveStyleSheet('brak'); return false;">brak</a>
+		</div>
+	</div>		
+
+	<div id="index"> <!--tu idzie lista plików dla index.html --> 
+		<ul>
+			<li><a href="../index.html" >[up] ..</a></li>
+			<li><a href="index.html" >[-] .</a></li>	
+			<li><a href="Set image as wallpaper" > Set image as wallpaper</a></li>
+
+		</ul>
+	</div>
+	<div id="opis">	<!--	komentarz pochodzi z readme.txt	-->
+	</div> 	<!--	koniec komentarza	-->
+
+	<div id="stopka">
+			<a href="http://validator.w3.org/check/referer" title="Sprawdź XHTML">xhtml</a> &nbsp; 
+			<a href="http://jigsaw.w3.org/css-validator" title="Sprawdź CSS">css</a> &nbsp; 
+			<a href="http://creativecommons.org/licenses/by/2.5/pl/" title="Creative Commons">cc</a> &nbsp;
+			<a href="http://jedral.one.pl" title="Łukasz Jędral">borzole</a> &nbsp;
+	</div>
+</div>
+</body>
+</html>
+

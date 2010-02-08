@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# http://wiki.fedora.pl/wiki/Consolehelper
+nautilus-super $NAUTILUS_SCRIPT_SELECTED_URIS

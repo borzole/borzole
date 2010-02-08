@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cmd=$(${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS%?})
+
+# DEBUG
+echo "$cmd" | zenity --text-info

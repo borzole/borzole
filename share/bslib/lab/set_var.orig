@@ -1,0 +1,18 @@
+#!/bin/bash
+set_var(){
+	is_init_config_file
+	local name=$1
+	local value=$2
+
+	local tmpfile=$(mktemp)
+	# wykonaj przy wyjściu (również w razie przerwania)
+	throw "rm -f $tmpfile 2>/dev/null"
+
+	if [ -f $CONFIG_FILE ] ; then
+		grep -v '^\ *'$name'\ *=' $CONFIG_FILE > $tmpfile
+	fi
+	echo "${name}=${value}" >> $tmpfile
+	cat $tmpfile | sort | sed -e '/^\ *$/d' > $CONFIG_FILE
+
+	rm -f $tmpfile 
+}
