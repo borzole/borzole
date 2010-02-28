@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# http://www.linuxquestions.org/questions/linux-software-2/bash-scripting-pipe-input-to-script-vs.-1-570945/
 # potok może być zrealizowany dowolną funkcją, która oczekuje danych z potoku :)
 potok_xargs()
 {

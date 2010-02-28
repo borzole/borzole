@@ -6,7 +6,7 @@ YesNo(){
 	# np:	yesno "Zainstalować nowy kernel?"
 	echo -e "${R}[ yes/no ]${N} $@"
 	local x=''
-	while true ; do
+	while : ; do
 		read x
 		case "$x" in 
 			[tT] | [tT][aA][kK] | [yY] | [yY][eE][sS] )

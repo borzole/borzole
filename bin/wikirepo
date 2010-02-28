@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # by borzole.one.pl
-# VERSION = 2009.12.16 14:37
+# VERSION=2010.02.25-01:06
 # ------------------------------------------------------------------------------
 # wikirepo - pobiera paczki RPM prosto z http://wiki.fedora.pl/wiki/repo
 # wersja CLI
@@ -60,24 +60,22 @@ B="\e[1;34m"
 DIR=$HOME
 # ------------------------------------------------------------------------------
 get_links(){
-	# zwraca listę linków do paczek rpm oddzielona znakiem nowego wiersza
+	# zwraca listę linków do paczek rpm oddzieloną znakiem nowego wiersza
 	# informacja jest wyłuskiwana z tej strony
-	URL="http://wiki.fedora.pl/index.php?title=repo&action=raw&ctype=text/css"	
-	# metoda: 
-	#		- sed: każdą spację zamienić na znak nowej linii ( składnia linków na wiki wymusza tę spację)
-	#		- grep: wylapać tylko linie kończące się na ".rpm"
-	#		- awk: wyłuskać linie zawierające linki i wyłuskać link http
-	#		- sort: posortowanie i usunięcie pustych linii
-	
-	# http://
-	curl -s ${URL}  \
-		| sed -e 's/\ \ */\n/g' \
-		| grep 'http' \
-		| grep '\.rpm$' \
-		| awk -F "http://" '{ print "http://" $2 }' \
+	local thisURL="http://wiki.fedora.pl/index.php?title=repo&action=raw&ctype=text/css"	
+	# metoda:
+	#	- sed: każdą "spację" i "[" zamienić na znak nowej linii
+	#		( składnia linków na wiki wymusza tę spację i nawias )
+	#	- grep: wylapać tylko linie zaczynające się od:
+	#			http://
+	#			https://
+	#			ftp://
+	#			i kończące się na ".rpm"
+	#	- sort: posortowanie i usunięcie pustych linii	
+	curl -s "$thisURL"  \
+		| sed -e 's/\ \ */\n/g ; s/\[/\n/g' \
+		| grep -E '^(http|https|ftp)\:\/\/.*\.rpm$' \
 		| sort -u 
-	# https://
-	# ftp://
 }
 # ------------------------------------------------------------------------------
 set_rpmlist(){

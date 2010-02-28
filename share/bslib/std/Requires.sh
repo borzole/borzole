@@ -5,7 +5,9 @@ Requires(){
 	# np.
 	# 		wymaga wget zenity notify-send
 	for thisAPPS in "$@" ; do
-		which ${thisAPPS} >/dev/null 2>&1
+		#~ which ${thisAPPS} >/dev/null 2>&1
+		#type bogus_command &>/dev/null
+		type ${thisAPPS} &>/dev/null
 		if [ $? != 0 ] ; then
 			Error "Nie znaleziono programu '$thisAPPS'"
 			Verbose "\tSpróbuj zainstalować:

@@ -100,3 +100,8 @@ echo "OK, poszło. Wszystkie opcje: 	gconftool-2 --help-all"
 
 
 # dodatkowe skróty klawiaturowe
+
+# pozycja natilusa
+gconftool-2 \
+   --set "/apps/nautilus/preferences/navigation_window_saved_geometry" \
+   --type string "800x600+0+0"

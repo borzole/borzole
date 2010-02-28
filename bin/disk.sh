@@ -3,6 +3,8 @@
 # pokazuje zajętość dysku na bierząco, dobre do przenoszenia między partycjami
 # by borzole.one.pl
 
-while [ 1 ] ; do
-	clear && df -h && sleep 3
-done
+#~ while : ; do
+	#~ clear && df -h && sleep 1
+#~ done
+
+watch df -h

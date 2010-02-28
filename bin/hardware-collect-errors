@@ -13,7 +13,7 @@
 # See: http://www.cyberciti.biz/tips/linux-server-predicting-hardware-failure.html
 LOGGER=/usr/bin/logger
 FILE=/var/log/mcelog
-AEMAIL="vivek@nixcraft.net.in"
+AEMAIL="borzole@gmail.com"
 ASUB="H/W Error - $(hostname)"
 AMESS="Warning - Hardware errors found on $(hostname) @ $(date). See log file for the details /var/log/mcelog."
 OK_MESS="$0 - OK: NO Hardware Error Found."
@@ -25,7 +25,7 @@ die(){
 }
  
 warn(){
-	echo $AMESS | email -s "${ASUB}" ${AEMAIL}
+	echo $AMESS | mutt -s "${ASUB}" ${AEMAIL}
 	$LOGGER "$WARN_MESS"
 }
  

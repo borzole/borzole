@@ -25,6 +25,8 @@ setDefault(){
 }
 # ------------------------------------------------------------------------------
 BslibSource(){
+	[ -z $MSG_LOADING_SCRIPTS ] && MSG_LOADING_SCRIPTS="Loading scripts from folder"
+	
 	Verbose "$MSG_LOADING_SCRIPTS: $BSLIB_DIR"
 	for thisSCRIPT in $( find "$BSLIB_DIR" -xtype f -iname \*.sh ) ; do
 		if [ -f "$thisSCRIPT" ] ; then
@@ -54,14 +56,15 @@ BslibSourceLang(){
 # "zachęta" wbudowanego polecenia "select"
 PS3=':: ctrl+d :: wybierz nr:: '
 # czcionka: (N)ORMAL, (X)BOLD, (R)ED, (G)REEN, (B)LUE
-N="\e[0m" 
-X="\e[1;38m" 
-r="\e[0;31m"
-R="\e[1;31m"
-g="\e[0;32m"
-G="\e[1;32m"
-b="\e[0;34m"
-B="\e[1;34m"
+declare -A C # -A option declares associative array.
+C[N]="\e[0m" 
+C[X]="\e[1;38m" 
+C[r]="\e[0;31m"
+C[R]="\e[1;31m"
+C[g]="\e[0;32m"
+C[G]="\e[1;32m"
+C[b]="\e[0;34m"
+C[B]="\e[1;34m"
 # ustaw jeśli nie ustawiono
 [ -z "$VERBOSE" ] && VERBOSE=0
 # folder ze skryptami

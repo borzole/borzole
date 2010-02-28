@@ -2,22 +2,16 @@
 
 # by borzole.one.pl
 
-debug=
-#debug="echo -e"
-
 DIR="$HOME/studio/art/music"
 # Lista MP3
 desk="$HOME/desk"
 
-# _lista nazwa_skrótu folder_mp3_do_zindeksowania
-_lista()
-{
-	$debug rm -f "$desk"/"${1:-all}".m3u 2>/dev/null
-	find "$2" -iname \*.mp3 | sort -u >> "$desk"/"${1:-all}".m3u	
-}
+rm -f "$desk"/all.m3u
+rm -f "$desk"/ost.m3u
 
-_lista all "$DIR"
+# all
+find "$DIR" -iname \*.mp3 | sort -u >> "$desk"/all.m3u
 
-# MOC
-desk="$HOME/.moc"
-_lista playlist "$DIR"
+# ost
+find "$DIR"  -mindepth 1 -maxdepth 1 -xtype d -iname [0-9]\* -exec \
+	find '{}' -iname \*.mp3 >> "$desk"/ost.m3u \;

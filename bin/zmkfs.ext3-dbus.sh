@@ -1,7 +1,7 @@
 #!/bin/bash
 
 lista_menu(){
-	for p in $( fdisk -l $1 | grep '^/dev/' | cut -d' ' -f1 ) ; do
+	for p in $( fdisk -l $1 2>/dev/null | grep '^/dev/' | cut -d' ' -f1 ) ; do
 		echo "TRUE $p "
 	done
 }
@@ -31,10 +31,7 @@ disk_format(){
 		echo "$MSG $d \n zmywanie garów" >&4
 		sleep 2
 	done
-
-	# wysłanie setki wywoła "--auto-close" i pasek zniknie
 	echo "100" >&4
-	# zamknięcie deskryptora 4
 	exec 4>&-
 	zenity --title "${0##*/}" --info --text="Zakończono formatowanie dyskun <b>$1</b>"
 }
@@ -53,12 +50,10 @@ dbus_out(){
 dbus_read(){
 	while read line ; do
 		DISK=$( get_device "$line" )
-		for a in {a..z} ; do
-			if [ "$DISK" == "sd${a}" ] ; then
-				disk_format /dev/$DISK
-				break
-			fi
-		done
+		if [[ $DISK = sd[a-z] ]] ; then
+			disk_format /dev/$DISK
+			break
+		fi
 	done
 }
 

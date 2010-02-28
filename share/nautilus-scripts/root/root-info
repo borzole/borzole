@@ -1,0 +1,4 @@
+#!/bin/bash
+
+xterm -e \
+	su -c"zenity --info --text ${NAUTILUS_SCRIPT_CURRENT_URI#file://}"

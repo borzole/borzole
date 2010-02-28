@@ -1,7 +1,7 @@
 #!/bin/bash
 
 lista_menu(){
-	for p in $( fdisk -l | grep '^/dev/' | cut -d' ' -f1 ) ; do
+	for p in $( fdisk -l 2>/dev/null | grep '^/dev/' | cut -d' ' -f1 ) ; do
 		echo "TRUE $p "
 	done
 }

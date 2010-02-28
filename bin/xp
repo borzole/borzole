@@ -3,7 +3,7 @@
 # xp - kontrola virtualnego xp
 # by borzole.one.pl
 
-vm=win-hd
+vm=win-apps
 
 if [ $# -eq 0 ]; then
 	# przy braku parametrów
