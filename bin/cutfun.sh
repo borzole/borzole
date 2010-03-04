@@ -1,58 +1,70 @@
 #!/bin/bash
 
-# cutfun - wycinanie funkcji ze skryptu
-# by borzole.one.pl
-
+# cutfun.sh - wycinanie funkcji ze skryptu
 # użycie:
-# 1. zrób kopię swojego skryptu
-# 2. zrób kopię swojego skryptu !!!
-# 		cutfun /home/lucas/start.sh
+# 	cutfun.sh /home/lucas/start.sh
+
+[ $# -eq 0 ] && exit 1
 
 SCRIPT="$1" 
-# tu wędrują wycięte funkcje
-PLUGIN="${SCRIPT}_plugin"
+DIR="${SCRIPT%.*}.d"
+
+INIT="init.sh"
+MAIN="main.sh"
+PLUGIN="plugin.d"
+
+if [[ -d $DIR ]] ; then
+	echo "Folder '$DIR' już istnieje, wychodzę"
+	exit 1
+else
+	mkdir -p "$DIR/$PLUGIN"
+fi
+
+cp -p "${SCRIPT}" "${DIR}/${MAIN}"
 
 # tymczasowy skrypt parsujący
-CUTSCRIPT="/tmp/cutfun_wycinanka.sh"
+CUTSCRIPT=$(mktemp)
 
-trap $( rm -f $CUTSCRIPT 2>/dev/null ) EXIT
+trap $( rm -f $CUTSCRIPT ) EXIT
 
-get_funlist()
-{
+get_funlist(){
 	# jeśli funkcje to blok postaci "nazwa234 ()..." wówczas mamy listę funkcji
 	# obcinamy nazwy na spacji lub (
-	grep '^[a-zA-Z0-9\_\-]*\ *()' $SCRIPT | cut -d' ' -f1 | cut -d\( -f1| sort 
+	grep '^[a-zA-Z0-9\_\-]*\ *()' "${DIR}/${MAIN}" \
+		| sed -e 's/\ \ *//g' \
+		| cut -d\( -f1 \
+		| sort
 }
 
-parser_create_file()
-{
-	FUNLIST=( $(get_funlist) )
-	mkdir -p "$PLUGIN"
-	for fun in ${FUNLIST[@]} ; do
-		echo -e "echo '#!/bin/bash' > $PLUGIN/$fun" 
-		echo -e "sed -n -e '/^${fun}\\ *()/,/^}/p' $SCRIPT >> $PLUGIN/$fun" 
-		echo -e "sed -e '/^${fun}\\ *()/,/^}/d' $SCRIPT -i" 
-		echo -e "chmod +x $PLUGIN/$fun" 
-	done
-}
+FUNLIST=( $(get_funlist) )
 
-parser_create_file > $CUTSCRIPT
-sh $CUTSCRIPT
+for fun in ${FUNLIST[@]} ; do
+cat <<__EOF__
+
+echo '#!/bin/bash' > $DIR/$PLUGIN/${fun}.sh
+sed -n -e '/^${fun}\\ *()/,/^}/p' ${DIR}/${MAIN} >> $DIR/$PLUGIN/${fun}.sh
+sed -e '/^${fun}\\ *()/,/^}/d' ${DIR}/${MAIN} -i
+chmod +x $DIR/$PLUGIN/${fun}.sh
+
+__EOF__
+done > $CUTSCRIPT
+bash $CUTSCRIPT
 rm -f $CUTSCRIPT
 
-# -------------------------------------------------------------------------------------------------
-# mała podpowiedź
-echo "
-[ Export zakończony ]
-: oczyszczonony skrypt = $SCRIPT
-: wyeksportowane funkcje = $PLUGIN
+cat >"${DIR}/${INIT}"<<__EOF__
 
-[ Jak teraz zaimportować te funkcje do skryptu? ]
-: wystarczy wstawić na początku skryptu:
- ------start-----
-# importowanie funkcji z katalogu
-for script in $PLUGIN/* ; do
-	source \$script
+#!/bin/bash
+
+# enable globstar (dopasowanie **)
+shopt -s globstar
+# rekursywnie
+for s in "./$PLUGIN"/**/*.sh ; do
+	. "\$s" || exit 1
 done
- ------stop-----
-"
+
+. "${MAIN}" || exit 1
+__EOF__
+
+chmod +x "${DIR}/${INIT}"
+
+

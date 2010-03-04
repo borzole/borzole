@@ -1,14 +1,4 @@
 #!/bin/bash
 
-#~ # deskryptor pliku 4 = wejście informacyjne dla paska postępu
-#~ exec 4> >(zenity --progress --pulsate --width=300 --auto-close --auto-kill  --title="Optymalizacja PNG" )
-#~ echo "# $NAUTILUS_SCRIPT_SELECTED_FILE_PATHS " >&4
-#~ # optymalizacja
-#~ optipng -k -o7 $NAUTILUS_SCRIPT_SELECTED_FILE_PATHS
-#~ # wysłanie setki wywoła "--auto-close" i pasek zniknie
-#~ echo "100" >&4
-#~ # zamknięcie deskryptora 4
-#~ exec 4>&-
-
 
 xterm -e optipng -k -o7 $NAUTILUS_SCRIPT_SELECTED_FILE_PATHS

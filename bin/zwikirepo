@@ -5,7 +5,7 @@
 # autor: borzole (jedral.one.pl)
 # licencja: GPLv2+
 # ------------------------------------------------------------------------------
-VERSION=2010.02.28-17:50
+VERSION=2010.03.04-22:28
 # Zmiany: użyj "meld" lub "diff" to się dowiesz ;P
 # ------------------------------------------------------------------------------
 # domyślny folder pobierania
@@ -30,12 +30,13 @@ Opcje:
   -V, --version                Wyświetl informacje o wersji i zakończ program
   -h, --help                   Wyświetla opcje pomocy
 
-Autor:
-  borzole (jedral.one.pl)
-
 Licencja:
   GPLv2+
-"
+
+Autor:
+  Łukasz Jędral ( borzole )
+  borzole@gmail.com
+  http://jedral.one.pl"
 }
 # ------------------------------------------------------------------------------
 usage_gui(){
@@ -192,7 +193,7 @@ set_dir(){
 	menu_function
 }
 # ------------------------------------------------------------------------------
-download(){			
+download(){
 	[ ! -d "$DIR" ] && mkdir -p "$DIR"
 	for RPMNR in ${LISTA} ; do
 		# usunąłem $TERM na rzecz xterm
@@ -250,7 +251,7 @@ menu_rpmlist(){
 			--text "Nie zaznaczono żadnych pakietów!" \
 			--ok-label="Lista" \
 			--cancel-label="Exit"
-		[ $? == 0 ] && ${FUNCNAME}
+		[ $? == 0 ] && ${FUNCNAME} || exit 0
 	else
 		menu_function
 	fi

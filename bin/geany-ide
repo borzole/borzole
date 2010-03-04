@@ -23,3 +23,4 @@ geany $FILE
 
 grep --color=always @TODO -R $BIN/* $SBIN/* | cut -d'/' -f6- | grep -v "pomiń mnie w TODO"
 grep --color=always @MAYBE -R $BIN/* $SBIN/* | cut -d'/' -f6- | grep -v "pomiń mnie w MAYBE"
+
