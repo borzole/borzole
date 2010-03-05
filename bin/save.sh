@@ -1,21 +1,16 @@
 #!/bin/bash
 
-LOG=$HOME/script_save.log
+LOG="$HOME/cmd.log"
 
-LINE="# ------------------------------------------------------------------------------"
-# ------------------------------------------------------------------------------
+LINE="# -----------------------------------------------------------------------"
+
 if [ $# -eq 0 ] ; then
 	echo -e "nie podano żadnego polecenia"
 	exit 0
 fi
 # ------------------------------------------------------------------------------
-Main(){
-	echo -e "$LINE" >>$LOG
-	echo -e "# DATA: $(Marker)" >>$LOG
-	echo -e "# EXEC: $@" >>$LOG
-	echo -e "$LINE" >>$LOG
-	eval "$@" | tee -ai $LOG
-	echo -e " -- zapisano do: $LOG --"
-}
-# ------------------------------------------------------------------------------
-Main "$@"
+echo -e "$LINE" >>"$LOG"
+echo -e "# EXEC: $@" >>"$LOG"
+echo -e "$LINE" >>"$LOG"
+eval "$@" | tee -ai "$LOG"
+echo -e " -- zapisano do: $LOG --"

@@ -4,7 +4,7 @@
 # by borzole.one.pl
 
 # np.:
-#		sortext pdf
+#	sortext pdf
 # znajdzie wszystkie PDF (również w podkatalogach)i wrzuci do jednego katalogu
 
 for i in "$@" ;do 

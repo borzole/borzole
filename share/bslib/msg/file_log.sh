@@ -20,13 +20,13 @@ file_log(){
 #@TODO powinna być możliwość decyzji: przerwij/oczekuj potwierdzenia/ yes na wszystko
 		mkdir -p "$thisDIR" ; RC=$?
 		if [ $RC != 0 ] ; then
-			Error "Nie udało się utworzyć katalogu: $thisDIR"
-			Verbose "Zamieniam '$thisDIR' na /tmp"
+			echo -e "Nie udało się utworzyć katalogu: $thisDIR" >&2
+			verbose "Zamieniam '$thisDIR' na /tmp"
 			thisDIR=/tmp
 		fi
 	fi
 
 	# ostatecznie mamy log
 	FILE_LOG="$thisDIR"/"$thisFILE"
-	Verbose "Ustawiono FILE_LOG: $FILE_LOG"
+	verbose "Ustawiono FILE_LOG: $FILE_LOG"
 }

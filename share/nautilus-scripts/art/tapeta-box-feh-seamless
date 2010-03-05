@@ -1,3 +1,0 @@
-#!/bin/bash
-
-feh --bg-seamless $NAUTILUS_SCRIPT_SELECTED_FILE_PATHS

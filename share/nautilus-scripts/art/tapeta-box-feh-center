@@ -1,3 +1,0 @@
-#!/bin/bash
-
-feh --bg-center $NAUTILUS_SCRIPT_SELECTED_FILE_PATHS

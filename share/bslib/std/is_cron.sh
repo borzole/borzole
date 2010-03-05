@@ -2,7 +2,7 @@
 
 is_cron(){
 	if $(tty -s) ; then
-		Verbose "Oh good, this is interactive \nHello $USER"
+		verbose "Oh good, this is interactive \nHello $USER"
 		return 1
 	else
 		# for cron

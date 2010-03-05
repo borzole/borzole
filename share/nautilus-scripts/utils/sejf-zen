@@ -26,7 +26,7 @@ args="$(menu)"
 zenity --entry --title="Sejf" \
     --text="Podaj hasło: $args" \
     --entry-text "**********" --hide-text 2>/dev/null \
-	|sejf --"$args" "$file"
+	|sejf.sh --"$args" "$file"
 
 # ostateczne powiadomienie o rezultacie
 # coś nie działa, zawsze zwraca OK

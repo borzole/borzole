@@ -1,12 +1,9 @@
 #!/bin/bash
 
-# sort09 - sortuje na katalogi 0-9
+# sortaz - sortuje na katalogi a-z
 # by borzole.one.pl
 
-#debug="echo -e"
-debug=""
-
-# $1		=	głębokość sortowania (domyślnie 1)
+# $1 = głębokość sortowania (domyślnie 1)
 if [ $# == 0 ] ; then
 	depth="-mindepth 1 -maxdepth 1"
 elif [ $# == 1 ] ; then
@@ -17,10 +14,10 @@ elif [ $# == 1 ] ; then
 	fi
 fi
 
-for i in {0..9} ;do 
+for i in {a..z} ;do 
 	mkdir $i 2>/dev/null
 	echo -e "$i"
-	find . $depth -xtype f -iname $i\* -exec $debug mv '{}' ./$i/ \; 2>/dev/null
+	find . -xtype f -iname $i\* -exec mv '{}' ./$i/ \; 2>/dev/null
 done
 
 echo -e "usuwam puste katalogi"

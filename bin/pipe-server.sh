@@ -2,13 +2,13 @@
 
 # http://www.linuxjournal.com/content/using-named-pipes-fifos-bash
 VERBOSE=1
-. bslib.sh
+. bslib.sh || exit 1
 
-ScriptLock
+script_lock
 
 TrapEXIT(){
 	rm -f $pipe
-	ScriptUnlock
+	script_unlock
 }
 
 pipe=/tmp/testpipe

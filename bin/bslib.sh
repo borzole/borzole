@@ -35,6 +35,7 @@ library(){
 	fi
 	# lista folderów ze skryptami:
 	unset BSLIB_PATH
+	# dlaczego tablica? bo można spacje wcisnąć w nazwie
 	BSLIB_PATH[${#BSLIB_PATH[*]}]=/usr/share/bslib
 	BSLIB_PATH[${#BSLIB_PATH[*]}]=/usr/local/share/bslib
 	BSLIB_PATH[${#BSLIB_PATH[*]}]=$HOME/.bslib

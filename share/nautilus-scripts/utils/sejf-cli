@@ -9,7 +9,7 @@ file=${tmp%?}
 
 # użyj terminala: 
 # xterm -e sejf --cli "$file"
-gnome-terminal -x sejf --cli "$file"
+gnome-terminal -x sejf.sh --cli "$file"
 
 # ewentualnie rozbić to na dwa pliki
 #xterm -e sejf -c "$file"

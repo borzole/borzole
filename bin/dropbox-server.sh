@@ -2,7 +2,6 @@
 
 
 while true; do 
-	
 	if [ -f  input.txt ];then
 		OUTCOM=$(cat input.txt)
 		$OUTCOM > output.txt

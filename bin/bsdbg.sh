@@ -7,18 +7,16 @@
 # 		DEBUG=0
 # 		. debugger.sh
 # --------------------------------------------------------------------
-[ -z "$DEBUG" ] && DEBUG=3
-[ -z "$LOGFILE" ] && LOGFILE="$HOME/script_${0##*/}_$(date +%Y.%m.%d).log"
+[[ -z "$DEBUG" ]] && DEBUG=3
+[[ -z "$LOGFILE" ]] && LOGFILE="$HOME/script_${0##*/}_$(date +%Y.%m.%d).log"
 # --------------------------------------------------------------------
-debug_format()
-{
+debug_format(){
 	while read line; do
 		echo "[ $(date +%Y.%m.%d-%H:%M:%S) ][ ${0##*/} ] $line"
 	done 
 }
 # --------------------------------------------------------------------
-debug()
-{
+debug(){
 	case "$DEBUG" in
 		0)
 			# formatuj błąd 

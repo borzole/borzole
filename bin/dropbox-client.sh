@@ -3,7 +3,6 @@
 touch input.txt
 touch output.txt
 
-
 echo -n "Enter Command: "
 read INCOM
 

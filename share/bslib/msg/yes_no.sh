@@ -4,7 +4,7 @@ yes_no(){
 	# @parametr: krótki opis wyboru
 	# @return: 0|1
 	# np:	yesno "Zainstalować nowy kernel?"
-	echo -e "${R}[ yes/no ]${N} $@"
+	echo -e "[ yes/no ] $@"
 	local x=''
 	while : ; do
 		read x

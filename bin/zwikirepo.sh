@@ -5,7 +5,7 @@
 # autor: borzole (jedral.one.pl)
 # licencja: GPLv2+
 # ------------------------------------------------------------------------------
-VERSION=2010.03.04-22:28
+VERSION=2010.03.04-22:29
 # Zmiany: użyj "meld" lub "diff" to się dowiesz ;P
 # ------------------------------------------------------------------------------
 # domyślny folder pobierania
