@@ -2,7 +2,7 @@
 
 # cutfun.sh - wycinanie funkcji ze skryptu
 # użycie:
-# 	cutfun.sh /home/lucas/start.sh
+# 	cutfun.sh /home/lucas/myscript.sh
 
 [ $# -eq 0 ] && exit 1
 

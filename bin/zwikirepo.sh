@@ -5,7 +5,7 @@
 # autor: borzole (jedral.one.pl)
 # licencja: GPLv2+
 # ------------------------------------------------------------------------------
-VERSION=2010.03.04-22:29
+VERSION=2010.03.06-16:11
 # Zmiany: użyj "meld" lub "diff" to się dowiesz ;P
 # ------------------------------------------------------------------------------
 # domyślny folder pobierania
@@ -50,7 +50,7 @@ get_links(){
 	# informacja jest wyłuskiwana z tej strony
 	local thisURL="http://wiki.fedora.pl/index.php?title=repo&action=raw&ctype=text/css"
 	# metoda:
-	#	- sed: każdą "spację" i "[" zamienić na znak nowej linii
+	#	- sed: każdą spację, tabulator i "[" zamienić na znak nowej linii
 	#		( składnia linków na wiki wymusza tę spację i nawias )
 	#	- grep: wylapać tylko linie zaczynające się od:
 	#			http://
@@ -59,7 +59,7 @@ get_links(){
 	#			i kończące się na ".rpm"
 	#	- sort: posortowanie i usunięcie pustych linii	
 	curl -s "$thisURL"  \
-		| sed -e 's/\ \ */\n/g ; s/\[/\n/g' \
+		| sed -e 's:[\ \t\[]:\n:g' \
 		| grep -E '^(http|https|ftp)\:\/\/.*\.rpm$' \
 		| sort -u 
 }
