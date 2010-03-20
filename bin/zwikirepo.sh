@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # zwikirepo -- pobiera paczki RPM prosto z http://wiki.fedora.pl/wiki/repo
-# 				wersja GUI (zenity)
 # autor: borzole (jedral.one.pl)
 # licencja: GPLv2+
 # ------------------------------------------------------------------------------
