@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# kasuje paczkę na podstawie polecenia
+sudo yum erase $(rpm -qf $(type -P $@))

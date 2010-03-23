@@ -4,10 +4,12 @@ if [ $# -eq 0 ] ; then
 	echo -e " reverse-file - odwraca kolejność linii w pliku
 
 Podaj plik tekstowy jako parametr
-UŻYCIE:
+Użycie:
 	reverse-file dane.log
 	reverse-file dane.log > rezultat.log
 	reverse-file dane.log | tee -ai rezultat.log
+Ciekawostka:
+	reverse-file dane.log | rev
 
 by borzole.one.pl
 "

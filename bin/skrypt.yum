@@ -1,0 +1,30 @@
+#!/usr/bin/yum shell
+
+# przykładowy skrypt dla yum
+
+# Uwaga! to polecenie automatycznie potwierdza wszelkie transakcje
+# config assumeyes true
+  
+# wypunktowane transakcje
+# check-update
+
+# reinstall udev
+
+# Usuwanie
+erase gstreamer-plugins-bad
+erase gstreamer-plugins-bad-extras    
+
+# Instalowanie:
+install gstreamer-plugins-bad-free
+install gstreamer-plugins-bad-free-extras
+
+# Aktualizowanie:
+update gstreamer
+update gstreamer-plugins-base
+update gstreamer-plugins-good
+update gstreamer-tools
+update nss-softokn
+update nss-softokn-freebl
+
+# wykonanie skryptu
+run

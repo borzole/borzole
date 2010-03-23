@@ -8,7 +8,7 @@ shopt -s globstar
 # enable ** for dotfiles
 shopt -s dotglob
 
-# kożeń: tu lub z parametru
+# root dir
 r="${1:-$PWD}"
 
 chmod +rw -R "$r"/*

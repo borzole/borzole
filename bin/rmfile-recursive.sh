@@ -16,7 +16,8 @@ shopt -s globstar
 # włącz wykrywanie ukrytych plików
 shopt -s dotglob
 # folder bieżący lub z parametru (korzeń przeszukiwania)
-r="${PWD:-$1}"
+# root dir
+r="${1:-$PWD}"
 
 # rekursywnie znajdź pliki
 for p in "$r"/**/* ; do
