@@ -243,12 +243,12 @@ menu_crop(){
 	zenity 	--title="${0##*/}"  --text "<b>${FILE}</b>" \
 		--list  --radiolist --width=250 --height=240 \
 		--column="todo" --column "Jak posiekać plakat?" --column "" \
-			FALSE	"2: lewy/prawy"			crop_2lr \
-			FALSE	"2: góra/dół" 			crop_2tb \
-			FALSE	"3: lewy/środek/prawy" 	crop_3lcr \
-			FALSE	"3: góra/środek/dół" 	crop_3tcb \
-			FALSE	"4: na krzyż" 			crop_4 \
-			FALSE	"9: kółko i krzyżyk"	crop_9 \
+			FALSE	"2: lewy/prawy"         crop_2lr \
+			FALSE	"2: góra/dół"           crop_2tb \
+			FALSE	"3: lewy/środek/prawy"  crop_3lcr \
+			FALSE	"3: góra/środek/dół"    crop_3tcb \
+			FALSE	"4: na krzyż"           crop_4 \
+			FALSE	"9: kółko i krzyżyk"    crop_9 \
 		--print-column=3 --hide-column=3
 }
 # ------------------------------------------------------------------------------
