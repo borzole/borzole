@@ -73,13 +73,7 @@ crop_4(){
 	FILE_BR=$( crop_r $(geometry "$FILE_B") "$FILE_B" )
 
 	rm -f "$FILE_T" "$FILE_B"
-	#~ mv "$FILE_TL" "$DIR"
-	#~ mv "$FILE_TR" "$DIR"
-	#~ mv "$FILE_BL" "$DIR"
-	#~ mv "$FILE_BR" "$DIR"
 }
-# ------------------------------------------------------------------------------
-# Wybór pliku
 # ------------------------------------------------------------------------------
 get_file(){
 	zenity --file-selection --title="Wybierz plik: plakat do pocięcia"
