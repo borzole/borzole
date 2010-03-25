@@ -4,11 +4,21 @@
 # autor: borzole (jedral.one.pl)
 # wymaga: ImageMagick zenity
 #
-# skrypt można uruchomić
-#    * z plikiem jako parametrem (opcjonalnie parametr cięcia)
+# Użycie:
 #    * wrzucić do folderu $HOME/.gnome2/nautilus-scripts/
 #      i mieć w GNOME pod myszą
-#    * bez parametru i wówczas otworzy się okienko do wyznaczenia pliku
+#    * wrzucić do folderu /usr/local/bin/
+#      i uruchamiać z parametrami lub bez np.:
+#        $ gilotyna.sh
+#        $ gilotyna.sh plik.png
+#        $ gilotyna.sh plik.png 3    # sieka 3x3
+#        $ gilotyna.sh plik.png 3 4  # sieka 3x4
+#      czego mu zabraknie to się upomni
+# Uwaga!
+#    * skrypt nie jest idiotoodporny
+#        * nie sprawdza czy dany plik nadaje się do pocięcia przez ImageMagick
+#        * nie sprawdza czy wpisana ilość wierszy/kolumn to liczba całkowita
+#    * dokładność cięcia co do piksela
 # ------------------------------------------------------------------------------
 crop(){
 	exec 4> >(zenity --title="${0##*/}" --width=300 --progress --pulsate --auto-close --auto-kill )
