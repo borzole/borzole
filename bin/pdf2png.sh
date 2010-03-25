@@ -1,3 +1,1 @@
-#!/bin/bash
-
-convert -density 300 "$1" "$2"
+/home/lucas/.gnome2/nautilus-scripts/art/pdf2png.sh
