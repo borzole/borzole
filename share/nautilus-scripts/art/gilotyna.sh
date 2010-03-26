@@ -15,8 +15,10 @@
 #        $ gilotyna.sh plik.png 3 4  # sieka 3x4
 #      czego mu zabraknie to się upomni
 # Uwaga!
-#    * skrypt nie sprawdza czy dany plik nadaje się do pocięcia przez ImageMagick
 #    * dokładność cięcia co do piksela
+# ------------------------------------------------------------------------------
+# jeśli odrazu podasz więcej niż nazwę pliku to olejemy GUI
+[[ $# -gt 1 ]] && CLI=0
 # ------------------------------------------------------------------------------
 menu(){
 	zenity --title="${0##*/}"  --entry  --entry-text "2 2" \
@@ -24,6 +26,16 @@ menu(){
 plik: 		$FILE
 wymiary: 	$WIDTH x $HEIGHT\n
 wprowadź: 	KOLUMNY  WIERSZE"
+}
+# ------------------------------------------------------------------------------
+error(){
+	ERROR="$@"
+	if [[ -n $CLI ]] ; then
+		echo -e "$ERROR" >&2
+	else
+		zenity --error --title="${0##*/}" --text="$ERROR" --width=200
+	fi
+	exit 1
 }
 # ------------------------------------------------------------------------------
 get_file(){
@@ -34,12 +46,8 @@ get_file(){
 # jeśli plik nie został podany jako parametr to wyświetli się okienko
 FILE="${1:-${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS:-$(get_file)}}" || exit 0
 # sprawdzamy, czy to rzeczywiście plik 
-if [[ ! -f $FILE ]] ; then
-	ERROR="Nie ma takiego pliku: \n$FILE"
-	zenity --error --title="${0##*/}" --text="$ERROR" --width=200
-	echo -e "$ERROR" >&2
-	exit 1
-fi
+ERROR="Nie ma takiego pliku: \n$FILE"
+[[ ! -f $FILE ]] && error "$ERROR"
 # ------------------------------------------------------------------------------
 # nazwa pliku bez rozszerzenia
 NAME="${FILE%.*}"
@@ -47,37 +55,47 @@ NAME="${FILE%.*}"
 [[ -n ${FILE##*.} ]] && EXT=".${FILE##*.}" || EXT="" 
 # ------------------------------------------------------------------------------
 # wymiary obrazka
-WIDTH=$(identify -format "%[fx:w]" "$FILE")
-HEIGHT=$(identify -format "%[fx:h]" "$FILE")
+ERROR="Nie udało się pobrać wymirów obrazka: \n$FILE \nplik nie jest obrazem"
+WIDTH=$(identify -format "%[fx:w]" "$FILE")  || error "$ERROR"
+HEIGHT=$(identify -format "%[fx:h]" "$FILE") || error "$ERROR"
 # ------------------------------------------------------------------------------
 # ustawienie ilości kolumn i wierszy
-if [[ -z $2 ]] ; then
+if [[ $# -eq 1 ]] ; then
 	# z menu
 	ENTRY_RAW=$(menu) || exit 0
-	COL=$( echo $ENTRY_RAW | cut -d' ' -f1 )
-	ROW=$( echo $ENTRY_RAW | cut -d' ' -f2 )
+	COL=$(echo $ENTRY_RAW | awk '{ print $1}')
+	[[ -z $COL ]] && error "Nie podano na ile wierszy i kolumn pociąć obrazek"
+	ROW=$(echo $ENTRY_RAW | awk '{ print $2}')
 else
-	# w konsoli, drugi parametr ozn. ilość kolumn (i wierszy)
+	# drugi parametr ozn. ilość kolumn (i wierszy)
 	COL=$2
 	# jeśli podano trzeci parametr to ozn. ilość wierszy
-	[[ -n $3 ]] && ROW=$3 || ROW=$COL
+	[[ -n $3 ]] && ROW=$3
 fi
+# sprawdźmy format wprowadzonych danych
+ERROR="parametr musi być liczbą całkowitą i ma sens gdy jest większy od zera"
+echo $COL | grep -E '[^0-9]' && error "Podano ilość kolumn: $COL \n$ERROR"
+echo $ROW | grep -E '[^0-9]' && error "Podano ilość wierszy: $ROW \n$ERROR"
+# jeśli nie podano ilości wierszy, to jest taka sama jak ilość kolumn
+[[ -z $ROW ]] && ROW=$COL
 # ------------------------------------------------------------------------------
 # pasek postępu
-exec 4> >(zenity --title="${0##*/}" --width=300 --progress --pulsate --auto-close --auto-kill )
+[[ -z $CLI ]] && exec 4> >(zenity --title="${0##*/}" --width=300 --progress --pulsate --auto-close --auto-kill )
 # po ustawieniu wszystkiego, następuje cięcie!
-w=$((${WIDTH}/${COL}))  || exit 1 # wyjdź jeśli COL nie jest liczbą całkowitą 
-h=$((${HEIGHT}/${ROW})) || exit 1 # wyjdź jeśli ROW nie jest liczbą całkowitą 
+w=$((${WIDTH}/${COL}))
+h=$((${HEIGHT}/${ROW}))
+all=$((${COL}*${ROW}))
 for (( i=1 ; i <= ${COL} ; i++ )) ; do
 	x=$(( (${i}-1)*${w} ))
 	for (( j=1 ; j <= ${ROW} ; j++ )) ; do
 		y=$(( (${j}-1)*${h} ))
 		GEOMETRY=${w}x${h}+${x}+${y}
 		OUTPUT="${NAME}-y${j}x${i}${EXT}"
-		echo "# Generuje plik: $OUTPUT ..." >&4
+		MSG="Generuje plik $(((${i}-1)*${COL} + ${j})) z $all : $OUTPUT ... "
+		[[ -z $CLI ]] && echo "# $MSG" >&4 || echo -n $MSG
 		convert -crop $GEOMETRY +repage "$FILE" "$OUTPUT"
+		[[ -n $CLI ]] && echo " OK"
 	done
 done
 # zamknięcie paska postępu
-echo "100" >&4
-exec 4>&-
+[[ -z $CLI ]] && { echo "100" >&4 ; exec 4>&- ; }
