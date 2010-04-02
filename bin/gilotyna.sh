@@ -1,5 +1,5 @@
 #!/bin/bash
-# ------------------------------------------------------------------------------
+
 # gilotyna.sh -- sieka plakat (obraz) na części
 #
 # wymaga:           ImageMagick, zenity
