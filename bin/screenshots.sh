@@ -1,15 +1,12 @@
-#! /bin/sh
+#!/bin/bash
 
 # zrzut pulpitu
-PATH=$HOME/temp
-# Jpeg Quality 0-100
+
 Quality="90"
 
-/bin/sleep 3
-ID=zrzut_
-DATE=`/bin/date "+%Y%m%d%_%H%M%S_"`
-FILE=$PATH/$ID$Date.jpg
+sleep 5
 
-/usr/bin/import -window root -quality $Quality $FILE
+FILE=$HOME/zrzut_$(date "+%Y%m%d%_%H%M%S_").png
 
-# alias foto-moto-az='import -window root screenshot-$(date +%Y-%m-%d_%k.%M).png'
+import -window root -quality $Quality $FILE
+
