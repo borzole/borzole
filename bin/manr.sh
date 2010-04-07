@@ -64,7 +64,7 @@ _rpm(){
 # ------------------------------------------------------------------------------
 # funkcja główna wyświetlająca spis stron man
 _cli(){
-	clear
+	#~ clear
 	echo -e "Miłego czytania stron man z paczki ${B} $RPM ${E}"
 	_linia \~
 	PS3=":: ctrl+d :: wybierz stronę man ::"

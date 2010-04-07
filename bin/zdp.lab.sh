@@ -1,5 +1,7 @@
 #!/bin/bash
 #
+# To nie działa, choć działało przed zmianami w kodzie DP, zostawię dla ciekawostki
+#
 # by borzole.one.pl
 # VERSION = 2009.12.20 17:54
 # ------------------------------------------------------------------------------
