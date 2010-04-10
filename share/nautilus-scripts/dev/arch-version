@@ -3,30 +3,30 @@
 _opis(){
 	zenity --entry --title="Archiwum -- pseudo kontrola wersji" \
     	--text="wprowadź krótki opis zmian zawartości" \
-    	--width=400 --entry-text "opis zmian" 
+    	--width=400 --entry-text "opis zmian"
 }
 
-(
-	echo "# Archiwizuje pliki: ${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS:-${@}}"
-	# wyrażenie:  ##*/   skasuj ścieżkę z początku ("basename" nie obsługuje SPACJI!)
-	tmp=${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS##*/}
-	# wyrażenie:  %?   skasuje ostatni znak (ewentualnie wydłubać ten kod w ascii)
-	file_in=${tmp%?}
-	_date=$(/bin/date +%Y.%m.%d-%H.%M.%S)
-	var_opis=$(_opis)
-	if [ $? != 0 ] ; then
-		exit 0
+# wyrażenie:  ##*/   skasuj ścieżkę z początku ("basename" nie obsługuje SPACJI!)
+tmp=${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS##*/}
+# wyrażenie:  %?   skasuje ostatni znak (ewentualnie wydłubać ten kod w ascii)
+file_in=${tmp%?}
+_date=$(/bin/date +%Y.%m.%d-%H.%M.%S)
+var_opis=$(_opis)
+if [ $? != 0 ] ; then
+	exit 0
+else
+	# w zależności czy jest czy nie ma opisu
+	if [ "$var_opis"	== "" ] ; then
+		file_out="${file_in}-${_date}.7z"
 	else
-		# w zależności czy jest czy nie ma opisu
-		if [ "$var_opis"	== "" ] ; then
-			file_out="${file_in}-${_date}.7z"
-		else
-			file_out="${file_in}-${_date} -- ${var_opis}.7z"
-		fi
-		#gnome-terminal -x 
-		7z a "$file_out" "$file_in"
-			#  2>&1 | zenity --text-info --title="Debuger" --width=700 --height=500
-		chmod -w "$file_out" 
+		file_out="${file_in}-${_date} -- ${var_opis}.7z"
 	fi
-	echo "100"
-)| zenity --progress --pulsate 	--auto-close --auto-kill --title="Archiwizuje plik(i)" 
+	exec 4> >(zenity --progress --pulsate 	--auto-close --auto-kill --title="Archiwizuje plik(i)" )
+	echo "# Archiwizuje pliki: ${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS:-${@}}" >&4
+	7z a "$file_out" "$file_in" #  2>&1 | zenity --text-info --title="Debuger" --width=700 --height=500
+	chmod -w "$file_out"
+fi
+
+# zamknięcie paska postępu
+echo "100" >&4
+exec 4>&-
