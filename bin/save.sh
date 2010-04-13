@@ -1,6 +1,8 @@
 #!/bin/bash
 
-LOG="$HOME/cmd.log"
+DIR="$HOME/.log/"
+[[ ! -d $DIR ]] && mkdir -p "$DIR"
+LOG="$DIR/cmd.log"
 
 LINE="# -----------------------------------------------------------------------"
 
