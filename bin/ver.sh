@@ -11,5 +11,6 @@ usage(){
 
 [[ ! -d RCS ]] && mkdir RCS
 
-ci "$MSG" "$1" && co -l "$1"
-#~ ci "$1" && co -l "$1"
+echo "$MSG"
+#~ ci "$MSG" "$1" && co -l "$1"
+ci "$1" && co -l "$1"
