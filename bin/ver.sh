@@ -12,3 +12,5 @@ rlog "$1" | sed -ne '/^$/,/^ -- /p'
 
 # przywrócenie wybranej wersji:
 # co -r1.2 plik.odt
+
+# ci -u plik.odt # zostawia kopię pliku na swoim miejscu
