@@ -1,38 +1,13 @@
 #!/bin/bash
 
-_opis(){
-	zenity --entry --title="rcs" --text="opis zmian" --width=400
-}
 DIR=${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS%/*}
+FILE_RAW=${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS##*/}
+FILE=${FILE_RAW%?}
+
+MSG=$(zenity --entry --title="rcs" --text="opis zmian" --width=400) || exit 0
+
 cd "$DIR"
 
-tmp=${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS##*/}
-# wyrażenie:  %?   skasuje ostatni znak (ewentualnie wydłubać ten kod w ascii)
-file_in=${tmp%?}
-
-_date=$(/bin/date +%Y.%m.%d-%H.%M.%S)
-var_opis=$(_opis)
-if [ $? != 0 ] ; then
-	exit 0
-else
-	# w zależności czy jest czy nie ma opisu
-	if [ "$var_opis"	== "" ] ; then
-		file_out="${file_in}-${_date}.7z"
-	else
-		file_out="${file_in}-${_date} -- ${var_opis}.7z"
-	fi
-	exec 4> >(zenity --progress --pulsate 	--auto-close --auto-kill --title="Archiwizuje plik(i)" )
-	echo "# Archiwizuje pliki: ${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS:-${@}}" >&4
-	7z a "$file_out" "$file_in" #  2>&1 | zenity --text-info --title="Debuger" --width=700 --height=500
-	chmod -w "$file_out"
-fi
-
-[[ ! -f $1 ]] && usage
+[[ ! -f $FILE ]] && exit 1
 [[ ! -d RCS ]] && mkdir RCS
-ci -m" -- $2" "$1" && co -l "$1"
-rlog "$1" | sed -ne '/^$/,/^ -- /p'
-
-# przywrócenie wybranej wersji:
-# co -r1.2 plik.odt
-
-# ci -u plik.odt # zostawia kopię pliku na swoim miejscu
+ci -m" -- $MSG" "$FILE" && co -l "$FILE"
