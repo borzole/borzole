@@ -7,4 +7,4 @@ usage(){
 [[ $# -eq 0 ]] && usage
 [[ ! -f $1 ]] && usage
 [[ ! -d RCS ]] && mkdir RCS
-ci "$1" && co -l "$1"
+ci -m" -- $2" $1" && co -l "$1"
