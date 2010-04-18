@@ -4,7 +4,7 @@ DIR=${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS%/*}
 FILE_RAW=${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS##*/}
 FILE=${FILE_RAW%?}
 
-MSG=$(zenity --entry --title="rcs" --text="opis zmian" --width=400) || exit 0
+MSG=$(zenity --entry --title="Revision Control System (RCS)" --text="opis zmian" --width=400) || exit 0
 
 cd "$DIR"
 
