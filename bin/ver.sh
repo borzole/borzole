@@ -3,7 +3,7 @@
 [ $# -eq 0 ] && { echo "Użycie: ${0##*/} plik" ; exit 0 ; }
 [ $# -eq 2 ] && MSG="-m'$2'" || MSG=""
 
-[ ! -d ./RCS ] && mkdir RCS
+[ ! -d RCS ] && mkdir RCS
 
 RV="RCS/${1},v"
 
