@@ -10,6 +10,6 @@ usage(){
 
 [[ ! -d RCS ]] && mkdir RCS
 
-[[ ! -f $1 ]] && || usage
+[[ ! -f $1 ]] && usage
 
 ci "$MSG" "$1" && co -l "$1"
