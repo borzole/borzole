@@ -12,6 +12,6 @@ usage(){
 
 RV="RCS/${1},v"
 
-[ ! -f "$1" ] && { [ -f ./RCS/"$1",v ] && co -l "$RV" || usage ; }
+[ ! -f "$1" ] && { [ -f "$RV" ] && co -l "$RV" || usage ; }
 
 ci "$MSG" "$1" && co -l "$RV"
