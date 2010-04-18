@@ -9,3 +9,6 @@ usage(){
 [[ ! -d RCS ]] && mkdir RCS
 ci -m" -- $2" "$1" && co -l "$1"
 rlog "$1" | sed -ne '/^$/,/^ -- /p'
+
+# przywrócenie wybranej wersji:
+# co -r1.2 plik.odt
