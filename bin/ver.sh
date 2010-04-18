@@ -10,8 +10,8 @@ usage(){
 
 [ ! -d RCS ] && mkdir RCS
 
-RV="RCS/${1},v"
+RV="RCS/${1}"
 
-[ ! -f "$1" ] && { [ -f "$RV" ] && co -l "$RV" || usage ; }
+[ ! -f "$1" ] && { [ -f "$RV",v ] && co -l "$RV" || usage ; }
 
 ci "$MSG" "$1" && co -l "$RV"
