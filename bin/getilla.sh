@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # polecenie z powiadomieniem
- 
+
 # PRZYKŁAD: wtyczka Flashgot do firefox:
 # 	polecenie:
 #			/usr/bin/xterm
@@ -20,9 +20,9 @@ RC=$?
 # check whether $DISPLAY exists,
 # if not, exit with get's exit code
 #~ [ "x$DISPLAY" == "x" ] && exit $EXIT
-
+ICON=/usr/share/icons/Fedora/scalable/apps/anaconda.svg
 if [[ $RC == 0 ]] ; then
-  notify-send -i messagebox_info -u low "OK" "${*:2}"
+  notify-send -i $ICON -u low "OK" "${*:2}"
 else
   notify-send -i messagebox_critical -u critical "ERROR" "$*"
 fi
