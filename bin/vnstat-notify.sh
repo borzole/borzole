@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# vnStat - a console-based network traffic monitor
+
 INTERFACE=ppp0
 ICON=/usr/share/icons/Fedora/scalable/apps/anaconda.svg
 
