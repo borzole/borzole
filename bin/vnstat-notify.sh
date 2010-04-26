@@ -28,4 +28,10 @@ ICON=/usr/share/icons/Fedora/scalable/apps/anaconda.svg
 #~ ICON=notification-network-wireless
 #~ ICON=notification-power
 
-notify-send -i "$ICON" "VNSTAT" "$(msg)"
+# http://www.galago-project.org/specs/notification/0.9/index.html
+notify-send -u low \
+			-t 4000 \
+			-i $ICON \
+			"VNSTAT" \
+			"$(msg)"
+
