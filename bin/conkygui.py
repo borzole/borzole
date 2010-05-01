@@ -35,7 +35,7 @@ class Table:
         # wysokosc od poziomu 0 do 1
         table.attach(frame, 0, 3, 0, 2)
         label.show
-        #~ frame.show		
+        #~ frame.show
 		# --------------------------------------------------
         button = gtk.Button("Start")
         button.connect("clicked", self.callback, "conky -d")
@@ -69,9 +69,9 @@ class Table:
         self.window.show_all()
 
 def main():
+    Table()
     gtk.main()
-    return 0       
+    return 0
 
 if __name__ == "__main__":
-    Table()
     main()
