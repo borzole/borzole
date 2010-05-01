@@ -15,6 +15,8 @@
 """
 Usage:
 	indexer.py /path/to/existing/folder
+	indexer.py ./folder
+	indexer.py .
 
 if you want a particular directory to NOT be indexed, create a blank file
 "do_not_index" in that directory
