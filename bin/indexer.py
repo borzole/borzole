@@ -18,15 +18,16 @@ Usage:
 	indexer.py ./folder
 	indexer.py .
 
-if you want a particular directory to NOT be indexed, create a blank file
-"do_not_index" in that directory
-directories below the "do_not_index" directory will still be indexed,
-
+* if you want a particular directory to NOT be indexed:
+	- create a blank file "do_not_index" in that directory
+	- directories below the "do_not_index" directory will still be indexed
 """
 
 import os,sys,datetime
+
 # CLI
-if len(sys.argv) > 1:
+# test: czy jest dokładnie 1 parametr i czy to istniejący katalog
+if len(sys.argv) == 2 and os.path.isdir(sys.argv[1]):
 	path=sys.argv[1]
 else:
 	msg="Usage: \n\t" + os.path.basename(sys.argv[0]) + " /path/to/existing/folder"
