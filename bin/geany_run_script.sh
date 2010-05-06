@@ -2,7 +2,7 @@
 
 rm $0
 
-bash ./"waiting-trwa_instalacja.sh"
+bash ./"pid-tlo.sh"
 
 echo "
 
