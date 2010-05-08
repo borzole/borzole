@@ -2,7 +2,7 @@
 
 rm $0
 
-bash ./"zdp.lab.sh"
+bash ./"index-bse-live.sh"
 
 echo "
 
