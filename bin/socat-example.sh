@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# do zabawy: http://forum.fedora.pl/lofiversion/index.php/t22799.html
 tmp=$RANDOM
 
 cat > $tmp <<__EOF__
