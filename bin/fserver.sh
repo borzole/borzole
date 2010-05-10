@@ -36,19 +36,21 @@ notify_save(){
 	is_run || notify-send -u low -i $ICON "$NAME" "wirtualny serwer mowi dobranoc"
 }
 # ------------------------------------------------------------------------------
+main(){
+	is_run
+	if [ $? != 0 ] ; then
+		# jeśli nie uruchomiona to uruchom
+		VBoxHeadless --startvm $NAME --vrdp=off  >/dev/null &
+		# TEST: czy dostępna jest już strona
+		echo -ne "...oczekuje odpowiedzi z ${IP}:80 "
+		notify_http 2>/dev/null
+	else
+		# inaczej uśpij
+		VBoxManage -q controlvm $NAME savestate
+		notify_save
+	fi
+}
+# ------------------------------------------------------------------------------
 [[ $1 == "--status " ]] && is_run
-# ------------------------------------------------------------------------------
-is_run
-if [ $? != 0 ] ; then
-	# jeśli nie uruchomiona to uruchom
-	VBoxHeadless --startvm $NAME --vrdp=off  >/dev/null &
-	# TEST: czy dostępna jest już strona
-	echo -ne "...oczekuje odpowiedzi z ${IP}:80 "
-	notify_http 2>/dev/null
-else
-	# inaczej uśpij
-	VBoxManage -q controlvm $NAME savestate
-	notify_save
-fi
-# ------------------------------------------------------------------------------
+
 #@TODO: grep 'enabled="1"' $HOME/.VirtualBox/VirtualBox.xml
