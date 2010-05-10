@@ -42,7 +42,7 @@ on(){
 	# uruchom
 	VBoxHeadless --startvm $NAME --vrdp=off  >/dev/null &
 	# TEST: czy dostępna jest już strona
-	echo -ne "...oczekuje odpowiedzi z ${IP}:80 "
+	echo -ne "...oczekuje odpowiedzi z ${IP}:${PORT} "
 	notify_http 2>/dev/null
 }
 # ------------------------------------------------------------------------------
