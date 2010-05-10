@@ -55,5 +55,6 @@ main(){
 	is_run || on && off
 }
 # ------------------------------------------------------------------------------
-[[ $1 == "off" ]] && is_run || echo main
+[[ $1 == "off" ]] && off || main
+
 #@TODO: grep 'enabled="1"' $HOME/.VirtualBox/VirtualBox.xml
