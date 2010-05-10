@@ -50,11 +50,8 @@ off(){
 	notify_save
 }
 # ------------------------------------------------------------------------------
-main(){
-	# przełącznik on/off
-	is_run && off || on
-}
-# ------------------------------------------------------------------------------
-[[ $1 == "off" ]] && off || main
+# przełącznik on/off
+is_run && off || on
+
 
 #@TODO: grep 'enabled="1"' $HOME/.VirtualBox/VirtualBox.xml
