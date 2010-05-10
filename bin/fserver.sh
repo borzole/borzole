@@ -51,6 +51,6 @@ main(){
 	fi
 }
 # ------------------------------------------------------------------------------
-[[ $1 == "--status " ]] && is_run
+[[ $1 == "--status " ]] && is_run || main
 
 #@TODO: grep 'enabled="1"' $HOME/.VirtualBox/VirtualBox.xml
