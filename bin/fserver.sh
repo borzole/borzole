@@ -36,6 +36,8 @@ notify_save(){
 	is_run || notify-send -u low -i $ICON "$NAME" "wirtualny serwer mowi dobranoc"
 }
 # ------------------------------------------------------------------------------
+[[ $1 == "--status " ]] && is_run
+# ------------------------------------------------------------------------------
 is_run
 if [ $? != 0 ] ; then
 	# jeśli nie uruchomiona to uruchom
