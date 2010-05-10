@@ -10,6 +10,7 @@
 # ------------------------------------------------------------------------------
 NAME=fedora-server
 IP=192.168.0.101
+PORT=80
 ICON=/usr/share/icons/Fedora/scalable/apps/anaconda.svg
 # ------------------------------------------------------------------------------
 is_run(){
@@ -19,7 +20,7 @@ is_run(){
 notify_http(){
 	# /dev/tcp redirection to check Internet connection.
 	# Try to connect. (Somewhat similar to a 'ping' . . .)
-	echo "HEAD / HTTP/1.0" >/dev/tcp/${IP}/80
+	echo "HEAD / HTTP/1.0" >/dev/tcp/${IP}/${PORT}
 	if [ $? == 0 ] ; then
 		# jeśli jest odp. to powiadom, że serwer działa
 		notify-send -u critical -i $ICON "$NAME" "wirtualny serwer $IP już działa"
@@ -29,6 +30,7 @@ notify_http(){
 		sleep 1
 		$FUNCNAME
 	fi
+	xdg-open http://${IP}:${PORT}
 	echo
 }
 # ------------------------------------------------------------------------------
