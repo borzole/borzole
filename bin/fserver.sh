@@ -37,7 +37,7 @@ notify_save(){
 }
 # ------------------------------------------------------------------------------
 on(){
-	# jeśli nie uruchomiona to uruchom
+	# uruchom
 	VBoxHeadless --startvm $NAME --vrdp=off  >/dev/null &
 	# TEST: czy dostępna jest już strona
 	echo -ne "...oczekuje odpowiedzi z ${IP}:80 "
