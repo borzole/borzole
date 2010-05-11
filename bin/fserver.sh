@@ -42,8 +42,12 @@ on(){
 	# uruchom
 	VBoxHeadless --startvm $NAME --vrdp=off  >/dev/null &
 	# TEST: czy dostępna jest już strona
-	echo -ne "...oczekuje odpowiedzi z ${IP}:${PORT} "
+	local MSG="...oczekuje odpowiedzi z ${IP}:${PORT} "
+	[[ -n $DISPLAY ]] && exec 4> >(zenity --notification --listen --window-icon $ICON )
+	[[ -n $DISPLAY ]] && echo "tooltip:${MSG}" >&4
+	echo -ne "${MSG}"
 	notify_http 2>/dev/null
+	[[ -n $DISPLAY ]] && exec 4>&-
 }
 # ------------------------------------------------------------------------------
 off(){
