@@ -8,7 +8,7 @@
 # echo -e "GET / HTTP/1.0\n" >&5
 # cat <&5
 # ------------------------------------------------------------------------------
-NAME=fedora-server
+NAME=${1:-fedora-server}
 IP=192.168.0.101
 PORT=80
 ICON=/usr/share/icons/Fedora/scalable/apps/anaconda.svg
