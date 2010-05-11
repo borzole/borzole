@@ -45,6 +45,7 @@ on(){
 	local MSG="...oczekuje odpowiedzi z ${IP}:${PORT} "
 	[[ -n $DISPLAY ]] && exec 4> >(zenity --notification --listen --window-icon $ICON )
 	[[ -n $DISPLAY ]] && echo "tooltip:${MSG}" >&4
+	[[ -n $DISPLAY ]] && echo "message:${MSG}" >&4
 	echo -ne "${MSG}"
 	notify_http 2>/dev/null
 	[[ -n $DISPLAY ]] && exec 4>&-
