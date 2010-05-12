@@ -30,7 +30,7 @@ notify_http(){
 		sleep 1
 		$FUNCNAME
 	fi
-	xdg-open http://${IP}:${PORT}
+	#~ xdg-open http://${IP}:${PORT} # oj! dziwnie się zachowuje, otwiera po 10 stron ?!
 	echo
 }
 # ------------------------------------------------------------------------------
