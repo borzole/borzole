@@ -4,27 +4,20 @@
 
 # Uwaga! to polecenie automatycznie potwierdza wszelkie transakcje
 # config assumeyes true
-  
+
 # wypunktowane transakcje
-# check-update
+check-update
 
 # reinstall udev
 
 # Usuwanie
-erase gstreamer-plugins-bad
-erase gstreamer-plugins-bad-extras    
+#erase gstreamer-plugins-bad
 
 # Instalowanie:
-install gstreamer-plugins-bad-free
-install gstreamer-plugins-bad-free-extras
+#install gstreamer-plugins-bad-free
 
 # Aktualizowanie:
-update gstreamer
-update gstreamer-plugins-base
-update gstreamer-plugins-good
-update gstreamer-tools
-update nss-softokn
-update nss-softokn-freebl
+#update gstreamer
 
 # wykonanie skryptu
 run
