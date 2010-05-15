@@ -20,8 +20,8 @@ check-update
 #update gstreamer
 
 # wykonanie skryptu
-echo cos
+info gcc
 run
 
-check-update
+info geany
 run
