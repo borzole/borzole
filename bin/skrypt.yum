@@ -21,3 +21,6 @@ check-update
 
 # wykonanie skryptu
 run
+
+check-update
+run
