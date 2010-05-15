@@ -20,6 +20,7 @@ check-update
 #update gstreamer
 
 # wykonanie skryptu
+echo cos
 run
 
 check-update
