@@ -18,5 +18,5 @@ echo /usr/sbin/alternatives --config ${ALIAS}
 
 # test
 ls ${PLIK} >/dev/null 2>&1  &&
-	echo " [ OK ] libnpjp2.so istnieje " ||
-	echo " [ ERR ] libnpjp2.so nie istnieje "
+	echo "# [ OK ] libnpjp2.so istnieje " ||
+	echo "# [ ERR ] libnpjp2.so nie istnieje "
