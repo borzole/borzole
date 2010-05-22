@@ -31,7 +31,7 @@ echo /usr/sbin/alternatives --set ${ALIAS} ${PLIK}
 echo
 echo -e "# --------------------------------------------------------------------"
 echo -e "# [ A ] jeśli wszystko jest w porządku należy wykonać:"
-echo -e "#	su -c'./${0} | sh'"
+echo -e "#	su -c'${0} | sh'"
 echo -e "# --------------------------------------------------------------------"
 echo -e "# [ B ] lub jeśli nie chcesz kożystać z 'alternatives' możesz zrobić link:"
 echo -e "# 	ln -s ${PLIK} ${LINK}"
