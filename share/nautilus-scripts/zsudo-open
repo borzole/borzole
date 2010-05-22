@@ -12,4 +12,4 @@ cmd="geany $NAUTILUS_SCRIPT_SELECTED_FILE_PATHS"
 # DEBUG - odznacz by zobaczyć co tak naprawdę zawiera parametr $cmd
 # echo "$cmd" | zenity --text-info
 
-zsudo "$cmd"
+zsudo.sh "$cmd"
