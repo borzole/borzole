@@ -10,6 +10,5 @@ cmd="geany ${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS%?}"
 #cmd="gnome-terminal ${NAUTILUS_SCRIPT_CURRENT_URI##file://}"
 
 # DEBUG - odznacz by zobaczyć co tak naprawdę zawiera parametr $cmd
-echo "$cmd" | zenity --text-info
-
-#zsudo.sh "$cmd"
+# echo "$cmd" | zenity --text-info
+zsudo.sh "$cmd"
