@@ -9,7 +9,16 @@
 shopt -s globstar
 
 # folder z obrazkami: domyślny lub z parametru
-[ $# -eq 0 ] && DIR=$HOME/studio/art/music || DIR="$@"
+if [ $# -eq 0 ] ; then
+	. $HOME/.config/user-dirs.dirs 2>/dev/null
+	DIR="$XDG_MUSIC_DIR"
+else
+	DIR="$@"
+fi
+[[ ! -d $DIR ]] && {
+	zenity --error --title="${0##*/}" --text "<b><span color='#FF0000'>Nie istnieje folder:</span></b>\n${DIR}"
+	exit 1
+}
 # ------------------------------------------------------------------------------
 get_nr(){
 	# "OK" - zwraca ile piosenek będzie losowane
