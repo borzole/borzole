@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# http://wiki.fedora.pl/wiki/Typowe_problemy#Jak_bez_PackageKit_mam_instalowa.C4.87_programy_z_poziomu_nautilusa.3F
+# http://wiki.fedora.pl/wiki/Typowe_problemy
+# Jak bez PackageKit mam instalować programy z poziomu nautilusa
 
 # terminal
 TERM="xterm -e"

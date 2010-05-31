@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# killuser - skrypt, który w pętli będzie tak długo zabijał procesy użytkownika aż wszystkie zostaną finalnie zakończone. 
+# skrypt w pętli będzie tak długo zabijał procesy użytkownika aż wszystkie zostaną finalnie zakończone.
 # autor: David Brock
 
 USER=$1

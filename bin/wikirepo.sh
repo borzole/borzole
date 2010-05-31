@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# ------------------------------------------------------------------------------
 # wikirepo - pobiera paczki RPM prosto z http://wiki.fedora.pl/wiki/repo
 # wersja CLI
 
