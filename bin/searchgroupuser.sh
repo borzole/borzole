@@ -1,9 +1,12 @@
 #!/bin/bash
 
-# searchgroupuser
-# jest skryptem służącym do wyświetlania użytkowników należących do wybranej grupy systemowej. 
-# Autorem skryptu jest użytkownik drunna, z forum Linux Questions. Prezentuje on po kolei: 0) nazwę grupy, 1) id grupy, 2) użytkowników odczytanych z /etc/group, 3) użytkowników odczytanych z /etc/passwd:
-
+# wyświetla użytkowników należących do wybranej grupy systemowej.
+# autor: drunna z forum Linux Questions.
+# Prezentuje on po kolei:
+# 0) nazwę grupy,
+# 1) id grupy,
+# 2) użytkowników odczytanych z /etc/group,
+# 3) użytkowników odczytanych z /etc/passwd:
 
 srchGroup="$1"
 

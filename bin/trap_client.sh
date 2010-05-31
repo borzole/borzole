@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# trap_client.sh -- Client > Server "man 7 signal"
+
 SPID=$(cat /tmp/server.pid)
 
 # uruchomienie bez parametrów

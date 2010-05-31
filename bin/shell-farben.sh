@@ -1,9 +1,11 @@
-#!/bin/sh
-############################################################
+#!/bin/bash
+
+# shell-farben.sh -- kolory w terminalu, zobacz: showcolors.sh
+
 # Nico Golde <nico@ngolde.de> Homepage: http://www.ngolde.de
 # Letzte Änderung: Mon Feb 16 16:24:41 CET 2004
-############################################################
-    
+
+
 for attr in 0 1 4 5 7 ; do
 	echo "----------------------------------------------------------------"
 	printf "ESC[%s;Vordergrund;Hintergrundm - \n" $attr

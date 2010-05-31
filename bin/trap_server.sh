@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# trap_server.sh -- Client > Server "man 7 signal"
+
 cmd(){
 	echo "spieprzaj dziadu"
 }

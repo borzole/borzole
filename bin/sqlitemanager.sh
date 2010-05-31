@@ -1,5 +1,6 @@
-#! /bin/bash
+#!/bin/bash
 
+# sqlitemanager.sh -- Firefox SQLite Manager
 # - uruchomić menadżera profili i dodać nowy profil o nazwie "sqlitemanager"
 # firefox -ProfileManager -no-remote
 

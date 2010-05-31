@@ -1,13 +1,12 @@
 #!/bin/bash -ex
 
+# mpc2mp3.sh -- this small script will convert mpc files to mp3, using mppdec and lame
 #
 # By Charles-Antoine Guillat-Guignard ( http://www.xarli.net , xarli@xarli.net )
 # Released under GNU GPL V2 ( http://www.gnu.org/licenses/gpl.txt )
 # 6 septembre 2005, find the most recent version of this script at http://contrib.xarli.net/mpc2mp3/
 #
 # Use : mpc2mp3 [directory]
-#
-# This small script will convert mpc files to mp3, using mppdec and lame
 #
 
 ECHO='echo'

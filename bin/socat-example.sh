@@ -1,5 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
+# socat-example.sh -- ?
 # do zabawy: http://forum.fedora.pl/lofiversion/index.php/t22799.html
 tmp=$RANDOM
 
