@@ -31,6 +31,7 @@ opis(){
 		#@TODO dlaczego nie mogę wywalić #!
 		#~ /^#!\//d
 		# wywalić znaki komentarza
+		/^#$/d
 		s/^#[[:blank:]]//g
 		# usunąć puste linie
 		/^$/d

@@ -1,38 +1,11 @@
 #!/bin/bash
-#
-# by borzole.one.pl
-# VERSION=2010.02.25-01:06
+
 # ------------------------------------------------------------------------------
 # wikirepo - pobiera paczki RPM prosto z http://wiki.fedora.pl/wiki/repo
 # wersja CLI
-# 
-# Zmiany CLI:
-# 2009.12.16
-#	- zmiana "naciśnij ENTER" na "dowolny klawisz"
-# 2009.12.14
-#	- poprawka, zapomniałem usunąć "wait" po eksperymentach
-#	- autoupdate
-#	- inne drobne korekty
-# ------------------------------------------------------------------------------
-# Zmiany SILNIK:
-# 2009.12.16
-#	- poprawka, skrypt nie usuwał śmieci w tmp po sprawdzaniu aktualizacji
-# 2009.12.14
-#	- przebudowa skryptów pod moje "bside", z tego powodu pewne parametry mogą być zbędne
-#	- dodane sprawdzenie aktualizacji
-# 2009.12.13
-#	- poprawka, niedostateczne filtrowanie linków, dodałem grep 'http'
-# 2009.12.02
-#	- poprawka, źle grep filtrował linki
-#	- dodanie funkcji "wymaga" do sprawdzenia wymaganych zależności
-# 2009.11.27
-#	- poprawka wyboru katalogu
-# 	- ładowanie listy w locie do tablicy zamiast plików
-# 	- jeden silnik, dwa interfejs: CLI i ZENITY
-# 	- porzucenie instalacji paczek z poziomu skryptu (nie działało :( )
-# 2009.11.24
-# 	- poprawka sortowania listy paczek
-# ------------------------------------------------------------------------------
+
+# by borzole.one.pl
+# VERSION=2010.02.25-01:06
 export DISPLAY=:0.0
 export LANG=pl_PL.UTF-8
 export PATH=$PATH:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin
@@ -47,8 +20,8 @@ VERSION_LOCAL=$(grep -E '^#\ *VERSION\ *='  ${0} | cut -d\= -f2)
 PS3=':: ctrl+d :: wybierz nr:: '
 # ------------------------------------------------------------------------------
 # czcionka: (N)ORMAL, (X)BOLD, (R)ED, (G)REEN, (B)LUE
-N="\e[0m" 
-X="\e[1;38m" 
+N="\e[0m"
+X="\e[1;38m"
 r="\e[0;31m"
 R="\e[1;31m"
 g="\e[0;32m"
@@ -62,7 +35,7 @@ DIR=$HOME
 get_links(){
 	# zwraca listę linków do paczek rpm oddzieloną znakiem nowego wiersza
 	# informacja jest wyłuskiwana z tej strony
-	local thisURL="http://wiki.fedora.pl/index.php?title=repo&action=raw&ctype=text/css"	
+	local thisURL="http://wiki.fedora.pl/index.php?title=repo&action=raw&ctype=text/css"
 	# metoda:
 	#	- sed: każdą "spację" i "[" zamienić na znak nowej linii
 	#		( składnia linków na wiki wymusza tę spację i nawias )
@@ -71,11 +44,11 @@ get_links(){
 	#			https://
 	#			ftp://
 	#			i kończące się na ".rpm"
-	#	- sort: posortowanie i usunięcie pustych linii	
+	#	- sort: posortowanie i usunięcie pustych linii
 	curl -s "$thisURL"  \
 		| sed -e 's/\ \ */\n/g ; s/\[/\n/g' \
 		| grep -E '^(http|https|ftp)\:\/\/.*\.rpm$' \
-		| sort -u 
+		| sort -u
 }
 # ------------------------------------------------------------------------------
 set_rpmlist(){
@@ -85,7 +58,7 @@ set_rpmlist(){
 }
 # ------------------------------------------------------------------------------
 wymaga(){
-	# sprawdza zależności skryptu 
+	# sprawdza zależności skryptu
 	# np.
 	# 		wymaga wget zenity notify-send
 	for apps in "$@" ; do
@@ -112,7 +85,7 @@ UPDATE_URL="http://dl.dropbox.com/u/409786/pub/bin/wikirepo"
 # ------------------------------------------------------------------------------
 main(){
 	wymaga wget curl
-	echo -e "Sprawdzam aktualizacje..."	
+	echo -e "Sprawdzam aktualizacje..."
 	check_script_update
 	echo -e "Pobieram listę paczek..."
 	set_rpmlist
@@ -134,9 +107,9 @@ check_script_update(){
 	trap "rm -f $UPDATE_FILE 2>/dev/null" EXIT
 	curl -s "$UPDATE_URL"  > $UPDATE_FILE
 	# jeśli coś przerwie skrypt to usuń ten plik
-	
+
 	VERSION_LAST=$(grep -E '^#\ *VERSION\ *='  $UPDATE_FILE | cut -d\= -f2)
-	
+
 	[ "$VERSION_LOCAL" != "$VERSION_LAST" ] && show_script_update
 }
 # ------------------------------------------------------------------------------
@@ -166,13 +139,13 @@ set_dir(){
 	echo -e "Wybierz scieżką dla folderu pobierania\n$DIR"
 	TMP="$DIR"
 	read DIR
-	if [ ${#DIR} == 0 ] ; then 
+	if [ ${#DIR} == 0 ] ; then
 		DIR="$TMP"
 		echo -e "${R}SKASOWAŁEŚ !!${B} $DIR\n${G}odtworzony z kopi${N}"
 		set_dir
 	else
 		echo -e "${R}Nowy folder:${B} $DIR\n${G}ale w menu się nie odświerza :)${N}"
-	fi	
+	fi
 }
 # ------------------------------------------------------------------------------
 set_opt(){
@@ -210,9 +183,9 @@ download(){
 }
 # ------------------------------------------------------------------------------
 # uruchomienie funkcji głównej lub z parametru
-if [ -n "$1" ] ; then 
+if [ -n "$1" ] ; then
 	"${ARGS}"
-else 
+else
 	main
 fi
 # wyjście z przekazaniem kodu wyjścia ostatniego polecenia
