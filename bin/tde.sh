@@ -25,6 +25,7 @@ get_cmd(){
 			'. man -k' ""  \
 			'w3m google.com' "" \
 			'. sudo iptraf' "" \
+			'. sudo nethogs' "" \
 			powertop "" \
 			glxgears "" \
 			mocp "" \
