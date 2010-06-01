@@ -1,7 +1,9 @@
 #!/bin/bash
 
+# pokazuje rozmiar katalogu
+
 usage(){
-	echo -e "${0##*/} -- rozmiat katalogu 
+	echo -e "${0##*/} -- rozmiat katalogu
 UŻYCIE:
 	${0##*/} folder
 "
