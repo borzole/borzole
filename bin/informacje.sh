@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # informacje.sh
-# ------------------------------------------------------------------------------
+
 #while x=0
 #do
 MOJEIP=`/sbin/ifconfig eth0 | grep 'inet addr' | grep Bcast | awk '{print $2}' | awk -F: '{print $2}'`
