@@ -24,6 +24,7 @@ get_cmd(){
 			'pinfo bash' "" \
 			'. man -k' ""  \
 			'w3m google.com' "" \
+			'. sudo iptraf' "" \
 			powertop "" \
 			glxgears "" \
 			mocp "" \
