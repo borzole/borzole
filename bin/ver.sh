@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# minimalistyczne użycie systemu kontroli wersji RCS
+
 usage(){
 	echo "Użycie: ${0##*/} plik"
 	exit 0

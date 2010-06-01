@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# ------------------------------------------------------------------------------
+# alternatywa dla gettext w bash :)
+
 # plik z tłumaczeniami, najlepiej użyć $LANG do identyfikacji tłumaczenia
 TRANSLATION=/dev/shm/$LANG
 # dokument miejscowy, tylko dla oszczędności plików przykładu ;)

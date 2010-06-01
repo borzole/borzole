@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# tde.sh -- Terminal Desktop Environment ;P
-# ------------------------------------------------------------------------------
+# Terminal Desktop Environment ;P
+
 get_cmd(){
 	dialog --backtitle "Terminal Desktop Environment" \
 		--title "Narzędzia" \

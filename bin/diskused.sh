@@ -1,18 +1,18 @@
 #!/bin/bash
-#
-# by borzole ( jedral.one.pl )
-VERSION=2010.01.13-20.33
-# ------------------------------------------------------------------------------
-# diskused - komunikat o przekroczeniu ustalonej zajętość dysku
+
+# komunikat o przekroczeniu ustalonej zajętość dysku
 # źródło: http://www.cyberciti.biz/faq/mac-osx-unix-get-an-alert-when-my-disk-is-full/
-# rozbudowany by borzole.one.pl
-#
+
+
+# rozbudowany by borzole ( jedral.one.pl )
+VERSION=2010.01.13-20.33
+
 # Skrypt udaje "demona" więc wystarczy go uruchomić raz przy starcie
-# 
+#
 # PRZYKŁAD:
 # - uruchomienie z domyślnym progiem zajętości
 #		diskused
-# - uruchomienie z progiem 22% 
+# - uruchomienie z progiem 22%
 #		diskused 22
 # - uruchomienie z progiem 90% sprawdzanym co 5 minut (300s)
 #		diskused 90 300
@@ -30,8 +30,8 @@ THRESHOLD=${1:-80}
 CHECKTIME=${2:-60}
 # ------------------------------------------------------------------------------
 # czcionka: (N)ORMAL, (X)BOLD, (R)ED, (G)REEN, (B)LUE
-N="\e[0m" 
-X="\e[1;38m" 
+N="\e[0m"
+X="\e[1;38m"
 r="\e[0;31m"
 R="\e[1;31m"
 g="\e[0;32m"
@@ -40,7 +40,7 @@ b="\e[0;34m"
 B="\e[1;34m"
 # ------------------------------------------------------------------------------
 requires(){
-	# sprawdza zależności skryptu 
+	# sprawdza zależności skryptu
 	# np.
 	# 		wymaga wget zenity notify-send
 	for apps in "$@" ; do
@@ -62,7 +62,7 @@ lock_script(){
 	if [ -f $LOCK_SCRIPT ] ; then
 		# jeśli spróbujemy uruchomić drugą kopię skryptu:
 		echo -e "${R}[ wychodzę ]${N} plik blokujący skryptu istnieje: $LOCK_SCRIPT"
-		exit 0 
+		exit 0
 	else
 		echo -e "${B}[ uruchamiam ]${N} tworzę plik blokujący skryptu: $LOCK_SCRIPT"
 		# zawartość pliku blokującego jest mało istotna, ważne by istniał
@@ -75,7 +75,7 @@ unlock_script(){
 	# nieszczęściem by było usunąć niewłaściwy plik
 	# a tak minimalizujemy prawdomodobieństwo błędu
 	rm -f $LOCK_SCRIPT
-	echo -e "${B}[ zakonczono ]${N} usuwam plik blokujący skryptu: $LOCK_SCRIPT" 
+	echo -e "${B}[ zakonczono ]${N} usuwam plik blokujący skryptu: $LOCK_SCRIPT"
 }
 # ------------------------------------------------------------------------------
 _msg(){
@@ -85,12 +85,12 @@ _msg(){
 	zenity --notification --window-icon $ICON --text "$INFO"
 	# DEBUG - parametr $? określa kod wyjścia programu
 	# echo $? | zenity --text-info
-	# po kliknięciu na ikonę (kod wyjścia 0) dostaniemy pełne okienko z informacją 
+	# po kliknięciu na ikonę (kod wyjścia 0) dostaniemy pełne okienko z informacją
 	if [ $? == 0 ] ; then
-		
+
 		zenity --question --window-icon $ICON --title "$TITLE" --text "$INFOLONG" \
 			--ok-label="Ok : monitoruj dalej" \
-			--cancel-label="Wiem! : wyłącz demona " 
+			--cancel-label="Wiem! : wyłącz demona "
 		[ $? != 0 ] && exit $?
 	fi
 }
@@ -120,7 +120,7 @@ main(){
 		_check_disk $p
 	done
 	# jeśli próg został przekroczony to wyświetl powiadomienie
-	if [ "$SHOWMSG" == "TRUE" ] ; then 
+	if [ "$SHOWMSG" == "TRUE" ] ; then
 		TITLE="Mało miejsca na dysku!"
 		INFOLONG="Przekroczono ustalony próg $THRESHOLD% zajętości partycji !
 	usuń kilka plików zanim zrobi się za ciasno!\n$INFO"
@@ -136,7 +136,7 @@ demon(){
 	INFO=""
 	demon
 }
-# sprawdź zależności skryptu 
+# sprawdź zależności skryptu
 requires zenity notify-send
 # zapewnij pojedyńcze uruchomienie
 lock_script

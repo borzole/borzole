@@ -1,6 +1,8 @@
 #!/bin/bash
 
-# RPM : id3lib 
+# ustawia tagi ID3 na podstawie nazwy pliku
+
+# RPM : id3lib
 # Library for manipulating ID3v1 and ID3v2 tags
 # URL  : http://id3lib.sourceforge.net/
 # id3tag [OPTIONS]... [FILES]...
@@ -17,5 +19,5 @@ for d in {a..z} ;do
 		title=`echo $f | awk -F" - " '{printf $2}'`
 		id3tag -a"$artist" -s"$title" "$f"	2>/dev/null
 	done
-	cd ..		
+	cd ..
 done

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# cppv
+# kopiowanie w konsoli z paskiem postępu
 # pv - monitor the progress of data through a pipe
 
 source_file="$1"

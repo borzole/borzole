@@ -1,17 +1,18 @@
 #!/bin/bash
 
-# manr - lista stron man z paczki rpm 
+# lista stron man z paczki rpm
+
 # wersja: 2010.01.22
 # by borzole.one.pl
-#
-# użycie: 
+
+# użycie:
 # 		manr --help
 # ------------------------------------------------------------------------------
 # nazwa programu
 NAME="${0##*/}"
 # czcionka (E) normalna, (B) bold
-E="\e[0m" 
-B="\e[1;38m" 
+E="\e[0m"
+B="\e[1;38m"
 # ------------------------------------------------------------------------------
 # jakaś pomoc
 usage(){
@@ -21,7 +22,7 @@ ${B}PARAMETRY:${E}
 		po wpisaniu dowolnego polecenia wylistuje wszystkie polecenia z paczki RPM
 		a po wybraniu numeru wyświtli stronę man
 		${B}UWAGA:${E} nie wszystkie polecenia posiadają stronę man
-	${B}-r, --rpm <paczka>${E}	
+	${B}-r, --rpm <paczka>${E}
 		po wpisaniu dowolnej paczki RPM wylistuje z niej wszystkie strony man
 	${B}-h, --help${E}
 		wypisuje tę pomoc
@@ -32,9 +33,9 @@ ${B}PRZYKŁADY:${E}
 	${B}${NAME} -r shadow-utils${E}
 	${B}${NAME} -r binutils${E}
 	${B}${NAME} --rpm yum-utils${E}
-	${B}${NAME} --rpm xorg-x11-server-utils${E}	
-	${B}${NAME} --rpm xorg-x11-utils${E}	
-	${B}${NAME} --rpm xdg-utils${E}			
+	${B}${NAME} --rpm xorg-x11-server-utils${E}
+	${B}${NAME} --rpm xorg-x11-utils${E}
+	${B}${NAME} --rpm xdg-utils${E}
 
 ps. takie molochy jak GNOME, KDE zazwyczaj nie używają już stron man :)"
 	exit 0
@@ -51,7 +52,7 @@ _linia(){
 _cmd(){
 	CMD=$1
 	# z tej paczki poczytamy manuale
-	RPM=`rpm -qf $(which $CMD)`	
+	RPM=`rpm -qf $(which $CMD)`
 	_cli
 }
 # ------------------------------------------------------------------------------
@@ -68,11 +69,11 @@ _cli(){
 	echo -e "Miłego czytania stron man z paczki ${B} $RPM ${E}"
 	_linia \~
 	PS3=":: ctrl+d :: wybierz stronę man ::"
-	select p in $(rpm -ql $RPM |grep bin/ | awk -F"bin/" '{printf $2 "\n"}' | sort -u ) ; do 
+	select p in $(rpm -ql $RPM |grep bin/ | awk -F"bin/" '{printf $2 "\n"}' | sort -u ) ; do
 	# to samo ale wyświetla pełne ścieżki do poleceń (nie wiem czemu)
 	# select p in `rpm -ql $RPM |grep bin/ `; do
 		man $p
-	done	
+	done
 }
 # ------------------------------------------------------------------------------
 # gdy brak parametrów:

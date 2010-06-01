@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Bash Shell Library
+
 usage(){
 	echo -e "  ${0##*/} -- Bash Shell Library
 

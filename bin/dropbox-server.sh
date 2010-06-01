@@ -1,7 +1,8 @@
-#!/bin/bash 
+#!/bin/bash
 
+# zabawka! pozwala wykonać dowolne polecenie przez dropbox :)
 
-while true; do 
+while true; do
 	if [ -f  input.txt ];then
 		OUTCOM=$(cat input.txt)
 		$OUTCOM > output.txt

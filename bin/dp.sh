@@ -1,10 +1,10 @@
 #!/bin/bash
 
+# sprawdza komentarze w dobreprogramy.pl
 
 # by borzole ( jedral.one.pl )
 VERSION=2010.01.12-14.17
-# ------------------------------------------------------------------------------
-# dp - sprawdza komentarze w dobreprogramy.pl
+
 # ------------------------------------------------------------------------------
 export DISPLAY=:0.0
 export LANG=pl_PL.UTF-8
@@ -15,7 +15,7 @@ FILE_DB=~/.dp.db
 # kontrola opcji, czy ustawiono sposób powiadomienia
 IS_MSG_SET=FALSE
 # ------------------------------------------------------------------------------
-usage(){ 
+usage(){
 	echo -e "${B}$BASENAME${N} - sprawdza komentarze w newsach/blogach z http://www.dobreprogramy.pl
 ${G}UŻYCIE:${N}
 	${X}+ [ url ]${N}
@@ -29,7 +29,7 @@ ${G}UŻYCIE:${N}
 		sprawdzenie nowych komentarzy i wyświetlenie wyników w terminalu
 	${X}-m, --mail [ e-mail ]${N}
 		wysłanie wyników na maila
-	${X}-q, --quiet${N}		
+	${X}-q, --quiet${N}
 		wyświetlaj minimum komunikatów
 	${X}-h, --help${N}
 		wyświetlenie pomocy i wyjście
@@ -37,7 +37,7 @@ ${G}UŻYCIE:${N}
 		wersja: ${VERSION}
 ${G}PRZYKŁAD:${N}
 	powiadomienie na maila i w terminalu bez komunikatów
-	$BASENAME -t --mail mymail@sth.com -q 
+	$BASENAME -t --mail mymail@sth.com -q
 "
 }
 # ------------------------------------------------------------------------------
@@ -51,8 +51,8 @@ VERSION_LOCAL=$(grep -E '^#\ *VERSION\ *='  ${0} | cut -d\= -f2)
 PS3=':: ctrl+d :: wybierz nr:: '
 # ------------------------------------------------------------------------------
 # czcionka: (N)ORMAL, (X)BOLD, (R)ED, (G)REEN, (B)LUE
-N="\e[0m" 
-X="\e[1;38m" 
+N="\e[0m"
+X="\e[1;38m"
 r="\e[0;31m"
 R="\e[1;31m"
 g="\e[0;32m"
@@ -61,7 +61,7 @@ b="\e[0;34m"
 B="\e[1;34m"
 # ------------------------------------------------------------------------------
 wymaga(){
-	# sprawdza zależności skryptu 
+	# sprawdza zależności skryptu
 	# np.
 	# 		wymaga wget zenity notify-send
 	for apps in "$@" ; do
@@ -78,7 +78,7 @@ wymaga(){
 }
 # ------------------------------------------------------------------------------
 verbose(){
-	if [ "$VERBOSE" == "TRUE" ] ; then	
+	if [ "$VERBOSE" == "TRUE" ] ; then
 		echo -e "$@"
 	fi
 }
@@ -97,7 +97,7 @@ yes_or_no(){
 	local x=''
 	while true ; do
 		read x
-		case "$x" in 
+		case "$x" in
 			[tT] | [tT][aA][kK] | [yY] | [yY][eE][sS] )
 				return 0 ;;
 			[nN] | [nN][iI][eE] | [nN][oO] )
@@ -110,14 +110,14 @@ yes_or_no(){
 # ------------------------------------------------------------------------------
 run(){
 	# (robot) ładny bezpiecznik do skryptów składających się z samych funkcji
-	if [ -n "$1" ] ; then 
-		if [ "$1" == "$" ] ; then 
+	if [ -n "$1" ] ; then
+		if [ "$1" == "$" ] ; then
 			# uruchom dowolną funkcję ze skryptu pomijając menu
-			# np:	skrypt.sh $ funkcja2 
+			# np:	skrypt.sh $ funkcja2
 			shift
 			"$@"
-		else 
-			# uruchom 
+		else
+			# uruchom
 			menu "$@"
 		fi
 	else
@@ -126,7 +126,7 @@ run(){
 	fi
 }
 # ------------------------------------------------------------------------------
-msg_terminal(){		
+msg_terminal(){
 	verbose "${G}[ $BASENAME ] wysyłam na terminal${N}"
 	# lokalnie
 	echo "$GET_COMMENT"
@@ -136,8 +136,8 @@ msg_mail(){
 	wymaga mutt
 	verbose "${G}[ $BASENAME ] wysyłam e-mail do "$MYMAIL"${N}"
 	# email
-	echo "$GET_COMMENT" | mutt -s "[ $BASENAME ] ${url##*/}"  ${MYMAIL} 
-}			
+	echo "$GET_COMMENT" | mutt -s "[ $BASENAME ] ${url##*/}"  ${MYMAIL}
+}
 # ------------------------------------------------------------------------------
 get_nr(){
 	awk -F"<div class=\"item\" id=\"komentarz_" ' { print $2 }' $FILE_TMP	\
@@ -152,7 +152,7 @@ set_nrlist(){
 # ------------------------------------------------------------------------------
 check_diff(){
 	unset NRLISTNEW
-	
+
 	for nr in "${NRLIST[@]}" ; do
 		grep "$url" $FILE_DB | cut -d\| -f2 | grep $nr >/dev/null 2>&1
 		if [ $? != 0 ] ; then
@@ -167,9 +167,9 @@ get_comment(){
 		echo -e "[ ${url}#komentarz_${nr} ]"
 		COMMENT=$(sed -n -e "/komentarz_$nr/,/commentText/p" $FILE_TMP )
 		# nick
-		echo -n $(echo "$COMMENT" | grep "class=\"nick\"" | cut -d\> -f3 | cut -d\< -f1) 
-		echo -n $(echo "$COMMENT" | grep "class=\"nick\"" | cut -d\> -f4 | cut -d\< -f1) 
-		
+		echo -n $(echo "$COMMENT" | grep "class=\"nick\"" | cut -d\> -f3 | cut -d\< -f1)
+		echo -n $(echo "$COMMENT" | grep "class=\"nick\"" | cut -d\> -f4 | cut -d\< -f1)
+
 		# data
 		echo -n " [ "$(echo "$COMMENT" | grep "class=\"nick\"" | cut -d\| -f2 | cut -d\< -f1) " ] "
 		# nr komentarza
@@ -192,10 +192,10 @@ minus_url_select(){
 		minus_url
 		break
 	done
-	
+
 	yes_or_no "usunąć jeszcze coś?"
 	[ $? == 0 ] && minus_url_select
-}	
+}
 # ------------------------------------------------------------------------------
 add_url(){
 	echo -e "$url | ${NRLIST[@]}" >>$FILE_DB 2>/dev/null
@@ -213,7 +213,7 @@ save_nrlist(){
 # ------------------------------------------------------------------------------
 main(){
 	# czy istnieje plik bazy
-	[ ! -f $FILE_DB ] && help 
+	[ ! -f $FILE_DB ] && help
 	# czy ustawiono sposób powiadomienia
 	[ "$IS_MSG_SET" != "TRUE" ] && help
 	# tymczasowy plik na obrabianą stronę z dobreprogramy.pl
@@ -231,12 +231,12 @@ main(){
 			verbose "\n${R}[ $BASENAME ] zmiany: ${url##*/}${N}"
 			GET_COMMENT=$(get_comment)
 			[ "$TERMINAL" == "TRUE" ] && msg_terminal
-			[ "$EMAIL" == "TRUE" ] && msg_mail			
+			[ "$EMAIL" == "TRUE" ] && msg_mail
 		else
 			verbose "${G} nic nowego${N}"
 		fi
 		save_nrlist
-	done	
+	done
 }
 # ------------------------------------------------------------------------------
 menu(){

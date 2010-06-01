@@ -1,9 +1,10 @@
 #!/bin/bash
 
-# cdb.sh -- prosta baza albumów muzycznych
+# Prosta baza albumów muzycznych
 # title: "Beginning Linux® Programming", 4th ed wyd. WROX
 # autors: Neil Matthew, Richard Stones
 # license: GPL
+
 VERSION=2010.03.08-12:13
 # ------------------------------------------------------------------------------
 # UI - Presentation

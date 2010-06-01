@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# dropbox-spie.sh -- poszukajmy Dropbox/Public
+# poszukajmy Dropbox/Public
+
 # autor: Krzysztof Dziadziak
 # źródło: http://forwardfeed.pl/index.php/2010/02/01/dropbox-public-folder/
 # zmiany: borzole (jedral.one.pl)

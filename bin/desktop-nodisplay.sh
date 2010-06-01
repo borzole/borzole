@@ -1,7 +1,8 @@
 #!/bin/bash
 
-# desktop-nodisplay - skrypt w zenity do ustawiania czy jakieś ikonki mają być niewidoczne w menu
+# skrypt w zenity do ustawiania czy jakieś ikonki mają być niewidoczne w menu
 # poniewarz operuje na plikach w /usr/share/applications/ to musi być uruchomiony z prawami root
+
 # by borzole (jedral.one.pl)
 
 menu_desktop_display(){
@@ -30,10 +31,10 @@ if [ $? == 0 ] ; then
 			echo "NoDisplay=false" >> $app
 		else
 			sed -e 's/NoDisplay=true/NoDisplay=false/g' -i $app
-		fi		
+		fi
 	done
 	# wybrane stają się nie widoczne
-	for p in $SET_NODISPLAY ; do 
+	for p in $SET_NODISPLAY ; do
 		sed -e 's/NoDisplay=false/NoDisplay=true/g' -i /usr/share/applications/$p
 	done
 fi

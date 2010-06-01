@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# prosty mirror strony
+
 usage(){
 	echo -e "${0##*/} -- prosty mirror strony
 UŻYCIE:

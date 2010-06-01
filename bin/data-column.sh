@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # przykład jak wczytywać plik linia po lini i ładować każdą kolumnę do innej zmiennej
+
 INPUT=$(mktemp)
 trap "rm -f $INPUT" EXIT
 

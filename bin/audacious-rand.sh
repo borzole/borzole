@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # audacious-rand.sh -- losuje piosenki do playlisty
+
 # wersja:2010.05.26-15:16
 # autor: borzole (jedral.one.pl)
 

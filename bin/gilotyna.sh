@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# gilotyna.sh -- sieka plakat (obraz) na części
-#
+# sieka plakat (obraz) na części
+
 # wymaga:           ImageMagick, zenity
 # licencja:         GPLv2+
 # autor:            Łukasz Jędral, borzole@gmail.com, http://jedral.one.pl
@@ -66,7 +66,7 @@ set_file(){
 
 	FILE="$1"
 
-	# TEST: czy to rzeczywiście plik 
+	# TEST: czy to rzeczywiście plik
 	ERROR="${FUNCNAME}: Nie ma takiego pliku: \n$FILE"
 	[[ ! -f $FILE ]] && error "$ERROR"
 	# TEST: czy plik jest obrazek
@@ -91,7 +91,7 @@ get_geometry(){
 # ------------------------------------------------------------------------------
 set_table(){
 	# Funkcja ustawia ilość kolumn i wierszy cięcia
-	
+
 	# TEST: czy pole COL (1 parametr) jest puste (ROW może być puste)
 	ERROR="${FUNCNAME}: Nie podano na ile wierszy i kolumn pociąć obrazek"
 	[[ $# -eq 0 ]] && error "$ERROR"
@@ -104,7 +104,7 @@ set_table(){
 	COL=$1
 	# jeśli nie podano ilości wierszy, to jest taka sama jak ilość kolumn
 	[[ $# -eq 1 ]] && ROW=$COL || ROW="$2"
-	# TEST: różne od zera 
+	# TEST: różne od zera
 	[[ $COL -eq 0 ]] && error "$ERROR"
 	[[ $ROW -eq 0 ]] && error "$ERROR"
 	COUNT=$((${COL}*${ROW}))

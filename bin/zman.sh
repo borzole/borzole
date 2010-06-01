@@ -1,10 +1,9 @@
 #!/bin/bash
 
-# -------------------------------------------------------------------
-# zman.sh -- otwiera stronę man w domyślnym edytorze
-# -------------------------------------------------------------------
+# otwiera stronę man w domyślnym edytorze
+
 get_man_page(){
-	zenity --title "${0##*/}" --entry --text "man: " 
+	zenity --title "${0##*/}" --entry --text "man: "
 }
 # -------------------------------------------------------------------
 # TEST: czy jest taka strona man
@@ -51,12 +50,12 @@ for p in {1..8} ; do
 		# jeśli jakaś strona się znalazła to zmieniamy status i przerywamy test
 		ISPAGE=0
 		break
-	fi	
+	fi
 done
 # jeśli po całym teście nic nie znaleziono to trzeba się pożegnać
 if [ $ISPAGE -ne 0 ] ; then
 	MSG="Ej fraglesie!\nNie ma żadnej strony:\n\n\t$MAN_PAGE"
-	zenity --title ${0##*/} --error --text "$MSG" 
+	zenity --title ${0##*/} --error --text "$MSG"
 	echo "$MSG" >&2
 	exit 1
 fi
@@ -71,7 +70,7 @@ for p in $(menu) ; do
 		xdg-open $MAN_FILE
 	else
 		MSG="Ej fraglesie!\nNie ma takiej strony:\n\n\t$MAN_PAGE($p)"
-		zenity --title ${0##*/} --error --text "$MSG" 
-		echo "$MSG" >&2	
+		zenity --title ${0##*/} --error --text "$MSG"
+		echo "$MSG" >&2
 	fi
 done

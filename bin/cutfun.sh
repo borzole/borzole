@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# cutfun.sh - wycinanie funkcji ze skryptu
+# wycina funkcje ze skryptu
 # użycie:
 # 	cutfun.sh /home/lucas/myscript.sh
 
 [ $# -eq 0 ] && exit 1
 
-SCRIPT="$1" 
+SCRIPT="$1"
 DIR="${SCRIPT%.*}.d"
 
 INIT="init.sh"

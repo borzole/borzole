@@ -35,6 +35,7 @@ opis(){
 		s/^#[[:blank:]]//g
 		# usunąć puste linie
 		/^$/d
+		/perl/d
 	' "$1"
 
 	#@TODO tak wiem, napewno można zrobić to krócej :/

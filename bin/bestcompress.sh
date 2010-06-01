@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# bestcompress - po wprowadzeniu pliku próbuje go skompresować wszystkimi
+# po wprowadzeniu pliku próbuje go skompresować wszystkimi
 # dostępnymi narzędziami kompresującymi, zachowując najmniejszy skompresowany
 # plik i informując o rezultatach użytkownika. Jeśli nie podamy flagi -a,
 # w strumieniu wejściowym pomija skompresowane pliki.

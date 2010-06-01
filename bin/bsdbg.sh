@@ -1,11 +1,12 @@
 #!/bin/bash
 
-# debugger.sh -- ustawienia debugowania 
+# ustawienia debugowania
 # UŻYCIE:
 #	na początku skryptu wybrać poziom DEBUG i zrobić "source" skryptu
 # 	np.:
 # 		DEBUG=0
 # 		. debugger.sh
+
 # --------------------------------------------------------------------
 [[ -z "$DEBUG" ]] && DEBUG=3
 [[ -z "$LOGFILE" ]] && LOGFILE="$HOME/script_${0##*/}_$(date +%Y.%m.%d).log"
@@ -13,13 +14,13 @@
 debug_format(){
 	while read line; do
 		echo "[ $(date +%Y.%m.%d-%H:%M:%S) ][ ${0##*/} ] $line"
-	done 
+	done
 }
 # --------------------------------------------------------------------
 debug(){
 	case "$DEBUG" in
 		0)
-			# formatuj błąd 
+			# formatuj błąd
 			debug_format
 			;;
 		1)

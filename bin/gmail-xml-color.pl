@@ -1,11 +1,9 @@
 #!/usr/bin/perl -w
 
-# gmail.pl v1.0
-#
-# Checks a GMail account's atom feed (via SSL) and formats the 
+# Checks a GMail account's atom feed (via SSL) and formats the
 # results nicely in a console window
 #  * usage: gmail.pl <username> <password>
-#
+
 # Required Perl modules:
 #  * LWP::UserAgent		(for fetching the atom feed)
 #  * XML::Parser		(for parsing the atom feed)
@@ -13,7 +11,7 @@
 # Optional Perl module:
 #  * DateTime::Format::ISO8601	(for formatting the date in the feed)
 #
-# If you only want to check one account, you can put the username 
+# If you only want to check one account, you can put the username
 # and password below (between the quotes), and run without arguments.
 $username = (defined($ARGV[0])) ? $ARGV[0] : "";
 $password = (defined($ARGV[1])) ? $ARGV[1] : "";
@@ -29,8 +27,8 @@ require LWP::UserAgent;
 require XML::Parser;
 
 $has_iso8601 = eval { require DateTime::Format::ISO8601; } ? 1 : 0;
-if ($has_iso8601) { 
- require DateTime::Format::ISO8601; 
+if ($has_iso8601) {
+ require DateTime::Format::ISO8601;
 }
 
 # fetch atom feed
@@ -46,8 +44,8 @@ unless (defined($xmlresponse = $browser->get('https://mail.google.com/mail/feed/
  { die($xmlresponse->status_line, "\n"); }
 $xml = $xmlresponse->content;
 
-# &hellip; (aka "...") is not defined in XML so 
-# it's not displayed correctly. We're going to 
+# &hellip; (aka "...") is not defined in XML so
+# it's not displayed correctly. We're going to
 # replace it in the XML before parsing.
 $xml =~ s/\&amp;hellip;/.../g;
 
@@ -103,7 +101,7 @@ sub email_ {
  $auth = green($auth) . " [" . blue($char) . "]";
 }
 sub entry_ {
- print " From: $auth :: $date\n" . 
+ print " From: $auth :: $date\n" .
 	$subj . "\n\n " .
 	$summ . "\n" .
 	$line;

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# zmienia kodowanie z windowsa na utf-8
+
 # by borzole.one.pl
 # wersja alfa, na 1 poziom
 _dir1run(){

@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+# proste menu dla Conky w tabelce pygtk
+
 import pygtk
 pygtk.require('2.0')
 import gtk

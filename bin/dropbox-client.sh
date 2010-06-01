@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# zabawka! zleca polecenie do wykonania na zdalnym kompie przez dropbox
+
 touch input.txt
 touch output.txt
 

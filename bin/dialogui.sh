@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# wystarczy wybrać skrypty do wykonania
+
 # by borzole.one.pl
 
 # if [ $(whoami) != "root" ] ; then
@@ -20,7 +22,7 @@ _menu()
 		$(for i in $p/*; do echo " FALSE ${i##*/} "; done) \
 		--separator " "  --multiple \
 		--print-column=2
-}	
+}
 #echo $(_menu) 2>&1 | zenity --text-info --title="Debuger" --width=700 --height=500
 for s in $(_menu) ; do ${p}/$s ;done
 

@@ -1,9 +1,10 @@
 #!/bin/bash
 
-# zwikirepo -- pobiera paczki RPM prosto z http://wiki.fedora.pl/wiki/repo
+# pobiera paczki RPM prosto z http://wiki.fedora.pl/wiki/repo
+
 # autor: borzole (jedral.one.pl)
 # licencja: GPLv2+
-# ------------------------------------------------------------------------------
+
 VERSION=2010.03.06-16:11
 # Zmiany: użyj "meld" lub "diff" to się dowiesz ;P
 # ------------------------------------------------------------------------------
@@ -40,7 +41,7 @@ Autor:
 # ------------------------------------------------------------------------------
 usage_gui(){
 	# wyświetla pomoc w wersji okienkowej
-	usage | zenity --title="$TITLE" --text-info --width=500 --height=350 
+	usage | zenity --title="$TITLE" --text-info --width=500 --height=350
 	menu_function
 }
 # ------------------------------------------------------------------------------
@@ -56,11 +57,11 @@ get_links(){
 	#			https://
 	#			ftp://
 	#			i kończące się na ".rpm"
-	#	- sort: posortowanie i usunięcie pustych linii	
+	#	- sort: posortowanie i usunięcie pustych linii
 	curl -s "$thisURL"  \
 		| sed -e 's:[\ \t\[]:\n:g' \
 		| grep -E '^(http|https|ftp)\:\/\/.*\.rpm$' \
-		| sort -u 
+		| sort -u
 }
 # ------------------------------------------------------------------------------
 set_rpmlist(){
@@ -105,7 +106,7 @@ requires(){
 	# sprawdza zależności skryptu
 	local thisSTATUS=OK
 	# czcionka: (N)ORMAL, (R)ED
-	local N="\e[0m" 
+	local N="\e[0m"
 	local R="\e[1;31m"
 
 	for APPS in "$@" ; do
@@ -115,7 +116,7 @@ requires(){
 			thisSTATUS=ERROR
 		fi
 	done
-	
+
 	# podsumowanie testu
 	if [ $thisSTATUS == 'ERROR' ] ; then
 		echo -e "a) zainstaluj program:
@@ -145,7 +146,7 @@ update(){
 	curl -s "$thisUPDATE_URL"  > $UPDATE_FILE
 	VERSION_LAST=$(grep -E '^VERSION=' $UPDATE_FILE | cut -d\= -f2)
 	[ "$VERSION" != "$VERSION_LAST" ] && update_script
-	exit 0 
+	exit 0
 }
 # ------------------------------------------------------------------------------
 update_save_file(){
@@ -177,7 +178,7 @@ update_script(){
 			\rZapisać ostatnią wersję?"
 		[ $? == 0 ] && update_save_file
 		[ $? == 0 ] && mv $UPDATE_FILE "$UPDATE_FILE_SAVE"
-		
+
 	fi
 }
 # ------------------------------------------------------------------------------
@@ -198,7 +199,7 @@ download(){
 		# usunąłem $TERM na rzecz xterm
 		# bo parametr jest ustawiony tylko jeśli program startuje z konsoli
 		xterm -e wget -P "$DIR" "$1" "${RPMLIST[${RPMNR}]}"
-	done		
+	done
 }
 # ------------------------------------------------------------------------------
 menu_function_show(){

@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# audacious-delete.sh -- usuń aktualnie odtwarzany plik do kosza
+# usuń aktualnie odtwarzany plik do kosza
+
 # wersja: 2010.02.10
 # autor: borzole (jedral.one.pl)
 

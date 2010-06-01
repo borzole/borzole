@@ -2,7 +2,7 @@
 
 # minimalistyczny GUI
 # VBoxSDL --startvm fedora-server
-# ------------------------------------------------------------------------------
+
 # http://www.tldp.org/LDP/abs/html/devref1.html
 # exec 5<>/dev/tcp/jedral.one.pl/80
 # echo -e "GET / HTTP/1.0\n" >&5

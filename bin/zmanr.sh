@@ -1,13 +1,13 @@
 #!/bin/bash
 
-# zmanr.sh - lista stron man z paczki rpm 
-# ------------------------------------------------------------------------------
+# lista stron man z paczki rpm
+
 # TEST: czy są X-y (w końcu to graficzna aplikacja :P)
 [ -z "$DISPLAY" ] && exit 1
 # -------------------------------------------------------------------
 get_cmd(){
 	zenity --title "${0##*/}" --entry \
-		--text "Podaj nazwę polecenia lub paczki rpm: " 
+		--text "Podaj nazwę polecenia lub paczki rpm: "
 }
 # -------------------------------------------------------------------
 TMP=$1

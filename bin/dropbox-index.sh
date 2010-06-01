@@ -1,6 +1,8 @@
 #!/bin/bash
 
+# stary generator stron html dla dropbox
 # http://files.getdropbox.com/u/409786/pub/index.html
+
 # by borzole.one.pl
 
 # położenie pliku konfiguracyjnego
@@ -15,7 +17,7 @@ else
 	read box
 	echo "dropbox-path=$box" >> $CONFIG_FILE
 	echo -e "Zapisano ustawienia do pliku: $CONFIG_FILE
-	
+
 	UWAGA! Skrypt generuje pliki index.html w całym drzewie katalogów,
 	dlatego proszę teraz sprawdzić poprawność ścieżki i uruchomić skrypt ponownie.
 	A teraz dla bezpieczeństwa... wychodzę ;)"
@@ -53,14 +55,14 @@ start(){ cat <<__TEXT__
 
 	<title>Dropbox/Public</title>
 
-	<link rel="icon" type="image/x-icon" href="http://files.getdropbox.com/u/409786/web/img/favicon.png" />	
+	<link rel="icon" type="image/x-icon" href="http://files.getdropbox.com/u/409786/web/img/favicon.png" />
 
-	<link rel="stylesheet" type="text/css" href="http://files.getdropbox.com/u/409786/web/css/dropbox.css" title="default" />	
+	<link rel="stylesheet" type="text/css" href="http://files.getdropbox.com/u/409786/web/css/dropbox.css" title="default" />
 	<link rel="alternate stylesheet" type="text/css" href="http://files.getdropbox.com/u/409786/web/css/dropbox-alfa.css" title="dropbox-alfa" />
 	<link rel="alternate stylesheet" type="text/css" href="http://files.getdropbox.com/u/409786/web/css/dropbox-beta.css" title="dropbox-beta" />
 	<link rel="alternate stylesheet" type="text/css" href="http://files.getdropbox.com/u/409786/web/css/dropbox-zeta.css" title="dropbox-zeta" />
 	<link rel="alternate stylesheet" type="text/css" href=" " title="brak" />
-		
+
 	<script type="text/javascript" src="http://files.getdropbox.com/u/409786/web/js/styleswitcher.js"></script>
 </head>
 
@@ -68,10 +70,10 @@ start(){ cat <<__TEXT__
 
 <div id="container">
 	<div id="intro">
-		
+
 		<div id="logo"><a href="http://files.getdropbox.com/u/409786/pub/index.html"><img src="http://files.getdropbox.com/u/409786/web/img/logo-box.png" alt="Home" /></a></div>
 		<div id="tytul">Dropbox / Public</div>
-		
+
 		<div id="styl">css:
 			<a href="#" onclick="setActiveStyleSheet('default'); return false;">default</a>
 			<a href="#" onclick="setActiveStyleSheet('dropbox-alfa'); return false;">alfa</a>
@@ -79,15 +81,15 @@ start(){ cat <<__TEXT__
 			<a href="#" onclick="setActiveStyleSheet('dropbox-zeta'); return false;">zeta</a>
 			<a href="#" onclick="setActiveStyleSheet('brak'); return false;">brak</a>
 		</div>
-	</div>		
+	</div>
 __TEXT__
 }
 # ------------------------------------------------------------------------------
 stop(){ cat <<__TEXT__
 
 	<div id="stopka">
-			<a href="http://validator.w3.org/check/referer" title="Sprawdź XHTML">xhtml</a> &nbsp; 
-			<a href="http://jigsaw.w3.org/css-validator" title="Sprawdź CSS">css</a> &nbsp; 
+			<a href="http://validator.w3.org/check/referer" title="Sprawdź XHTML">xhtml</a> &nbsp;
+			<a href="http://jigsaw.w3.org/css-validator" title="Sprawdź CSS">css</a> &nbsp;
 			<a href="http://creativecommons.org/licenses/by/2.5/pl/" title="Creative Commons">cc</a> &nbsp;
 			<a href="http://jedral.one.pl" title="Łukasz Jędral">borzole</a> &nbsp;
 	</div>
@@ -105,7 +107,7 @@ galeria(){
 	# optymalizowanie PNG ( optipng )
 	# 	find . -name \*.png -exec optipng -o7 '{}' \;
 	echo '
-	<div id="galeria"> <!--tu idzie lista plików dla index.html --> 
+	<div id="galeria"> <!--tu idzie lista plików dla index.html -->
 		<ul> '  >>  index.html
 	find . -maxdepth 1 -xtype f -name \*.png | cut -d'/' -f2- |sort | xargs -i echo "			<li><a href=\""'{}'"\" ><img src=\""./mini/'{}'"\" alt=\""'{}'"\" /></a></li>" >> index.html
 	echo '		</ul>
@@ -116,7 +118,7 @@ index(){
 	cd "$@"
 	start >  index.html
 	echo '
-	<div id="index"> <!--tu idzie lista plików dla index.html --> 
+	<div id="index"> <!--tu idzie lista plików dla index.html -->
 		<ul>
 			<li><a href="../index.html" >[up] ..</a></li>
 			<li><a href="index.html" >[-] .</a></li>	'  >>  index.html
@@ -134,7 +136,7 @@ index(){
 	echo '
 		</ul>
 	</div>'  >>  index.html
-	# opis z readme.txt 
+	# opis z readme.txt
 	echo '	<div id="opis">	<!--	komentarz pochodzi z readme.txt	-->'  >>  index.html
 		cat readme.html  >>  index.html 2>/dev/null
 		# jeśli w danym katalogu istnieje plik ".galeria" (najlepiej pusty) do dodaje galerię:
@@ -162,13 +164,13 @@ case "$1" in
 		# bo jest problem z follow
 		#find "$box" -follow	-xtype d -exec "$0" index '{}' \;
 		#find "$box" 				-xtype d -exec "$0" index '{}' \;
-		
-		# ciekawostke, to: 
+
+		# ciekawostke, to:
 		#find "$box" -follow	-xtype d -exec "$0" index '{}' \;
 		#podąża za linkami ale ich nie uwzględnia
 		#to podążą, ale nie rozróżnia typu ??
 		# ważne że działa
-		find "$box" -follow -type d -exec "$0" index "{}" \; 
+		find "$box" -follow -type d -exec "$0" index "{}" \;
 		;;
 	clean)
 		# usuwanie wszystkich plików "index.html"

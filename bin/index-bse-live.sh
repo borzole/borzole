@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# testy: AWK
+
 URL='http://money.rediff.com/'
 echo -e "
 # Różne sposoby na rozwiązanie tego samego problemu
