@@ -1,6 +1,7 @@
 #!/bin/bash
 
-cmd=$(${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS%?})
+# wykonaj skrypt w terminalu
 
-# DEBUG
-echo "$cmd" #| zenity --text-info
+cmd=$(${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS%?})
+#~ gnome-terminal -e "$cmd"
+xterm -hold -e "$cmd"
