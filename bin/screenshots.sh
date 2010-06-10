@@ -2,7 +2,7 @@
 
 # zrzut pulpitu
 
-Quality="90"
+Quality="300"
 
 for p in {5..1}
 do
