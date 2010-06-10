@@ -4,8 +4,8 @@
 : ${CMD:=${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS%?}}
 #~ CMD="${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS%?}"
 
-which gnome-terminal >/dev/null 2>/dev/null
-	&& gnome-terminal --profile=Hold -e "$CMD"
+which gnome-terminal >/dev/null 2>/dev/null \
+	&& gnome-terminal --profile=Hold -e "$CMD" \
 	|| xterm -hold -e "$CMD"
 
 # "Hold" jest profilem, w którym terminal nie jest zamykany po zakończeniu polecenia
