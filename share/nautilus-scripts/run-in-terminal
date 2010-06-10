@@ -1,8 +1,9 @@
 #!/bin/bash
 
 # wykonaj skrypt w terminalu
+
+# Check if CMD is set, default to ${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS%?}
 : ${CMD:=${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS%?}}
-#~ CMD="${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS%?}"
 
 which gnome-terminal >/dev/null 2>/dev/null \
 	&& gnome-terminal --profile=Hold -e "$CMD" \
