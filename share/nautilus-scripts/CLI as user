@@ -2,6 +2,5 @@
 
 # wykonaj skrypt w terminalu
 
-cmd=$(${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS%?})
-#~ gnome-terminal -e "$cmd"
-xterm -hold -e "$cmd"
+#~ cmd=$(${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS%?})
+xterm -hold -e "${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS%?}"
