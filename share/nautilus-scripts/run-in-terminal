@@ -2,5 +2,15 @@
 
 # wykonaj skrypt w terminalu
 
-#~ gnome-terminal -e "${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS%?}"
-xterm -hold -e "${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS%?}"
+CMD="${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS%?}"
+
+gnome-terminal -e "
+	echo -ne '\e[0;32m \$ $CMD \e[0m'
+	read x
+	eval $CMD $x
+	echo -e '\e[0;31m -- Naciśnij dowolny klawisz --\e[0m'
+	read -sn 1 x
+	"
+
+
+#~ xterm -hold -e "${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS%?}"
