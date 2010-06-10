@@ -1,4 +1,4 @@
 #!/bin/bash
 
 #~ gnome-terminal --working-directory="${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS%?}"
-gnome-terminal --working-directory="$NAUTILUS_SCRIPT_CURRENT_URI"
+gnome-terminal --working-directory="${NAUTILUS_SCRIPT_CURRENT_URI#file://}"
