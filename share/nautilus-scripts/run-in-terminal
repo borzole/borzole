@@ -1,3 +1,6 @@
 #!/bin/bash
 
-gnome-terminal -e "${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS%?}"
+# wykonaj skrypt w terminalu
+
+#~ gnome-terminal -e "${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS%?}"
+xterm -hold -e "${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS%?}"
