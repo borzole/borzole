@@ -7,6 +7,10 @@
 # Check if CMD is set, default to ${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS%?}
 : ${CMD:="${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS%?}"}
 
+# jeśli zaznaczony był katalog
+[[ -d $CMD ]] && CMD="echo $CMD jest katalogiem"
+[[ -f $CMD ]] && CMD="echo $CMD nie ma atrybutu wykonywania ( chmod +x skrypt )"
+
 # TEST: czy jest zainstalowany gnome-terminal
 which gnome-terminal >/dev/null 2>/dev/null
 if [ $? -eq 0 ] ; then
