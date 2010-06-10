@@ -5,8 +5,11 @@
 # Check if CMD is set, default to ${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS%?}
 : ${CMD:="${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS%?}"}
 
-which gnom1e-terminal >/dev/null 2>/dev/null \
-	&& gnome-terminal --profile=Hold -e "$CMD" \
-	|| xterm -hold -e "$CMD"
+which gnom1e-terminal >/dev/null 2>/dev/null
+if [ $? -eq 0 ] ; then
+	# "Hold" jest profilem, w którym terminal nie jest zamykany po zakończeniu polecenia
+	gnome-terminal --profile=Hold -e "$CMD"
+else
+	xterm -hold -e "$CMD"
+fi
 
-# "Hold" jest profilem, w którym terminal nie jest zamykany po zakończeniu polecenia
