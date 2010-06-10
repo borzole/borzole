@@ -11,7 +11,7 @@ CMD="${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS%?}"
 	#~ echo -e '\e[0;31m -- Naciśnij dowolny klawisz --\e[0m'
 	#~ read -sn 1 x
 	#~ "
-gnome-terminal -e "$CMD;read -sn 1 x"
+gnome-terminal -e "$CMD ; read -sn 1 x"
 
 
 #~ xterm -hold -e "${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS%?}"
