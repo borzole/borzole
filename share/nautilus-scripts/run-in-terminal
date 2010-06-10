@@ -9,7 +9,7 @@
 
 # jeśli zaznaczony był katalog
 [[ -d $CMD ]] && CMD="echo $CMD jest katalogiem"
-[[ -f $CMD ]] && CMD="echo $CMD nie ma atrybutu wykonywania ( chmod +x skrypt )"
+#~ [[ -f $CMD ]] && CMD="echo $CMD nie ma atrybutu wykonywania ( chmod +x skrypt )"
 
 # TEST: czy jest zainstalowany gnome-terminal
 which gnome-terminal >/dev/null 2>/dev/null
