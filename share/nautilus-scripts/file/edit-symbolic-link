@@ -26,3 +26,5 @@ if [ $? -eq 0 ] ; then
 	rm -f "$LINK"
 	ln -s "$DESTINATION" "$LINK"
 fi
+
+#@TODO MY_PATH=$(readlink -f $0)
