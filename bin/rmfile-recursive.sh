@@ -6,7 +6,7 @@
 #	rmfile-recursive
 #	# z parametru
 #	rmfile-recursive /jakis/folder
-# by borzole.one.pl
+# by jedral.one.pl
 
 # minimum Bash 4 
 [[ ${BASH_VERSINFO[0]} -ge 4 ]] || exit 1

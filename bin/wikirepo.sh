@@ -3,7 +3,7 @@
 # wikirepo - pobiera paczki RPM prosto z http://wiki.fedora.pl/wiki/repo
 # wersja CLI
 
-# by borzole.one.pl
+# by jedral.one.pl
 # VERSION=2010.02.25-01:06
 export DISPLAY=:0.0
 export LANG=pl_PL.UTF-8

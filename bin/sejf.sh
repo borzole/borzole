@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # pomysł: http://nfsec.pl/techblog/142
-# by borzole.one.pl
+# by jedral.one.pl
 
 # Nazwa i wersja aplikacji
 BASE="$0"

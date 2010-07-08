@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # yum-size-of - skrypt pokazuje miejsce zajmowane przez paczkę podaną jako argument
-# by borzole.one.pl
+# by jedral.one.pl
 
 paczka=${1:-gimp}
 
@@ -69,7 +69,7 @@ tput sc ;
 echo -n " yum-size-of $(tput setaf 1)$paczka$(tput sgr0)"
 tput rc
 tput cuf $(( $(tput cols) -20)) ; 
-echo -e "$(tput setaf 2)by borzole.one.pl$(tput sgr0)"
+echo -e "$(tput setaf 2)by jedral.one.pl$(tput sgr0)"
 # rezultaty
 line
 print_col 5 " size_package " " size_installed " " size_archive " " version " " repo "

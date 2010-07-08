@@ -1,10 +1,10 @@
 #!/bin/bash
 #
-# by borzole.one.pl
+# by jedral.one.pl
 # VERSION = 2009.12.28 08:15
 # ------------------------------------------------------------------------------
 # sensors-alarm - komunikat o alarmie polecenia "sensors"
-# by borzole.one.pl
+# by jedral.one.pl
 #
 # Skrypt udaje "demona" więc wystarczy go uruchomić raz przy starcie
 # 

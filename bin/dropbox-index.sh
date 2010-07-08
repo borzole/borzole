@@ -3,7 +3,7 @@
 # stary generator stron html dla dropbox
 # http://files.getdropbox.com/u/409786/pub/index.html
 
-# by borzole.one.pl
+# by jedral.one.pl
 
 # położenie pliku konfiguracyjnego
 CONFIG_FILE=$HOME/.dropbox-indexrc

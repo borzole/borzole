@@ -2,7 +2,7 @@
 #
 # To nie działa, choć działało przed zmianami w kodzie DP, zostawię dla ciekawostki
 #
-# by borzole.one.pl
+# by jedral.one.pl
 # VERSION = 2009.12.20 17:54
 # ------------------------------------------------------------------------------
 # zdp - czytnik komentarzy z dobreprogramy.pl
@@ -247,7 +247,7 @@ minus_url(){
 list_url(){
 	zenity --title="$TITLE"  --text "$TEXT_LIST_URL" \
 		--list --width=600 --height=300 \
-		--column " -- by borzole.one.pl -- " --column="ile" \
+		--column " -- by jedral.one.pl -- " --column="ile" \
 		$( for www in $(db_get_all_url) ; do echo -e "$www	$(db_get_comment_nr_from_url $www | wc -l)" ; done ) \
 		--separator=" " --print-column=1
 }
@@ -313,7 +313,7 @@ menu_check_update(){
 menu(){
 	zenity --title="$TITLE"  --text "Komentrze na <span color=\"#4A97B1\"><b>dobreprogramy.pl</b></span>" \
 		--list  --width=300 --height=220 \
-		--column " -- by borzole.one.pl -- " --column "" \
+		--column " -- by jedral.one.pl -- " --column "" \
  		"Nowych komentarzy: ($(db_get_all_uncomment_nr | wc -l))" 		"index_com"\
  		"Sprawdź teraz" 											"menu_check_update" \
 		"Dodaj adres do czytnika" 							"add_url" \

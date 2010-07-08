@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # find-in-path - ...samo opis
-# by borzole.one.pl
+# by jedral.one.pl
 
 usage(){
 	echo -e "${0##*/} -- wyszukaj polecenia w ścieżce

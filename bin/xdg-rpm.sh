@@ -13,7 +13,7 @@ PRZYKŁAD:
 	-- z rozszerzeniem 'py'
 	${0##*/} yum py
 	
-by borzole.one.pl
+by jedral.one.pl
 "
 	exit 0
 }

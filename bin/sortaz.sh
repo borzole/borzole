@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # sortaz - sortuje na katalogi a-z
-# by borzole.one.pl
+# by jedral.one.pl
 
 
 # $1 = głębokość sortowania (domyślnie 1)

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # zsudo - sudo z okienkiem zenity o hasło
-# by borzole.one.pl
+# by jedral.one.pl
 
 # run:	zsudo polecenie
 # przydatne dla [Alt]+[F2], coś jak consolehelper dla każdego :P

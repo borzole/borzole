@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# by borzole.one.pl
+# by jedral.one.pl
 
 . $HOME/.config/user-dirs.dirs
 

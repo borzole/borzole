@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # PLD 
-# by borzole.one.pl
+# by jedral.one.pl
 
 mychroot="/mnt/pld"
 

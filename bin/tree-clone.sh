@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # treeclon - kopiuje drzewo katalogow bez plików 
-# by borzole.one.pl
+# by jedral.one.pl
 
 # treeclon  DrzewoDoSkopiowania  MiejsceDocelowe
 find "$1" -xtype d -printf "$2/%P\n" | xargs -i mkdir -p '{}'

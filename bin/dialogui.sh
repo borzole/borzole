@@ -2,7 +2,7 @@
 
 # wystarczy wybrać skrypty do wykonania
 
-# by borzole.one.pl
+# by jedral.one.pl
 
 # if [ $(whoami) != "root" ] ; then
 	# zenity --error --text="Musisz być zalogowany jako root, aby uruchomić ten skrypt"

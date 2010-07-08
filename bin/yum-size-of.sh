@@ -2,7 +2,7 @@
 
 # skrypt pokazuje miejsce zajmowane przez paczkę rpm podaną jako argument
 
-# by borzole.one.pl
+# by jedral.one.pl
 
 # PRZYKŁAD:
 # 		yum-size-of scribus

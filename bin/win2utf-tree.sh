@@ -2,7 +2,7 @@
 
 # zmienia kodowanie z windowsa na utf-8
 
-# by borzole.one.pl
+# by jedral.one.pl
 # wersja alfa, na 1 poziom
 _dir1run(){
 	for p in $(ls-arg d) ; do

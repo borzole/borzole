@@ -11,7 +11,7 @@ Użycie:
 Ciekawostka:
 	reverse-file dane.log | rev
 
-by borzole.one.pl
+by jedral.one.pl
 "
 	exit 0
 fi

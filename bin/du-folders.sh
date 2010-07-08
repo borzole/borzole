@@ -1,6 +1,6 @@
 #!/bin/bash
 
 # pokazuje ile zajmują foldery w bierzącym katalogu
-# by borzole.one.pl
+# by jedral.one.pl
 
 du -h --max-depth=1

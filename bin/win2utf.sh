@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # win2utf - konwertuje kodowanie zawartości plików
-# by borzole.one.pl
+# by jedral.one.pl
 file="$1"
 
 # kodowanie

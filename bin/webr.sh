@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # webr - otwiera stronę polecenia
-# by borzole.one.pl
+# by jedral.one.pl
 
 firefox $(rpm -qi `rpm -qf $(which $1)` |grep URL |cut -d":" -f2- )
 # ToDo:

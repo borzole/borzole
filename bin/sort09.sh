@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # sort09 - sortuje na katalogi 0-9
-# by borzole.one.pl
+# by jedral.one.pl
 
 
 # $1 = głębokość sortowania (domyślnie 1)

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Powiadomienie o nowej wersji VirtualBox
-# by borzole.one.pl
+# by jedral.one.pl
 
 # wymaga: curl, mutt
 

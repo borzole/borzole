@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # sortext - sortuje podane rozszerzenie do katalogów z $@
-# by borzole.one.pl
+# by jedral.one.pl
 
 # np.:
 #	sortext pdf

@@ -3,7 +3,7 @@
 # lista stron man z paczki rpm
 
 # wersja: 2010.01.22
-# by borzole.one.pl
+# by jedral.one.pl
 
 # użycie:
 # 		manr --help
