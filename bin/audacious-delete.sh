@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# usuń aktualnie odtwarzany plik do kosza
+# audacious-delete.sh -- usuń aktualnie odtwarzany plik z listy do kosza
 
 # wersja: 2010.07.12
 # autor: borzole (jedral.one.pl)
@@ -31,7 +31,7 @@ if [[ $SONG == 'No song playing.' ]] ; then
 	zenity --error "$TITLE" \
 		--text="Nie można przenieść piosenki do kosza!
 			\r<b><span color='#A52A2A'>$SONG</span></b>"
-	exit 1;
+	exit 1
 else
 	# jeśli jest uruchomiony, odpytaj o usunięcie aktualnej piosenki
 	zenity --question "$TITLE" \
