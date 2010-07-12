@@ -30,9 +30,9 @@ if [ $# -eq 0 ] ; then
 	DIR=/usr/share/backgrounds/images
 	ORG=DIR
 else
-	ORG="$@"
 	# rozwiń na pełną ścieżkę
 	DIR=$(readlink -f "$@")
+	ORG="$@"
 fi
 # TEST: czy istnieje taki folder?
 [ ! -d "$DIR" ] && { echo "Nie ma takiego folderu: $ORG" ; exit 1 ; }
