@@ -28,12 +28,14 @@ random_picture(){
 # folder z obrazkami
 if [ $# -eq 0 ] ; then
 	DIR=/usr/share/backgrounds/images
+	ORG=DIR
 else
+	ORG="$@"
 	# rozwiń na pełną ścieżkę
 	DIR=$(readlink -f "$@")
 fi
 # TEST: czy istnieje taki folder?
-[ ! -d "$DIR" ] && { echo "Nie ma takiego folderu: $DIR" ; exit 1 ; }
+[ ! -d "$DIR" ] && { echo "Nie ma takiego folderu: $ORG" ; exit 1 ; }
 # ------------------------------------------------------------------------------
 PICTURE="$(random_picture)"
 # TEST: czy wylosowano choć jedną tapetę?
