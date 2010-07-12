@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# otwiera terminal w katalogu
+# rozszerzenie "Otwórz terminal" z repo nie pokazuje tej opcji,
+# gdy zaznaczony jest jakiś plik ( typowe jak poruszasz się bez myszki )
+
+gnome-terminal --working-directory="${NAUTILUS_SCRIPT_CURRENT_URI#file://}"

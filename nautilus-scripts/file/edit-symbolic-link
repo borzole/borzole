@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# edit-symbolic-link -- nautilus-script do edycji dowiązania
+# wersja: 2010.02.10
+# autor: borzole (jedral.one.pl)
+
+# znane problemy:
+# 	- nazwa pliku nie może zawierać wyrażenia " -> "
+
+LINK="${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS%?}"
+FILE=$(ls -l "$LINK" | awk -F" -> " '{ print $2}')
+# warunek: to musi być link, inaczej żegnamy się
+if [ -z "$FILE" ] ; then
+	zenity --error --text="to nie jest link"
+	exit 0
+fi
+# pobranie nowej ścieżki docelowej
+destination(){
+	zenity	--title="${0##*/}" --width=500 \
+		--text="Link syboliczny \n$LINK\nwskazuje na:" \
+		--entry --entry-text "$FILE"
+}
+DESTINATION="$(destination)"
+# jeśli klinięto OK, usuń link i utwórz nowy
+if [ $? -eq 0 ] ; then
+	rm -f "$LINK"
+	ln -s "$DESTINATION" "$LINK"
+fi
+
+#@TODO MY_PATH=$(readlink -f $0)

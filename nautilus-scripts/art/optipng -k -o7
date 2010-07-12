@@ -1,0 +1,4 @@
+#!/bin/bash
+
+
+xterm -e optipng -k -o7 $NAUTILUS_SCRIPT_SELECTED_FILE_PATHS

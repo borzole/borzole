@@ -54,6 +54,9 @@ def makeIndexHTML(localDirectory, listofDirectories, listofFiles):
 	for n in listofFiles:
 		if n == "do_not_index": return
 
+	for n in listofFiles:
+		if n == "do_not_new_index": return
+
 	indexf = open(os.path.join(localDirectory,"index.html"), "w")
 
 	def parentcheck():

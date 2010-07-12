@@ -1,0 +1,82 @@
+#!/bin/sh
+quoted=$(echo -e "$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS" | 
+         awk 'BEGIN { FS = "\n" } { printf "\"%s\" ", $1 }' | sed -e s#\"\"##)
+quoten=$(echo -e "$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS" | 
+         awk 'BEGIN { FS = "\n" } { printf "\"%s\"\n", $1 }' | sed -e s#\"\"##)
+attrib=$(echo "$quoten" | xargs ls -l | awk '{print $1}')
+owner_read=$(echo "$attrib" | cut -c2-2 | sed 's/r/true/g' | sed 's/-/false/g')
+owner_write=$(echo "$attrib" | cut -c3-3 | sed 's/w/true/g' | sed 's/-/false/g')
+owner_execute=$(echo "$attrib" | cut -c4-4 | sed 's/x/true/g' | sed 's/-/false/g')
+group_read=$(echo "$attrib" | cut -c5-5 | sed 's/r/true/g' | sed 's/-/false/g')
+group_write=$(echo "$attrib" | cut -c6-6 | sed 's/w/true/g' | sed 's/-/false/g')
+group_execute=$(echo "$attrib" | cut -c7-7 | sed 's/x/true/g' | sed 's/-/false/g')
+others_read=$(echo "$attrib" | cut -c8-8 | sed 's/r/true/g' | sed 's/-/false/g')
+others_write=$(echo "$attrib" | cut -c9-9 | sed 's/w/true/g' | sed 's/-/false/g')
+others_execute=$(echo "$attrib" | cut -c10-10 | sed 's/x/true/g' | sed 's/-/false/g')
+
+items=$(echo -e "$quoten" | wc -l)
+(( height = items * 18 + 360 ))
+text=$(echo -ne "Change the mode for $items files:\n$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS")
+list=$(zenity --list --checklist --multiple --width=500 --height="$height" --separator="|" \
+    --title="BEESU: chmod" --text="$text" \
+    --column "Set" --column "Attrib" \
+    "$owner_read" "Owner: Read" \
+    "$owner_write" "Owner: Write" \
+    "$owner_execute" "Owner: Execute" \
+    "$group_read" "Group: Read" \
+    "$group_write" "Group: Write" \
+    "$group_execute" "Group: Execute" \
+    "$others_read" "Others: Read" \
+    "$others_write" "Others: Write" \
+    "$others_execute" "Others: Execute"
+)
+
+if [[ "$?" != "1" ]]
+then
+    ((modu = 0))
+    ((modg = 0))
+    ((modo = 0))
+    list=$(echo "$list" | sed 's/|/\n/g')
+    list_owner=$(echo "$list" | grep -i "owner")
+    list_group=$(echo "$list" | grep -i "group")
+    list_others=$(echo "$list" | grep -i "others")
+    if (( $(echo "$list_owner" | grep -ic "read") != 0 ))
+    then
+        ((modu += 4))
+    fi
+    if (( $(echo "$list_owner" | grep -ic "write") != 0 ))
+    then
+        ((modu += 2))
+    fi
+    if (( $(echo "$list_owner" | grep -ic "execute") != 0 ))
+    then
+        ((modu += 1))
+    fi
+    if (( $(echo "$list_group" | grep -ic "read") != 0 ))
+    then
+        ((modg += 4))
+    fi
+    if (( $(echo "$list_group" | grep -ic "write") != 0 ))
+    then
+        ((modg += 2))
+    fi
+    if (( $(echo "$list_group" | grep -ic "execute") != 0 ))
+    then
+        ((modg += 1))
+    fi
+    if (( $(echo "$list_others" | grep -ic "read") != 0 ))
+    then
+        ((modo += 4))
+    fi
+    if (( $(echo "$list_others" | grep -ic "write") != 0 ))
+    then
+        ((modo += 2))
+    fi
+    if (( $(echo "$list_others" | grep -ic "execute") != 0 ))
+    then
+        ((modo += 1))
+    fi
+    mod="$modu$modg$modo"
+    beesu - "chmod -c $mod $quoted" > /tmp/beesu-last.txt
+fi
+# F12
