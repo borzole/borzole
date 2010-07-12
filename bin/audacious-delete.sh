@@ -2,7 +2,7 @@
 
 # usuń aktualnie odtwarzany plik do kosza
 
-# wersja: 2010.02.10
+# wersja: 2010.07.12
 # autor: borzole (jedral.one.pl)
 
 # aktualnie grana piosenka jest przenoszona do kosza (GNOME)
