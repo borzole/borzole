@@ -7,6 +7,9 @@
 # 	gnome-background.sh ./                  # losuje z bieżącego folderu
 # 	gnome-background.sh /path/to/folder     # losuje z folderu
 
+# ograniczenia:
+# użycie gconftool-2 wymaga działającej sesji d-bus (np. włączone GNOME)
+
 # autor: borzole (jedral.one.pl)
 # wersja: 2010.07.12
 # źródło: http://borzole.googlecode.com/hg/bin/gnome-background.sh
@@ -16,7 +19,7 @@
 random_picture(){
 	# losuje tapetę z pośród określonych typów plików (wielkość liter dowolna)
 	find "$DIR" -xtype f \( \
-				-iname "*.jpg" \
+			    -iname "*.jpg" \
 			-or -iname "*.png" \
 			-or -iname "*.svg" \
 			-or -iname "*.gif" \
@@ -35,7 +38,7 @@ else
 	ORG="$@"
 fi
 # TEST: czy istnieje taki folder?
-[ ! -d "$DIR" ] && { echo "Nie ma takiego folderu: $ORG" ; exit 1 ; }
+[ ! -d "$DIR" ] && { echo "Nie ma takiego folderu: '$ORG'" ; exit 1 ; }
 # ------------------------------------------------------------------------------
 PICTURE="$(random_picture)"
 # TEST: czy wylosowano choć jedną tapetę?
