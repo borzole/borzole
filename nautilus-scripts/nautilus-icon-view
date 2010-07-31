@@ -1,22 +1,20 @@
 #!/bin/bash
 
-# wykonaj skrypt w terminalu
-# Uwaga! w ścieżce do skryptu nie może być spacji
-# problem dotyczy gnome-terminal nie xterm
+r="${NAUTILUS_SCRIPT_CURRENT_URI#file://}"
 
-# Check if CMD is set, default to ${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS%?}
-: ${CMD:="${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS%?}"}
+# minimum Bash 4
+[[ ${BASH_VERSINFO[0]} -ge 4 ]] || exit 1
 
-# jeśli zaznaczony był katalog
-[[ -d $CMD ]] && CMD="echo $CMD jest katalogiem"
-#~ [[ -f $CMD ]] && CMD="echo $CMD nie ma atrybutu wykonywania ( chmod +x skrypt )"
+# enable **
+shopt -s globstar
+# enable ** for dotfiles
+shopt -s dotglob
 
-# TEST: czy jest zainstalowany gnome-terminal
-which gnome-terminal >/dev/null 2>/dev/null
-if [ $? -eq 0 ] ; then
-	# "Hold" jest profilem, w którym terminal nie jest zamykany po zakończeniu polecenia
-	gnome-terminal --profile=Hold -e "$CMD"
-else
-	xterm -hold -e "$CMD"
-fi
-
+for p in "$r"/** ; do
+	if [[ -d $p ]] ; then
+		gvfs-set-attribute "$p" metadata::nautilus-icon-view-auto-layout: true
+		gvfs-set-attribute "$p" metadata::nautilus-icon-view-tighter-layout: false
+		gvfs-set-attribute "$p" metadata::nautilus-icon-view-zoom-level: 3
+		gvfs-set-attribute "$p" metadata::nautilus-default-view OAFIID:Nautilus_File_Manager_Icon_View
+	fi
+done
