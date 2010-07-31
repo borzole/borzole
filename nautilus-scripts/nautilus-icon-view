@@ -17,5 +17,6 @@ for p in "$r"/** ; do
 		gvfs-set-attribute "$p" metadata::nautilus-icon-view-zoom-level 3
 		gvfs-set-attribute "$p" metadata::nautilus-default-view OAFIID:Nautilus_File_Manager_Icon_View
 		gvfs-set-attribute "$p" -t stringv metadata::annotation
+		#@TODO działa jak się wejdzie poraz drugi do katalogu, ustawiany jest jeszcze jakiś parametr ?!
 	fi
 done
