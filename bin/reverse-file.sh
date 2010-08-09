@@ -12,11 +12,14 @@ Ciekawostka:
 	reverse-file dane.log | rev
 
 by jedral.one.pl
+
+Uwaga:
+	To samo robi polecenie \"tac\" z coreutils
 "
 	exit 0
 fi
 
 INPUT="$1"
 for (( i=1 ; i <= $(wc -l < "$INPUT") ; i++ )) ; do
-	tail -n $i "$INPUT" | head -n 1 
+	tail -n $i "$INPUT" | head -n 1
 done
