@@ -9,7 +9,7 @@ from=cp1250
 to=utf-8
 
 mkdir -p ./$to 2>/dev/null
-iconv -f $from -t $to -o ./$to/"$file" "$file" 
+iconv -f $from -t $to -o ./$to/"$file" "$file"
 
 #---------------------------------------------------------------------
 #alias iso2utf='iconv -f iso-8859-2 -t utf-8'
@@ -25,5 +25,9 @@ iconv -f $from -t $to -o ./$to/"$file" "$file"
 # file plik
 
 # sprawdzanie kodowania pliku
-# $ enca srpm.sh 
+# $ enca srpm.sh
 #Universal transformation format 8 bits; UTF-8
+
+# Zmiana kodowania w nazwach plików:
+# convmv
+# http://www.linux.com/archive/feed/58689
