@@ -57,8 +57,12 @@ off(){
 	notify_save
 }
 # ------------------------------------------------------------------------------
-# przełącznik on/off
-is_run && off || on
-
+if [ $(id -u) != 0 ] ; then
+	sudo $0 $@
+	exit 0
+else
+	# przełącznik on/off
+	is_run && off || on
+fi
 
 #@TODO: grep 'enabled="1"' $HOME/.VirtualBox/VirtualBox.xml
