@@ -3,12 +3,12 @@
 # On/Off wirtualny serwer ikonką zenity w tray'u
 
 # Użycie:
-#    $ fserver.sh <nazwa> <IP> <port>
+#   $ fserver.sh <nazwa> <IP> <port>
 # np.
-#    $ fserver.sh
-#    $ fserver.sh fedora-server
-#    $ fserver.sh fedora-server 192.168.0.101
-#    $ fserver.sh fedora-server 192.168.0.101 80
+#   $ fserver.sh
+#   $ fserver.sh fedora-server
+#   $ fserver.sh fedora-server 192.168.0.101
+#   $ fserver.sh fedora-server 192.168.0.101 80
 
 # ------------------------------------------------------------------------------
 # Wartości domyślne
@@ -112,7 +112,10 @@ main(){
         tray_icon_busy server_test  # monitor init process
                                     # sustain apps
         tray_icon_working           # monitor working apps
-        server_off                  # end apps
+
+        MSG_BUSY="...trwa zamykanie serwera ${IP}:${PORT} "
+        MSG_BUSY_OK="Serwer ${IP}:${PORT} został wyłączony "
+        tray_icon_busy server_off   # end apps
     else
         echo -e "TODO: obsłużyć, gdy nie ma X-ów" >&2
         exit 1
