@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# podłączony dysk na usb zostaje wykryty i na niby sformatowany
+
 lista_menu(){
 	for p in $( fdisk -l $1 2>/dev/null | grep '^/dev/' | cut -d' ' -f1 ) ; do
 		echo "TRUE $p "
@@ -20,7 +22,7 @@ disk_format(){
 
 	LISTA=$(menu $1)
 	exec 4> >(zenity --progress --pulsate --width=300 --auto-close --auto-kill  --title="${0##*/}" )
-	
+
 	MSG="# Formatuje partycje "
 	for d in $LISTA ; do
 		echo "$MSG $d \n obieranie ziemniaków " >&4
@@ -40,7 +42,7 @@ get_device(){
 	echo "$1" \
 		| grep "interface=org.freedesktop.DeviceKit.Disks.Device" \
 		| cut -d'/' -f7  \
-		| cut -d';' -f1 
+		| cut -d';' -f1
 }
 
 dbus_out(){

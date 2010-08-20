@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# reverse-file - odwraca kolejność linii w pliku
+
 if [ $# -eq 0 ] ; then
 	echo -e " reverse-file - odwraca kolejność linii w pliku
 

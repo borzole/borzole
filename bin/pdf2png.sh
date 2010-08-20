@@ -3,7 +3,7 @@
 # pdf2png.sh -- konwertuje PDF>PNG z ustaleniem jakości
 # autor: borzole (jedral.one.pl)
 # wymaga: ImageMagick zenity
-#
+
 # skrypt można uruchomić
 #    * z plikiem jako parametrem
 #    * wrzucić do folderu $HOME/.gnome2/nautilus-scripts/

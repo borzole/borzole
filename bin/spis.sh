@@ -2,71 +2,47 @@
 
 # Spis skryptów z opisami
 
-VERSION=2010.05.31-19:49
+VERSION=2010.08.20-17:20
+
+# folder ze skryptami
+DIR="$(readlink -f `dirname $0`)"
+
+# policz skrypty
+c=$(ls -1 "$DIR"/* | wc -l )
 
 opis(){
 	# wyłuskuje opis skryptu, jako pierwszy blok komentarza
-	sed -e ' # przepiękny łamaniec wyłyskujący pierwszy blok komentarza ?!
-		# jeśli nie komentarz, to zmień status bufora i usuń wiersz
-		/^[^#]/{
-			x
-			/1$/s/.*/&2/
-			x
-			d
-		}
-		# jeśli komentarz, to zmień status, i usuń wiersz jeśli nie jest to pierwszy blok komentarza
-		/^#/{
-			x
-			/^$/s/.*/1/
-			/2$/s/.*/&1/
-			/12/ {
-				x
-				d
-				x
-			}
-			x
-		}
+	awk 'BEGIN { FS="\n"; RS=""; i=0 } { if (i == 1) print $0; i++ }' "$1" \
+	| sed -e '
 		# poniewarz IFS="|" to trzeba się pozbyć znaków "|"
-		s/|/;/g
-		#@TODO dlaczego nie mogę wywalić #!
-		#~ /^#!\//d
+		s/|/<--pipe-->/g
 		# wywalić znaki komentarza
-		/^#$/d
-		s/^#[[:blank:]]//g
-		# usunąć puste linie
-		/^$/d
-		/perl/d
-	' "$1"
-
-	#@TODO tak wiem, napewno można zrobić to krócej :/
-	# sed -e :a -e N -e 's/\\\n//' -e ta "$1" # łączy linie w jedną
-	# [[:blank:]]
-	# [[:space:]]
-	# [[:alnum:]]
+		#~ s/#/-/g
+	'
 }
 
 list(){
 	# deskryptor pliku 4 = wejście informacyjne dla paska postępu
 	exec 4> >(zenity --progress --percentage=0 --width=400 --auto-close --auto-kill --title="${0##*/}")
-	# policz skrypty
-	c=$(ls -1 /usr/local/{,s}bin/* | wc -l )
 	j=0
-	for i in /usr/local/{,s}bin/* ; do
+	for i in "$DIR"/* ; do
 		let j++
+		# długość paska postępu
 		x=$((100 * $j/$c))
 		# wyłapujemy tylko skrypty
 		file $i | grep script > /dev/null 2>&1 && {
 			echo "$x" >&4
 			echo -e "#Ładuje sktypty: ${i##*/} ..." >&4
 
-			# rodzaj powłoki
-			s=$(grep '#!' $i | head -n 1 | sed -e 's/^#!//g')
-
 			# opis skryptu
 			o=$(opis "$i")
 
+			# dodatkowy IFS rozdzielający rekordy, nie może być w samym rekordzie,
+			# bo by było za dużo o jeden i zenity wariujej
+			[[ $j -ne 1 ]] && echo -n "|"
+
 			# wyjście
-			echo -e "FALSE|$i|$s|${i##*/}|$o|"
+			echo -ne "FALSE|$i|${i##*/}|$o"
 		}
 	done
 	# zamknięcie deskryptora 4
@@ -74,16 +50,16 @@ list(){
 	exec 4>&-
 }
 
-get_snippets(){
+menu(){
 	local IFS="|"
-	zenity --title="Lista skryptów z opisami" \
-		--text "Zaznacz skrypty, które chcesz obejrzeć" \
-		--width=1024 --height=800 \
+	zenity --title="Lista $c skryptów z opisami" \
+		--text "Zaznacz skrypty, które chcesz obejrzeć. Zostaną otwarte w domyślnym edytorze" \
+		--width=800 --height=600 \
 		--list  --checklist \
-		--column="" --column "path" --column "#!" --column "script"  --column "opis" \
+		--column="" --column "path" --column "script"  --column "opis" \
 		$(list) \
 		--separator " "  --multiple \
 		--print-column=2 --hide-column=2
 }
-FILES="$(get_snippets)"
-[[ $FILES != '' ]] && geany $FILES || exit 0
+# otwórz wybrane skrypty w domyślnym edytorze
+for i in $(menu) ; do xdg-open $i & done

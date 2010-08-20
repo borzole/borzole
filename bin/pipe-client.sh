@@ -1,6 +1,8 @@
 #!/bin/bash
 
+# przykładowy client-serwer przy użyciu potoków nazwanych
 # http://www.linuxjournal.com/content/using-named-pipes-fifos-bash
+
 pipe=/tmp/testpipe
 
 if [[ ! -p $pipe ]]; then

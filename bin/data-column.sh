@@ -24,3 +24,14 @@ IFS=':'
 for p in $PATH ; do
 	echo $p
 done
+
+
+# i jeszcze tak można
+
+i=0
+echo -e " i\t| nr \t| x \t| login"
+echo "----------------------------------------------------------"
+while IFS=":" read A B C D ; do
+	let i++
+	echo -e "$i\t| $C \t| $B \t| $A"
+done < /etc/passwd

@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # ustawienia debugowania
+
 # UŻYCIE:
 #	na początku skryptu wybrać poziom DEBUG i zrobić "source" skryptu
 # 	np.:

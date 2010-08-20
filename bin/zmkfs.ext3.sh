@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# symulacja formatowania partycji
+
 lista_menu(){
 	for p in $( fdisk -l 2>/dev/null | grep '^/dev/' | cut -d' ' -f1 ) ; do
 		echo "TRUE $p "
@@ -17,5 +19,5 @@ menu(){
 }
 
 for d in $(menu) ; do
-	echo "mkfs.ext3 $d"
+	echo "mkfs.ext4 $d"
 done

@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# przykładowy client-server w bash
+# uruchomić na jednym terminalu jako root, a na drugim jako user
+
 export DISPLAY=:0.0
 export LANG=pl_PL.UTF-8
 export PATH=$PATH:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin

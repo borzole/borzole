@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # budzik można uruchomić podając komentarz jako parametr
+
 # np.
 # 		budzik Pora na przekąskę!
 #

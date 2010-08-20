@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # wyszukuje duplikaty plików w katalogu na podstawie sum SHA1
+
 [[ ${BASH_VERSINFO[0]} -ge 4 ]] || exit 1
 shopt -s globstar
 shopt -s dotglob

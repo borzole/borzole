@@ -1,6 +1,9 @@
 #!/bin/bash
 
-# minimum Bash 4 
+# zmienia nazwy plików i folderów na małe litery, rekursywnie w całym drzewie
+# UWAGA! może nadpisywać pliki!
+
+# minimum Bash 4
 [[ ${BASH_VERSINFO[0]} -ge 4 ]] || exit 1
 
 # enable **

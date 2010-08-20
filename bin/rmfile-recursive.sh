@@ -1,6 +1,7 @@
-#!/bin/bash 
+#!/bin/bash
 
 # rmfile-recursive.sh - usuwa puste pliki rekursywnie
+
 # Użycie:
 #	# tutaj (PWD)
 #	rmfile-recursive
@@ -8,7 +9,7 @@
 #	rmfile-recursive /jakis/folder
 # by jedral.one.pl
 
-# minimum Bash 4 
+# minimum Bash 4
 [[ ${BASH_VERSINFO[0]} -ge 4 ]] || exit 1
 
 # włącz **

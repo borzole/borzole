@@ -1,10 +1,7 @@
 #!/bin/bash
-#
-# by borzole ( jedral.one.pl )
-VERSION=2010.03.05-17.35
-# ------------------------------------------------------------------------------
+
 # yum-zupdate -- instalator aktualizacji
-#
+
 # Użycie:
 # 	jednorazowo np. do cron
 # 		/usr/local/sbin/yum-zupdate
@@ -13,6 +10,8 @@ VERSION=2010.03.05-17.35
 #	można skorygować czas sprawdzania aktualizacji podając go jako parametr w sekundach
 #	np. 20min (1200 sekund)
 # 		/usr/local/sbin/yum-zupdate -d 1200 &
+# by borzole ( jedral.one.pl )
+VERSION=2010.03.05-17.35
 # ------------------------------------------------------------------------------
 export DISPLAY=:0.0
 export LANG=pl_PL.UTF-8

@@ -1,8 +1,10 @@
 #!/bin/bash
 
+# szybki podgląd plików z paczki rpm
+
 usage(){
 	echo -e "${0##*/} <paczka>
-	
+
 INFO:
 	-- Szybki podgląd plików z paczki rpm
 	Używa xdg-open, aby otworzyć/wykonać plik z paczki
@@ -12,7 +14,7 @@ PRZYKŁAD:
 	${0##*/} yum
 	-- z rozszerzeniem 'py'
 	${0##*/} yum py
-	
+
 by jedral.one.pl
 "
 	exit 0
@@ -24,8 +26,8 @@ TYPE=$2
 
 format(){
 	[ -z "$TYPE" ] && FILES=$(rpm -ql $APPS) || FILES=$(rpm -ql $APPS | grep "\.$TYPE$" )
-	
-	for p in $FILES; do 
+
+	for p in $FILES; do
 		echo "FALSE $p"
 	done
 }
@@ -37,7 +39,7 @@ menu() {
 		$(format) \
 		--separator " "  --multiple \
 		--print-column=2
-}	
+}
 
 for plik in $(menu) ; do
 	xdg-open $plik

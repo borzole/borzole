@@ -1,6 +1,8 @@
 #!/bin/bash
 
+# przykładowy client-serwer przy użyciu potoków nazwanych
 # http://www.linuxjournal.com/content/using-named-pipes-fifos-bash
+
 VERBOSE=1
 . bslib.sh || exit 1
 
