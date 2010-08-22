@@ -55,7 +55,7 @@ set_list(){
 		info[${#info[*]}]=`cut -d: -f2- <<< $LINE`
 	# dlaczego taka konstrukcja:
 	# http://forum.fedora.pl/index.php?showtopic=23033
-	done < <( yum -q search $PAKIET | grep -v ^= )
+	done < <( yum -q search $PAKIET | egrep -v '^(=| )' )
 	LIST_LENGTH=${#bool[*]}
 	echo "100" >&4
 	exec 4>&-
