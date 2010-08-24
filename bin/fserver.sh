@@ -70,7 +70,7 @@ tray_icon_busy(){
     exec 4> >(zenity --notification --listen)
     echo "tooltip:${MSG_BUSY}" >&4
     #~ echo "message:${MSG_BUSY}" >&4
-    if $@ # monitorowane polecenie
+    if ($@) # monitorowane polecenie
     then
         notify -u low "$MSG_BUSY_OK" &
     else
