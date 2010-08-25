@@ -2,7 +2,7 @@
 
 rm $0
 
-"./cpufreq_scaling_governor.sh"
+"./yum-size-of.lab"
 
 echo "
 
