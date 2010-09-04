@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 #-*- coding:utf-8 -*-
 
-# gnome-hamster-auto
+# gnome-hamster-auto - to jest wersja minimalna, sypiąca błędami na każdym kroku :/
+# ale poza tym działa :D
 
 import gtk, wnck, dbus
 
