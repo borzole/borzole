@@ -26,7 +26,7 @@ get_nr(){
 	# "Anuluj" - koniec skryptu
 	zenity --scale --title="${0##*/}" --width=300 \
 		--text="Ile piosenek wylosować panie?" \
-		--value=100 --min-value=5 --max-value=500 --step=5
+		--value=100 --min-value=1 --max-value=1000 --step=10
 }
 # ------------------------------------------------------------------------------
 get_files(){
@@ -67,7 +67,7 @@ daemon &
 # powolne zapełnianie playlisty
 get_files | while read -r LINE ; do
 	audtool2 playlist-addurl "file://${LINE}"
-	sleep 0.05 # a tak, co by nie przemęczać systemu
+	sleep 0.02 # a tak, co by nie przemęczać systemu
 done
 
 
