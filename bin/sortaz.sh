@@ -22,4 +22,4 @@ for i in {a..z} ;do
 done
 
 echo -e "usuwam puste katalogi"
-rm0dir -a
+rmdir-recursive.sh
