@@ -16,7 +16,7 @@
 #		- było by git, gdyby uwzględniał zależności
 
 paczka=${1:-gimp}
-
+cache=$(awk -F'=' '/^cachedir/ {print $2}' /etc/yum.conf)
 query(){
 	echo "SELECT name, size_package, size_installed, size_archive, version, release, arch
 	FROM packages
@@ -24,7 +24,7 @@ query(){
 }
 
 show_result(){
-	REPO=${mydb##/var/cache/yum/}
+	REPO=${mydb##${cache}/}
 
 	SIZE_PACKAGE=$( echo $SQLITE_SELECT | cut -d\| -f2 )
 	SIZE_PACKAGE_MB=$( echo "scale=3; $SIZE_PACKAGE/1024/1024" | bc -l )
@@ -40,7 +40,7 @@ show_result(){
 	VERSION+=".$( echo $SQLITE_SELECT | cut -d\| -f7 )"
 
 	# wyświetl ładne wyniki
-	echo -e " $SIZE_PACKAGE_MB MB \t| $SIZE_INSTALLED_MB MB \t| $SIZE_ARCHIVE_MB MB \t| ${VERSION} \t( ${REPO%%/*} )"
+	echo -e " $SIZE_PACKAGE_MB MB \t| $SIZE_INSTALLED_MB MB \t| $SIZE_ARCHIVE_MB MB \t| ${VERSION} \t( ${REPO%/*} )"
 }
 
 main(){
@@ -50,7 +50,7 @@ main(){
 	echo -e " size_package \t| size_installed | size_archive | version ( repo )"
 	echo -e "--------------------------------------------------------------------------------"
 
-	for mydb in $( find /var/cache/yum/ -type f -name \*primary\*.sqlite | sort ) ; do
+	for mydb in $( find ${cache} -type f -name \*primary\*.sqlite | sort ) ; do
 		SQLITE_SELECT=$( sqlite3 "$mydb" "$(query $paczka)" )
 		if [ "$SQLITE_SELECT" != "" ] ; then
 			show_result
