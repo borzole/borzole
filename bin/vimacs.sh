@@ -2,11 +2,23 @@
 
 # w nieparzyste dni używam Vim, a w parzyste Emacs ;D
 
-if tty -s
-then
+is_odd(){
+	# czy dzień jest nieparzysty
+	(( $(date +%d) % 2 ))
+}
+
+if tty -s ; then
 	# uruchomiono interaktywnie, więc korzystamy z dobrodziejstw terminala
-	(( $(date +%d) % 2 )) && vim $@ || emacs -nw $@
+	if is_odd ; then
+		vim $@
+	else
+		emacs -nw $@
+	fi
 else
 	# brak terminala, więc otwieramy w X
-	(( $(date +%d) % 2 )) && gvim $@ || emacs $@
+	if is_odd ; then
+		gvim $@
+	else
+		emacs $@
+	fi
 fi
