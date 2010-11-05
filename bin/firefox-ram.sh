@@ -3,7 +3,7 @@
 DIR=$HOME/.mozilla/firefox/profil.lucas/
 
 RAM=/dev/shm/firefox-ram
-[ ! -d "$RAM" ] && mkdir -p "$RAM"
+mkdir -p "$RAM"
 
 synchronizacja(){
 	exec 4> >(zenity --progress --pulsate --width=300 --auto-close --auto-kill --title=${0##*/})
