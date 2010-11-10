@@ -15,10 +15,14 @@ today_h(){
 }
 # ------------------------------------------------------------------------------
 last_update(){
-	sudo yum history \
-		| awk -F'|' '$4 ~ /U/ {print $0}' \
-		| head -n 1 \
-		| awk -F'|' '{print $3}'
+	cat /var/log/yum.log \
+		| grep Updated \
+		| awk '{print $1" "$2" "$3}' \
+		| tail -n 1
+	#~ sudo yum history \
+		#~ | awk -F'|' '$4 ~ /U/ {print $0}' \
+		#~ | head -n 1 \
+		#~ | awk -F'|' '{print $3}'
 }
 last_update_h(){
 	echo $(( $(date -d "$LAST_UPDATE" +%s)/3600 ))
