@@ -35,7 +35,7 @@ LAST_UPDATE=$(last_update)
 dx=$(( $(today_h) - $(last_update_h) ))
 
 echo -e Today: '\t\t' $(today)
-echo -e Last Update: '\t' $(date +'%F %H:%M' -d"$(last_update)") '-->' ${dx}h from ${dy}h
+echo -e Last Update: '\t' $(date +'%F %H:%M' -d"$LAST_UPDATE") '-->' ${dx}h from ${dy}h
 
 [[ $dx -lt $dy ]] || {
 	echo -----------------------------------------------------------------------
