@@ -2,7 +2,7 @@
 
 # yum update (32/64)
 
-dy=${1:-12} # update co 42 godziny, albo z parametru
+dy=${1:-36} # update co 42 godziny, albo z parametru
 
 update='sudo yum --skip-broken -y update'
 # ------------------------------------------------------------------------------
