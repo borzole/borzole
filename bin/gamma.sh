@@ -12,7 +12,8 @@ case $1 in
 	-)
 		GAMMA=$(echo -e "$(get_gamma)-0.1" | bc) ;;
 	*)
-		echo ${0##*/} +/- ;;
+		echo Użycie: ${0##*/} +/-
+		exit 1 ;;
 esac
 
 GAMMA=$(echo $GAMMA | sed -e 's:^\.:0.:')

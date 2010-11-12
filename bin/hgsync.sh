@@ -4,7 +4,7 @@
 # demon fsniper monitoruje folder i przy każdej zmianie uruchamia ten skrypt
 
 # lokalny klon repo
-mkdir -p ${HG:=$HOME/studio/version/borzole.googlecode.com/hg}
+mkdir -p ${HG:=$HOME/studio/borzole.googlecode.com/hg}
 # ------------------------------------------------------------------------------
 rsync_mk(){
 	mkdir -p $2
