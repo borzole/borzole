@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# publiczny IP
+# generuje w Dropbox stronę przekierowującą na publiczny IP
 
 # ------------------------------------------------------------------------------
 query(){
