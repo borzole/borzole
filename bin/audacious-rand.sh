@@ -2,14 +2,14 @@
 
 # audacious-rand.sh -- losuje piosenki do playlisty
 
-# wersja:2010.05.26-15:16
+# wersja:2010.11.26-13:46
 # autor: borzole (jedral.one.pl)
 
 # ------------------------------------------------------------------------------
 [[ ${BASH_VERSINFO[0]} -ge 4 ]] || exit 1
 shopt -s globstar
 
-# folder z obrazkami: domyślny lub z parametru
+# folder z muzyką: domyślny lub z parametru
 if [ $# -eq 0 ] ; then
 	. $HOME/.config/user-dirs.dirs 2>/dev/null
 	DIR="$XDG_MUSIC_DIR"
@@ -25,7 +25,7 @@ get_nr(){
 	# "OK" - zwraca ile piosenek będzie losowane
 	# "Anuluj" - koniec skryptu
 	zenity --scale --title="${0##*/}" --width=300 \
-		--text="Ile piosenek wylosować panie?" \
+		--text="Folder:$DIR\nIle piosenek wylosować panie?" \
 		--value=100 --min-value=1 --max-value=1000 --step=10
 }
 # ------------------------------------------------------------------------------
@@ -69,6 +69,3 @@ get_files | while read -r LINE ; do
 	audtool2 playlist-addurl "file://${LINE}"
 	sleep 0.02 # a tak, co by nie przemęczać systemu
 done
-
-
-# ------------------------------------------------------------------------------
