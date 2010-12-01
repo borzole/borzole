@@ -4,13 +4,14 @@
 
 cd "${NAUTILUS_SCRIPT_CURRENT_URI#file://}"
 
-mkdir -p {lab,src,arch,class,doc,tmp}
+mkdir -p {lab,src,scrum,arch,class,doc,tmp}
 
-# README:
-# arch, src, lab -- source code
-#                -- lab: current project
-#                -- src: waiting, not finished projects
-#                -- arch: finished projects
-#          class -- templates
-#            doc -- documentation
-#            tmp -- inbox
+# source code
+#    -- lab: current project
+#    -- src: waiting, not finished projects
+#    -- scrum: proces-projects
+#    -- arch: finished projects
+#
+#  class -- templates
+#    doc -- documentation
+#    tmp -- inbox
