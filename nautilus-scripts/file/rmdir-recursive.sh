@@ -1,16 +1,33 @@
-#!/bin/bash
+#!/bin/bash 
 
-# make folders
+# rmdir-recursive.sh - usuwa puste katalogi rekursywnie
+# Użycie:
+#	# tutaj (PWD)
+#	rmdir-recursive
+#	# z parametru
+#	rmdir-recursive /jakis/folder
+# by jedral.one.pl
 
-cd "${NAUTILUS_SCRIPT_CURRENT_URI#file://}"
+# minimum Bash 4 
+[[ ${BASH_VERSINFO[0]} -ge 4 ]] || exit 1
 
-mkdir -p {lab,src,arch,class,doc,tmp}
+# włącz **
+shopt -s globstar
+# włącz wykrywanie ukrytych plików
+shopt -s dotglob
+# folder bieżący lub z parametru (korzeń przeszukiwania)
+# root dir
+r="${1:-$PWD}"
 
-# README:
-# arch, src, lab -- source code
-#                -- lab: current project
-#                -- src: waiting, not finished projects
-#                -- arch: finished projects
-#          class -- templates
-#            doc -- documentation
-#            tmp -- inbox
+# rekursywnie znajdź katalogi i załaduj do tablicy
+unset LIST
+for p in "$r"/** ; do
+	[[ -d $p ]] && LIST[${#LIST[*]}]="$p"
+done
+
+# wykonaj w odwrotnej kolejności tablicę, czyli od najgłębiej zagnieżdzonych
+for (( i=(${#LIST[@]}-1) ; i >= 0  ; i-- )) ; do
+	# magia tego polecenia polega na tym, że usuwa tylko puste katalogi ;)
+	rmdir --ignore-fail-on-non-empty "${LIST[$i]}"
+done
+
