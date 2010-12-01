@@ -1,16 +1,10 @@
 #!/bin/bash
 
-abs_path="$(readlink -f `dirname $0`)"
-cd "$abs_path"
-
-# ------------------------------------------------------------------------------
 # make folders
-# ------------------------------------------------------------------------------
 
-depth=1
-find "$abs_path" -mindepth $depth -maxdepth $depth -type d -exec \
-	mkdir -p '{}'/{lab,src,arch,class,doc,tmp} \;
+cd "${NAUTILUS_SCRIPT_CURRENT_URI#file://}"
 
+mkdir -p /{lab,src,arch,class,doc,tmp}
 
 # README:
 # arch, src, lab -- source code
