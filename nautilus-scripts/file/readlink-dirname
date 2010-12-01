@@ -2,5 +2,5 @@
 
 # readlink-dirname : otwiera folder do którego prowadzi link symboliczny
 
-zenity --info --text "$(readlink -f $(dirname ${NAUTILUS_SCRIPT_CURRENT_URI#file://}))"
+zenity --info --text "\$(readlink -f \$(dirname ${NAUTILUS_SCRIPT_CURRENT_URI#file://}))"
 
