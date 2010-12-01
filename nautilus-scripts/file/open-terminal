@@ -1,7 +1,6 @@
 #!/bin/bash
 
-# otwiera terminal w katalogu
-# rozszerzenie "Otwórz terminal" z repo nie pokazuje tej opcji,
-# gdy zaznaczony jest jakiś plik ( typowe jak poruszasz się bez myszki )
+# readlink-dirname : otwiera folder do którego prowadzi link symboliczny
 
-gnome-terminal --working-directory="${NAUTILUS_SCRIPT_CURRENT_URI#file://}"
+xdg-open "$(readlink -f $(dirname ${NAUTILUS_SCRIPT_CURRENT_URI#file://}))"
+
