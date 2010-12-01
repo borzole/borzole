@@ -4,7 +4,7 @@
 
 cd "${NAUTILUS_SCRIPT_CURRENT_URI#file://}"
 
-mkdir -p /{lab,src,arch,class,doc,tmp}
+mkdir -p {lab,src,arch,class,doc,tmp}
 
 # README:
 # arch, src, lab -- source code
