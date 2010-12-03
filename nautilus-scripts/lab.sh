@@ -16,7 +16,7 @@ shopt -s dotglob
 # sprawdźmy zależności
 id3info -V || exit 1
 
-r=${1:-${NAUTILUS_SCRIPT_CURRENT_URI#file://}}
+r=$( echo ${1:-${NAUTILUS_SCRIPT_CURRENT_URI#file://}} | sed 's:%20: :g')
 
 get_tag(){
 	echo -e "$raw" | awk -F": " '$1 ~ /'"$@"'/ {print $2}'
