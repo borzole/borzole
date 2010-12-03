@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# przekieruj wyjście do logu, jeśli nie uruchomiono z terminala
+if ! tty -s ; then
+	exec &> ~/log
+fi
+
 # minimum Bash 4
 [[ ${BASH_VERSINFO[0]} -ge 4 ]] || exit 1
 
