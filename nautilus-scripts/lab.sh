@@ -29,7 +29,7 @@ set_path(){
 	done
 }
 
-echo root: $r
+echo root: $r | sed 's:%20: :g'
 for f in "$r"/** ; do
 	echo file: $f
 	raw=$(id3info -n "$f" | grep === )
