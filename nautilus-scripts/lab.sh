@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# sprawdźmy zależności
+id3info -V || exit 1
+
 # minimum Bash 4
 [[ ${BASH_VERSINFO[0]} -ge 4 ]] || exit 1
 
