@@ -29,8 +29,10 @@ set_path(){
 	done
 }
 
+echo for
 for f in "$r"/** ; do
 	raw=$(id3info -n "$f" | grep === )
+	echo $raw
 	path=$(set_path $(get_tag Soloist) $(get_tag Year) $(get_tag Album))
 	[ ${#path} != 0 ] && mkdir -p "$r/$path" && mv "$f" "$r/$path"/"${f##*/}"
 done
