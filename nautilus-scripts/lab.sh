@@ -29,9 +29,9 @@ set_path(){
 	done
 }
 
-echo for
+echo root: $r
 for f in "$r"/** ; do
-	echo $f
+	echo file: $f
 	raw=$(id3info -n "$f" | grep === )
 	echo $raw
 	path=$(set_path $(get_tag Soloist) $(get_tag Year) $(get_tag Album))
