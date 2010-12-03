@@ -32,4 +32,4 @@ set_path(){
 for f in "$r"/** ; do
 	path=$(set_path $(get_tag Soloist) $(get_tag Year) $(get_tag Album))
 	[ ${#path} != 0 ] && mkdir -p "$r/$path" && mv "$f" "$r/$path"/"${f##*/}"
-done > ~/log
+done
