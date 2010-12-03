@@ -15,6 +15,7 @@ shopt -s dotglob
 
 # ------------------------------------------------------------------------------
 # sortuj według tagów ID3
+
 # sprawdźmy zależności
 id3info -V || exit 1
 
