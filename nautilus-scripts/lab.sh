@@ -13,6 +13,8 @@ shopt -s globstar
 # enable ** for dotfiles
 shopt -s dotglob
 
+# ------------------------------------------------------------------------------
+# sortuj według tagów ID3
 # sprawdźmy zależności
 id3info -V || exit 1
 
@@ -35,4 +37,19 @@ for f in "$r"/** ; do
 	raw=$(id3info -n "$f" | grep === )
 	path=$(set_path "$(get_tag Soloist)" "$(get_tag Year)" "$(get_tag Album)")
 	[ ${#path} != 0 ] && mkdir -p "$r/$path" && mv "$f" "$r/$path"/"${f##*/}"
+done
+
+# ------------------------------------------------------------------------------
+# posprzątaj po sobie i usuń puste katalogi
+
+# rekursywnie znajdź katalogi i załaduj do tablicy
+unset LIST
+for p in "$r"/** ; do
+	[[ -d $p ]] && LIST[${#LIST[*]}]="$p"
+done
+
+# wykonaj w odwrotnej kolejności tablicę, czyli od najgłębiej zagnieżdzonych
+for (( i=(${#LIST[@]}-1) ; i >= 0  ; i-- )) ; do
+	# magia tego polecenia polega na tym, że usuwa tylko puste katalogi ;)
+	rmdir --ignore-fail-on-non-empty "${LIST[$i]}"
 done
