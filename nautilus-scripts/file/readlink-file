@@ -2,4 +2,4 @@
 
 # readlink-file : otwiera folder do którego prowadzi link symboliczny zaznaczonego pliku
 
-zenity --info --text "xdg-open \$(readlink -f ${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS})"
+zenity --info --text "xdg-open $(readlink -f ${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS})"
