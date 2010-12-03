@@ -13,6 +13,17 @@ id3info -V || exit 1
 
 r=${1:-${NAUTILUS_SCRIPT_CURRENT_URI#file://}}
 
+get_tag(){
+	echo -e "$raw" | awk -F": " '$1 ~ /'"$@"'/ {print $2}'
+}
+
+set_path(){
+	while [[ $@ ]] ; do
+		[ ${#1} != 0 ] && echo -n ${1}/
+		shift
+	done
+}
+
 for f in "$r"/** ; do
 
 done
