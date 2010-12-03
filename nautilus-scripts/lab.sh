@@ -2,7 +2,7 @@
 
 # przekieruj wyjście do logu, jeśli nie uruchomiono z terminala
 if ! tty -s ; then
-	exec &> ~/log
+	exec &> ~/${0##*/}.log
 fi
 
 # minimum Bash 4
