@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # sortuje mp3 na podstawie tagów do drzewa folderów
-# http://borzole.googlecode.com/hg/nautilus-scripts/art/sort-mp3-by-id3.sh
-# jedral.one.pl
+# source: http://borzole.googlecode.com/hg/nautilus-scripts/art/sort-mp3-by-id3.sh
+#  autor: http://jedral.one.pl
 #
 # Użycie:
 #    - jako nautilus-scripts, wówczas wystarczy kliknąć w folderze (nie na plikach)
