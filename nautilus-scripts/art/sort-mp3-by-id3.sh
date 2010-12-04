@@ -1,5 +1,9 @@
 #!/bin/bash
 
+
+# sortuje mp3 według na podstawie tagów
+# jedral.one.pl
+
 # przekieruj wyjście do logu, jeśli nie uruchomiono z terminala
 if ! tty -s ; then
 	exec &> ~/${0##*/}.log
@@ -37,7 +41,10 @@ for f in "$r"/** ; do
 	echo file: $f
 	raw=$(id3info -n "$f" | grep === )
 	path=$(set_path "$(get_tag Soloist)" "$(get_tag Year)" "$(get_tag Album)")
-	[ ${#path} != 0 ] && mkdir -p "$r/$path" && mv "$f" "$r/$path"/"${f##*/}"
+	[ ${#path} != 0 ] && mkdir -p "$r/$path" && {
+		core="$r/$path/${f##*/}"
+		mv "$f" "$r/$path"/"${f##*/}"
+	}
 done
 
 # ------------------------------------------------------------------------------
