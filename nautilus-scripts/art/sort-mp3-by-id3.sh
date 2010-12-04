@@ -1,7 +1,6 @@
 #!/bin/bash
 
-
-# sortuje mp3 według na podstawie tagów
+# sortuje mp3 na podstawie tagów do drzewa folderów
 # jedral.one.pl
 
 # przekieruj wyjście do logu, jeśli nie uruchomiono z terminala
