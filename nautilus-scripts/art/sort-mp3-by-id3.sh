@@ -43,7 +43,11 @@ for f in "$r"/** ; do
 	path=$(set_path "$(get_tag Soloist)" "$(get_tag Year)" "$(get_tag Album)")
 	[ ${#path} != 0 ] && mkdir -p "$r/$path" && {
 		core="$r/$path/${f##*/}"
-		mv "$f" "$r/$path"/"${f##*/}"
+		# zabezpieczenie przed duplikatem nazwy
+		while [ -f "$core"$n ] ; do ((n++)) ; done
+		new="$core"$n && n=''
+
+		mv "$f" "$new"
 	}
 done
 
