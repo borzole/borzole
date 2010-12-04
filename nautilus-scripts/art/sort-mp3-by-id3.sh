@@ -46,7 +46,6 @@ for f in "$r"/** ; do
 		# zabezpieczenie przed duplikatem nazwy
 		while [ -f "$core"$n ] ; do ((n++)) ; done
 		new="$core"$n && n=''
-
 		mv "$f" "$new"
 	}
 done
