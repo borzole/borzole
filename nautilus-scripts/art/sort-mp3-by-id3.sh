@@ -1,9 +1,12 @@
 #!/bin/bash
 
 # sortuje mp3 na podstawie tagów do drzewa folderów
-#
 # http://borzole.googlecode.com/hg/nautilus-scripts/art/sort-mp3-by-id3.sh
 # jedral.one.pl
+#
+# Użycie:
+#    - jako nautilus-scripts, wówczas wystarczy kliknąć w folderze (nie na plikach)
+#    - z konsoli, podając folder jako argument
 
 # przekieruj wyjście do logu, jeśli nie uruchomiono z terminala
 if ! tty -s ; then
