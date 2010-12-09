@@ -4,7 +4,7 @@
 
 is_odd(){
 	# czy dzień jest nieparzysty
-	(( $(date +%d) % 2 ))
+	(( $(date +%e) % 2 ))
 }
 
 if tty -s ; then
