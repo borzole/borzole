@@ -32,7 +32,7 @@ while [ "$1" ] ; do
 	echo output dir: $dir
 	mkdir -p "$dir"
 
-	pdftk "$src" burst output "${dir}"/strona%03d.pdf
+	pdftk "$src" burst output "${dir}"/strona%03d.pdf verbose
 
 	echo ------------
 	echo result:
