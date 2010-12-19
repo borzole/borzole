@@ -18,18 +18,22 @@ die(){
 	exit 1
 }
 
+[[ $# == 0 ]] && usage
+
 while [ "$1" ] ; do
 	src="$1"
 	dir="${src}.d"
 
-	[[ $# == 0 ]] && usage
 	[[ ! -f $src ]] && die nie ma takiego pliku: $src
 	echo source file: $src
 	file -b "$src" | grep 'PDF document' || die plik $src to nie PDF!
+
 	[[ -d $dir   ]] && die folder $dir już istnieje
 	echo output dir: $dir
 	mkdir -p "$dir"
+
 	pdftk "$src" burst output "${dir}"/strona%03d.pdf
+
 	echo ------------
 	echo result:
 	tree "$dir"
