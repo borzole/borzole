@@ -32,7 +32,7 @@ while [ "$1" ] ; do
 	pdftk "$src" burst output "${dir}"/strona%03d.pdf
 	echo ------------
 	echo result:
-	tree $dir
+	tree "$dir"
 
 	shift
 done
