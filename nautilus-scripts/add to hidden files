@@ -1,0 +1,5 @@
+#!/bin/bash
+
+touch $PWD/.hidden
+
+echo "$PWD/$NAUTILUS_SCRIPT_SELECTED_URIS" | tee -a $PWD/.hidden
