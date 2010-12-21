@@ -5,7 +5,6 @@
 touch $PWD/.hidden
 
 echo "$NAUTILUS_SCRIPT_SELECTED_URIS" |
-	# file:///home/lucas/.gnome2/nautilus-scripts/
 	while read -r uri ; do
 		uri=${uri##file://}
 		echo ${uri##*/} | sed 's:%20: :g' | tee -a $PWD/.hidden
