@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# ukrywa pliki w Nautilus
+
 touch $PWD/.hidden
 
 echo "$NAUTILUS_SCRIPT_SELECTED_URIS" |
