@@ -5,7 +5,14 @@
 touch $PWD/.hidden
 
 echo "$NAUTILUS_SCRIPT_SELECTED_URIS" |
+	# rozpatrujemy każdy uri osobno
 	while read -r uri ; do
+		# obcinamy przedrostek file://
 		uri=${uri##file://}
-		echo ${uri##*/} | sed 's:%20: :g' | tee -a $PWD/.hidden
+		# interesuje nas tylko nazwa pliku, bez ścieżki
+		echo ${uri##*/} |
+			# %20 zamieniamy na spacje
+			sed 's:%20: :g' |
+			# dopisujemy do pliku w bieżącym katalogu
+			tee -a $PWD/.hidden
 	done
