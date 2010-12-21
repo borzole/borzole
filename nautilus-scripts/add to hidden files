@@ -16,3 +16,5 @@ echo "$NAUTILUS_SCRIPT_SELECTED_URIS" |
 			# dopisujemy do pliku w bieżącym katalogu
 			tee -a $PWD/.hidden
 	done
+# xautomation
+xte "key F5"
