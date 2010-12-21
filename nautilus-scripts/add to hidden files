@@ -2,4 +2,4 @@
 
 touch $PWD/.hidden
 
-echo "$PWD/$NAUTILUS_SCRIPT_SELECTED_URIS" | tee -a $PWD/.hidden
+echo "$NAUTILUS_SCRIPT_SELECTED_URIS" | tee -a $PWD/.hidden
