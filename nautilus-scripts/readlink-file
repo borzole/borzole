@@ -3,9 +3,9 @@
 # readlink-file : otwiera folder zawierający plik do którego prowadzi link symboliczny
 
 
-for path in "$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS" ; do
+while read -r path  ; do
 	zenity --error --text="$path"
-done
+done < <(echo -e "$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS")
 exit
 abs=$(readlink -f "$file")
 xdg-open "${abs%/*}"
