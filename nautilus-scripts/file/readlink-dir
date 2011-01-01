@@ -7,5 +7,6 @@ abs_path(){
 }
 
 zenity --error --text="$(abs_path)"
+
 xdg-open "$(abs_path)"
 
