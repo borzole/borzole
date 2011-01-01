@@ -3,5 +3,5 @@
 # readlink-file : otwiera folder zawierający plik do którego prowadzi link symboliczny
 
 file=$(echo -e "${1:-NAUTILUS_SCRIPT_SELECTED_FILE_PATHS}" | head -n 1)
-abs=$(readlink -f ${file})
+abs=$(readlink -f "$file")
 xdg-open "${abs%/*}"
