@@ -5,7 +5,7 @@
 
 while read -r path  ; do
 	[ ${#path} != 0 ] && zenity --error --text="$path"
-done < <(echo -e "$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS")
+done < <(IFS=$'\n' echo -e "$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS")
 exit
 abs=$(readlink -f "$file")
 xdg-open "${abs%/*}"
