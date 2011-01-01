@@ -5,5 +5,6 @@
 abs_path(){
 	readlink -f "${NAUTILUS_SCRIPT_CURRENT_URI#file://}"
 }
+
 xdg-open "$(abs_path)"
 
