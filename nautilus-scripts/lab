@@ -17,7 +17,7 @@ PATH_RELATIVE=$(readlink "$LINK")
 # pobranie nowej ścieżki docelowej
 destination(){
 	zenity --title="${0##*/}" --width=500 \
-		--text="Link symboliczny: \n<i>$LINK</i>
+		--text="Link symboliczny: \n$LINK
 		\nŚcieżka absolutna: \n$PATH_ABS
 		\nŚcieżka relatywna:" \
 		--entry --entry-text "$PATH_RELATIVE"
