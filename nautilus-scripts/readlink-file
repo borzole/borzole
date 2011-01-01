@@ -6,11 +6,12 @@
 while read -r path  ; do
 	if [ ${#path} != 0 ] ; then
 		abs=$(readlink -f "$path")
+		file=${abs%/*}
 		zenity --error --text="$path
 
 abs:
 
-xdg-open \"${abs%/*}\"
+xdg-open '$file'
 		"
 
 	fi
