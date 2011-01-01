@@ -6,7 +6,4 @@ abs_path(){
 	readlink -f "${NAUTILUS_SCRIPT_CURRENT_URI#file://}"
 }
 
-zenity --error --text="$(abs_path)"
-
 xdg-open "$(abs_path)"
-
