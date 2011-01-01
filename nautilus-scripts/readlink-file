@@ -6,9 +6,9 @@
 while read -r path  ; do
 	if [ ${#path} != 0 ] ; then
 		abs=$(readlink -f "$path")
-		file=${abs%/*}
+		dir=${abs%/*}
 		#~ zenity --error --text="$path"
-		xdg-open "$file"
+		xdg-open "$dir"
 	fi
 done < <(IFS=$'\n' echo -e "$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS")
 exit
