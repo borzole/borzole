@@ -2,5 +2,5 @@
 
 # readlink-dirname : otwiera folder do którego prowadzi link symboliczny
 
-xdg-open "$(readlink -f ${NAUTILUS_SCRIPT_CURRENT_URI#file://})"
+xdg-open "$(readlink -f '${NAUTILUS_SCRIPT_CURRENT_URI#file://}')"
 
