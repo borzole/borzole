@@ -4,7 +4,7 @@
 
 
 while read -r path  ; do
-	zenity --error --text="$path"
+	[ ${#path} != 0 ] && zenity --error --width=${#path} --text="$path"
 done < <(echo -e "$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS")
 exit
 abs=$(readlink -f "$file")
