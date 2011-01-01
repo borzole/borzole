@@ -4,8 +4,14 @@
 
 
 while read -r path  ; do
-	[ ${#path} != 0 ] && zenity --error --text="$path"
+	if [ ${#path} != 0 ] ; then
+		abs=$(readlink -f "$path")
+		zenity --error --text="$path
+xdg-open \"${path%/*}\"
+
+xdg-open \"${abs%/*}\"
+		"
+
+	fi
 done < <(IFS=$'\n' echo -e "$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS")
 exit
-abs=$(readlink -f "$file")
-xdg-open "${abs%/*}"
