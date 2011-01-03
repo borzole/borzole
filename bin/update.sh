@@ -15,7 +15,7 @@ today_h(){
 }
 # ------------------------------------------------------------------------------
 last_update(){
-	cat /var/log/yum.log \
+	sudo cat /var/log/yum.log \
 		| grep Updated \
 		| awk '{print $1" "$2" "$3}' \
 		| tail -n 1
