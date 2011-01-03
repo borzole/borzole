@@ -14,7 +14,7 @@ DIR=$HOME
 # tytuł okien
 TITLE="${0##*/} ver.$VERSION"
 # ------------------------------------------------------------------------------
-export DISPLAY=:0.0
+#~ export DISPLAY=:0.0
 export LANG=pl_PL.UTF-8
 export PATH=$PATH:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin
 # ------------------------------------------------------------------------------
