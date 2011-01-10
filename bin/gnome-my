@@ -8,28 +8,29 @@ gkey(){
 	gconftool-2 -s /apps/metacity/keybinding_commands/command_${i} -t str "$2"
 }
 
-gkey "<Super>F1" "gconf-editor"
-gkey "<Super>F2" "sudo yumex --root"
-gkey "<Super>F3" "firefox-tray.sh -P lucas"
-gkey "<Super>F4" "nautilus"
-gkey "<Super>F5" "evim"
-gkey "<Super>F6" "emacs"
-gkey "<Super>F7" "eclipse.sh"
-gkey "<Super>F8" "netbeans-6.9.sh"
-gkey "<Super>F9" "kydpdict"
-gkey "<Super>F10" "audacious-delete.sh"
-gkey "<Super>F11" "audacious-open-dir.sh"
-gkey "<Super>F12" "geany-ide"
+gkey "<Super>F1"   "gconf-editor"
+gkey "<Super>F2"   "sudo yumex --root"
+gkey "<Super>F3"   "firefox-tray.sh -P lucas"
+gkey "<Super>F4"   "nautilus"
+gkey "<Super>F5"   "evim"
+gkey "<Super>F6"   "emacs"
+gkey "<Super>F7"   "eclipse.sh"
+gkey "<Super>F8"   "netbeans-6.9.sh"
+gkey "<Super>F9"   "kydpdict"
+gkey "<Super>F10"  "audacious-delete.sh"
+gkey "<Super>F11"  "audacious-open-dir.sh"
+gkey "<Super>F12"  "geany-ide"
 
-gkey "13" "/home/lucas/project/dyplom/doc/run.sh"
-gkey "14" "texmaker"
-gkey "15" "gamma.sh +"
-gkey "16" "gamma.sh -"
+gkey "<Super><Shift>F5"    "/home/lucas/project/dyplom/doc/run.sh"
+gkey "<Super><Shift>F6"    "texmaker"
+
+gkey "<Super>Up"    "gamma.sh +"
+gkey "<Super>Down"  "gamma.sh -"
+
+gkey "<Super>e"   "nautilus"
 
 gkey "<Super><Shift>x" "xp on"
-gkey "<Super><Shift>s" "nautilus arch/local/sbin"
-gkey "<Super><Shift>h" "nautilus "
-gkey "<Super><Shift>w" "nautilus arch/win"
+
 
 cat >$HOME/.config/user-dirs.dirs<<__EOF__
 # This file is written by xdg-user-dirs-update
