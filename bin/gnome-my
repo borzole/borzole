@@ -37,10 +37,10 @@ XDG_DESKTOP_DIR="$HOME/desk"
 XDG_DOWNLOAD_DIR="$HOME/temp"
 XDG_TEMPLATES_DIR="$HOME/.templates"
 XDG_PUBLICSHARE_DIR="$HOME/temp"
-XDG_DOCUMENTS_DIR="$HOME/studio"
-XDG_MUSIC_DIR="$HOME/studio/art/music"
-XDG_PICTURES_DIR="$HOME/studio/art/images"
-XDG_VIDEOS_DIR="$HOME/studio/art/movies"
+XDG_DOCUMENTS_DIR="$HOME/arch"
+XDG_MUSIC_DIR="$HOME/arch/art/music"
+XDG_PICTURES_DIR="$HOME/arch/art/images"
+XDG_VIDEOS_DIR="$HOME/arch/art/movies"
 __EOF__
 
 
