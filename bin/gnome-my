@@ -9,7 +9,7 @@ gkey(){
 }
 
 gkey "<Super>F1" "gconf-editor"
-gkey "<Super>F2" "xterm -e htop"
+gkey "<Super>F2" "sudo yumex --root"
 gkey "<Super>F3" "yumex"
 gkey "<Super>F4" "nautilus"
 gkey "<Super>F5" "evim"
