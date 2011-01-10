@@ -21,6 +21,11 @@ gkey "<Super>F10" "audacious-delete.sh"
 gkey "<Super>F11" "audacious-open-dir.sh"
 gkey "<Super>F12" "geany-ide"
 
+gkey "13" "/home/lucas/project/dyplom/doc/run.sh"
+gkey "14" "texmaker"
+gkey "15" "gamma.sh +"
+gkey "16" "gamma.sh -"
+
 gkey "<Super><Shift>x" "xp on"
 gkey "<Super><Shift>s" "nautilus arch/local/sbin"
 gkey "<Super><Shift>h" "nautilus "
