@@ -10,7 +10,7 @@ gkey(){
 
 gkey "<Super>F1" "gconf-editor"
 gkey "<Super>F2" "sudo yumex --root"
-gkey "<Super>F3" "yumex"
+gkey "<Super>F3" "firefox-tray.sh -P lucas"
 gkey "<Super>F4" "nautilus"
 gkey "<Super>F5" "evim"
 gkey "<Super>F6" "emacs"
