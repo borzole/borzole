@@ -18,7 +18,7 @@ gkey "<Super>F7"   "eclipse.sh"
 gkey "<Super>F8"   "netbeans-6.9.sh"
 gkey "<Super>F9"   "kydpdict"
 gkey "<Super>F10"  "audacious-delete.sh"
-gkey "<Super>F11"  "audacious-open-dir.sh"
+gkey "<Super>F11"  "gtg_new_task"
 gkey "<Super>F12"  "geany-ide"
 
 gkey "<Super><Shift>F5"    "/home/lucas/project/dyplom/doc/run.sh"
