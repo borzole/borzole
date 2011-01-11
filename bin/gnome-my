@@ -27,6 +27,11 @@ gkey "<Super><Shift>F6"    "texmaker"
 gkey "<Super>Up"    "gamma.sh +"
 gkey "<Super>Down"  "gamma.sh -"
 
+gkey "<Super>Right"    "font_size.sh +"
+gkey "<Super>Left"  "font_size.sh -"
+
+
+
 gkey "<Super>e"   "nautilus"
 
 gkey "<Super><Shift>x" "xp on"
