@@ -20,3 +20,6 @@ esac
 # new font
 font=$(echo $font | sed 's/[0-9]\+$/'${size}'/g')
 gconftool-2 -s /desktop/gnome/interface/font_name -t string "$font"
+
+notify-send -t 300 -i /usr/share/pixmaps/fedora-logo-sprite.svg \
+	"$font"  "czcionka używana przez programy"
