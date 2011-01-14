@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# wymage: http://files.getdropbox.com/u/409786/pub/bin/sejf
+
+# wyrażenie:  ##*/   skasuj ścieżkę z początku ("basename" nie obsługuje SPACJI!)
+tmp=${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS##*/}
+# wyrażenie:  %?   skasuje ostatni znak (ewentualnie wydłubać ten kod w ascii)
+file=${tmp%?}
+
+# użyj terminala: 
+# xterm -e sejf --cli "$file"
+gnome-terminal -x sejf.sh --cli "$file"
+
+# ewentualnie rozbić to na dwa pliki
+#xterm -e sejf -c "$file"
+#xterm -e sejf -e "$file"
