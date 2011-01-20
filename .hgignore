@@ -7,6 +7,7 @@ syntax: glob
 *.tdd.sh
 *.pyc
 *~
+.hidden
 
 # switch to regexp syntax.
 syntax: regexp
