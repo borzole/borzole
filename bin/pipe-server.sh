@@ -3,33 +3,22 @@
 # przykładowy client-serwer przy użyciu potoków nazwanych
 # http://www.linuxjournal.com/content/using-named-pipes-fifos-bash
 
-VERBOSE=1
-. bslib.sh || exit 1
-
-script_lock
-
-TrapEXIT(){
-	rm -f $pipe
-	script_unlock
-}
 
 pipe=/tmp/testpipe
 
-trap "TrapEXIT" EXIT
-
-if [[ ! -p $pipe ]]; then
+if [[ ! -p $pipe ]] ; then
     mkfifo $pipe
+    trap "rm -f $pipe" EXIT
 fi
 
-while true
-do
+while : ; do
     if read line <$pipe; then
         if [[ "$line" == 'quit' ]]; then
             break
         fi
-        eval $line
+        eval echo $line
     fi
-    #~ sleep 1.2
+    #~ sleep 1.2 # w cron bez tego może wyskoczyć błąd "interraption"
 done
 
 echo "Reader exiting"

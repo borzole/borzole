@@ -16,7 +16,7 @@ VERSION=2010.03.05-17.35
 export DISPLAY=:0.0
 export LANG=pl_PL.UTF-8
 export PATH=$PATH:/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin
-. bslib.sh || exit 1
+
 # ------------------------------------------------------------------------------
 # czas w sekundach co ile ma być uruchamiany demon (1800 = 30 minut)
 # ikona
@@ -84,9 +84,9 @@ demon(){
 	demon
 }
 # ------------------------------------------------------------------------------
-requires yum zenity notify-send
-script_lock
-trap script_unlock EXIT
+#~ requires yum zenity notify-send
+#~ script_lock
+#~ trap script_unlock EXIT
 
 if [[ $# -eq 0 ]] ; then
 	main
