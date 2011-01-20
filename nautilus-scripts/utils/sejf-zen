@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# wymage: http://files.getdropbox.com/u/409786/pub/bin/sejf
+
+# wyrażenie:  ##*/   skasuj ścieżkę z początku ("basename" nie obsługuje SPACJI!)
+tmp=${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS##*/}
+# wyrażenie:  %?   skasuje ostatni znak (ewentualnie wydłubać ten kod w ascii)
+file=${tmp%?}
+
+# Zenity: 		http://library.gnome.org/users/zenity
+menu(){
+	# funkcja zwraca { crypt | encrypt}
+	# jest jakiś problem z przekazywaniem bezpośrednio z  myślnikami np. "--crypt" 
+	zenity --title="Sejf" --text "Miłego szyfrowania plików" \
+		--list --column "wybierz" --column "ukryta" \
+			"Zaszyfruj: $file" 	"crypt"\
+			"Odszyfruj: $file" 	"encrypt"\
+		--print-column=2 --hide-column=2
+}
+args="$(menu)"
+
+# wersja z terminalem:
+#gnome-terminal -x sejf --"$(menu)" "$file"
+
+# przekazanie hasła 
+zenity --entry --title="Sejf" \
+    --text="Podaj hasło: $args" \
+    --entry-text "**********" --hide-text 2>/dev/null \
+	|sejf.sh --"$args" "$file"
+
+# ostateczne powiadomienie o rezultacie
+# coś nie działa, zawsze zwraca OK
+#if [ "x$?" == "x0" ]; then
+#	zenity --title="Sejf" --info --text="OK! Operacja zakończona pomyślnie"
+#else
+#	zenity --title="Sejf" --error --text="ERROR! Nieprawidłowe hasło"
+#fi
+exit $?

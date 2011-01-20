@@ -1,0 +1,84 @@
+#!/bin/bash
+
+# yum-size-of - skrypt pokazuje miejsce zajmowane przez paczkę podaną jako argument
+# by jedral.one.pl
+
+paczka=${1:-gimp}
+
+query(){
+	echo "SELECT name, size_package, size_installed, size_archive, version, release, arch 
+	FROM packages
+	WHERE name = '$1'; "
+}
+
+QUERY="$(query $paczka)" 
+
+sqlite_select(){
+	#~ sqlite3 "$mydb" "$(query $paczka)" 
+	sqlite3 "$mydb" "$QUERY" 
+}
+
+show_result(){
+	REPO=${mydb##/var/cache/yum/}
+	
+	VERSION="$( echo $SQLITE_SELECT | cut -d\| -f5 )"
+	VERSION+=".$( echo $SQLITE_SELECT | cut -d\| -f6 )"
+	VERSION+=".$( echo $SQLITE_SELECT | cut -d\| -f7 )"
+	
+	SIZE_PACKAGE=$( echo $SQLITE_SELECT | cut -d\| -f2 )
+	SIZE_PACKAGE_MB=$( echo "scale=3; $SIZE_PACKAGE/1024/1024" | bc -l )
+
+	SIZE_INSTALLED=$( echo $SQLITE_SELECT | cut -d\| -f3 )
+	SIZE_INSTALLED_MB=$( echo "scale=3; $SIZE_INSTALLED/1024/1024" | bc -l )
+
+	SIZE_ARCHIVE=$( echo $SQLITE_SELECT | cut -d\| -f4 )
+	SIZE_ARCHIVE_MB=$( echo "scale=3; $SIZE_ARCHIVE/1024/1024" | bc -l )
+
+	# wyświetl ładne wyniki
+	print_col 5 " $SIZE_PACKAGE_MB MB" " $SIZE_INSTALLED_MB MB" " $SIZE_ARCHIVE_MB MB" "${VERSION}" " ${REPO%%/*}"
+	
+}
+
+pkt(){
+	tput rc
+	tput cuf $1
+	echo -n "|"
+	tput sc
+}
+
+line(){
+	for (( i=1; i<=$(tput cols); i++ )) ; do 
+		echo -n "${1:--}"
+	done
+}
+
+print_col(){
+	col=$(( $(tput cols) / $1))
+	shift
+	echo
+	tput sc
+	echo -n "|"
+	for info in "$@" ; do 
+		echo -n "$info"
+		pkt $col
+	done
+}
+
+# about
+tput sc ; 
+echo -n " yum-size-of $(tput setaf 1)$paczka$(tput sgr0)"
+tput rc
+tput cuf $(( $(tput cols) -20)) ; 
+echo -e "$(tput setaf 2)by jedral.one.pl$(tput sgr0)"
+# rezultaty
+line
+print_col 5 " size_package " " size_installed " " size_archive " " version " " repo "
+echo
+line =
+
+for mydb in $( find /var/cache/yum/ -type f -name \*primary\*.sqlite ) ; do
+	SQLITE_SELECT=$(sqlite_select)
+	if [ "$SQLITE_SELECT" != "" ] ; then
+		show_result
+	fi
+done

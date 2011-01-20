@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# readlink-file : otwiera folder zawierający plik do którego prowadzi link symboliczny
+
+
+while read -r path  ; do
+	if [ ${#path} != 0 ] ; then
+		abs=$(readlink -f "$path")
+		dir=${abs%/*}
+		#~ zenity --error --text="$path"
+		xdg-open "$dir"
+	fi
+done < <(IFS=$'\n' echo -e "$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS")
+exit
