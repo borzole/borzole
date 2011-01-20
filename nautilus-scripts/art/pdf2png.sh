@@ -1,1 +1,0 @@
-/usr/local/bin/pdf2png.sh

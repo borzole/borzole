@@ -1,3 +1,0 @@
-#!/bin/bash
-
-gnome-search-tool --path="${NAUTILUS_SCRIPT_CURRENT_URI#file://}"

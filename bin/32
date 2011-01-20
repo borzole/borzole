@@ -1,5 +1,0 @@
-#!/bin/bash
-
-# schroot dla fedora 32bit
-
-schroot -p -c fc -- $@

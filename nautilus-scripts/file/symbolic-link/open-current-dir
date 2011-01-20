@@ -1,9 +1,0 @@
-#!/bin/bash
-
-# readlink-dirname : otwiera folder do którego prowadzi link symboliczny
-
-abs_path(){
-	readlink -f "${NAUTILUS_SCRIPT_CURRENT_URI#file://}"
-}
-
-xdg-open "$(abs_path)"

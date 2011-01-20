@@ -1,3 +1,0 @@
-#!/bin/bash
-
-recode cp1250..utf-8 $NAUTILUS_SCRIPT_SELECTED_FILE_PATHS
