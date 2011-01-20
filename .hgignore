@@ -1,6 +1,10 @@
 # use glob syntax.
 syntax: glob
 
+*.lab.py
+*.lab.sh
+*.tdd.py
+*.tdd.sh
 *.pyc
 *~
 
