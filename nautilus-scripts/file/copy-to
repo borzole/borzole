@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Skrypt można użyć jako:
+# Skryptu można użyć jako:
 # a) NAUTILUS ACTIONS
 # utworzyć "akcje nautilusa" podając jako parametr %M
 # b) NAUTILUS SCRIPTS
