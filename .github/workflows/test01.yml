@@ -1,0 +1,12 @@
+name: Testowanie GA 01
+
+on:
+  schedule:
+  - cron: '12 * * * *'
+
+jobs:
+  kaszanka:
+    runs-on: ubuntu-latest
+    steps:
+    - name: krok pierwszy
+      run:  exit 1
