@@ -18,6 +18,6 @@ jobs:
       run : |
        sudo pwd
        sudo apt update -y
-       sudo apt install wget -y
-       ping -c 1 onet.pl
+       sudo apt install htop -y
+       ping -c 1 99.83.207.202
        
