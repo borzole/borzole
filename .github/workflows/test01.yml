@@ -15,4 +15,4 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v1
     - name: Odpalaj
-      run : ping onet.pl 
+      run : ip a 
