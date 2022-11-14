@@ -1,14 +1,18 @@
-name: Testowanie GA 01
-
+name: Run tests and publish
+ 
+on:
+  push:
+    branches:
+      - master
+      - beta
+  pull_request:
+  
+  
 jobs:
-  kaszanka:
+  build-and-test:
     runs-on: ubuntu-latest
     steps:
-      - name: krok pierwszy
-        run: |
-         ping onet.pl
-         pwd
-         ls -la
-         uname -a
-					uptime
-
+    - name: Checkout
+      uses: actions/checkout@v1
+    - name: Odpalaj
+      run : ping onet.pl 
