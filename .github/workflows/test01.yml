@@ -1,12 +1,14 @@
 name: Testowanie GA 01
 
-on:
-  schedule:
-  - cron: '12 0 * * *'
-
 jobs:
   kaszanka:
     runs-on: ubuntu-latest
     steps:
     - name: krok pierwszy
-      run:  exit 0
+        run: |
+        ping onet.pl
+        pwd
+        ls -la
+        uname -a
+        uptime
+        sudo id
