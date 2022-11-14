@@ -4,11 +4,11 @@ jobs:
   kaszanka:
     runs-on: ubuntu-latest
     steps:
-    - name: krok pierwszy
+      - name: krok pierwszy
         run: |
-        ping onet.pl
-        pwd
-        ls -la
-        uname -a
-        uptime
-        sudo id
+         ping onet.pl
+         pwd
+         ls -la
+         uname -a
+					uptime
+
