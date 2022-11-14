@@ -15,4 +15,9 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v1
     - name: Odpalaj
-      run : ip a 
+      run : |
+       sudo pwd
+       sudo apt update -y
+       sudo apt install wget -y
+       ping -c 1 onet.pl
+       
